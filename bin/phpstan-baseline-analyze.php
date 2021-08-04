@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 
 // Finding composer
@@ -16,4 +15,11 @@ foreach ($paths as $path) {
 }
 
 $app = new \staabm\PHPStanBaselineAnalysis\Application();
+
+if ($argc <= 1) {
+    $app->help();
+    exit(1);
+}
+
 $app->start($argv[1]);
+exit(0);

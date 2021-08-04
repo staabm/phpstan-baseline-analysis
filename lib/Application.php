@@ -18,4 +18,9 @@ final class Application
             printf("  Overall-Complexity: %s\n", $result->overallComplexity);
         }
     }
+
+    public function help()
+    {
+        printf('USAGE: phpstan-baseline-analyze <GLOB-PATTERN>');
+    }
 }
