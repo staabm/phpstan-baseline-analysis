@@ -2,15 +2,14 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use Nette\Neon\Neon;
+final class Application
+{
 
-final class Application {
-
-    public function start(string $glob)
+    public function start(string $glob): void
     {
         $baselines = BaselineFinder::forGlob($glob);
 
-        foreach($baselines as $baseline) {
+        foreach ($baselines as $baseline) {
             printf("Analyzing %s\n", $baseline->getFilePath());
 
             $analyzer = new BaselineAnalyzer($baseline);

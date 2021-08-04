@@ -5,10 +5,12 @@ namespace staabm\PHPStanBaselineAnalysis;
 use Iterator;
 use Nette\Neon\Neon;
 use RuntimeException;
+use Safe\Exceptions\FilesystemException;
+use function Safe\sprintf;
 
 final class Baseline {
     /**
-     * @var array
+     * @var array{parameters?: array{ignoreErrors?: list<array{message: string, count: int, path: string}>}}
      */
     private $content;
 
@@ -17,9 +19,11 @@ final class Baseline {
      */
     private $filePath;
 
+    /**
+     * @throws FilesystemException
+     */
     static public function forFile(string $filePath):self {
-
-        $content = file_get_contents($filePath);
+        $content = \Safe\file_get_contents($filePath);
         $decoded = Neon::decode($content);
 
         if (!is_array($decoded)) {
@@ -46,9 +50,6 @@ final class Baseline {
         }
         $ignoreErrors = $parameters['ignoreErrors'];
 
-        /**
-         * @var array{message: string, count: int, path: string} $error
-         */
         foreach($ignoreErrors as $error) {
             yield $error['message'];
         }
