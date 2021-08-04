@@ -5,6 +5,7 @@ namespace staabm\PHPStanBaselineAnalysis;
 use Iterator;
 use Nette\Neon\Neon;
 use RuntimeException;
+use Safe\Exceptions\FilesystemException;
 
 final class Baseline {
     /**
@@ -17,9 +18,11 @@ final class Baseline {
      */
     private $filePath;
 
+    /**
+     * @throws FilesystemException
+     */
     static public function forFile(string $filePath):self {
-
-        $content = file_get_contents($filePath);
+        $content = \Safe\file_get_contents($filePath);
         $decoded = Neon::decode($content);
 
         if (!is_array($decoded)) {
