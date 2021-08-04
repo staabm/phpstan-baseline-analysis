@@ -2,12 +2,15 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use Nette\Neon\Neon;
+use Safe\Exceptions\FilesystemException;
+use function Safe\glob;
 
 final class BaselineFinder
 {
     /**
      * @return Baseline[]
+     *
+     * @throws FilesystemException
      */
     static public function forGlob(string $glob): array
     {
@@ -32,6 +35,8 @@ final class BaselineFinder
      * from https://stackoverflow.com/a/17161106
      *
      * @return string[]
+     *
+     * @throws FilesystemException
      */
     static private function rglob(string $pattern,int $flags = 0):array
     {
