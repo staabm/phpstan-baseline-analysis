@@ -1,4 +1,4 @@
 #!/usr/bin/env php
 <?php
 
-require 'phpstan-baseline-analyze.php';
+require __DIR__ .'/phpstan-baseline-analyze.php';
