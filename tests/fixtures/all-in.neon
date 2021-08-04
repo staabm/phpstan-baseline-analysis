@@ -21,6 +21,11 @@ parameters:
 			path: controllers/ApplicationController.php
 
 		-
+			message: "#^Class cognitive complexity is 22, keep it under 30$#"
+			count: 1
+			path: controllers/ApplicationController.php
+
+		-
 			message: "#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#"
 			count: 10
 			path: controllers/ApplicationController.php

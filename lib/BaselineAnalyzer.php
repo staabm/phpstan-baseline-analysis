@@ -18,8 +18,9 @@ final class BaselineAnalyzer {
             }
 
             preg_match('/Class cognitive complexity is (?P<value>\d+), keep it under (?P<limit>\d+)/', $errorMessage, $matches);
-
-            $result->overallComplexity += $matches['value'];
+            if ($matches) {
+                $result->overallComplexity += $matches['value'];
+            }
         }
 
         return $result;
