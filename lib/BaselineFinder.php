@@ -28,8 +28,12 @@ final class BaselineFinder
         return $baselines;
     }
 
-    // from https://stackoverflow.com/a/17161106
-    static private function rglob($pattern, $flags = 0)
+    /**
+     * from https://stackoverflow.com/a/17161106
+     *
+     * @return string[]
+     */
+    static private function rglob(string $pattern,int $flags = 0):array
     {
         $files = glob($pattern, $flags);
         foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {

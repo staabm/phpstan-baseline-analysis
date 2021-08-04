@@ -3,6 +3,9 @@
 namespace staabm\PHPStanBaselineAnalysis;
 
 final class BaselineAnalyzer {
+    /**
+     * @var Baseline
+     */
     private $baseline;
 
     public function __construct(Baseline $baseline) {

@@ -9,7 +9,7 @@ use Safe\Exceptions\FilesystemException;
 
 final class Baseline {
     /**
-     * @var array
+     * @var array{parameters?: array{ignoreErrors?: array{message: string, count: int, path: string}}}
      */
     private $content;
 
@@ -49,9 +49,6 @@ final class Baseline {
         }
         $ignoreErrors = $parameters['ignoreErrors'];
 
-        /**
-         * @var array{message: string, count: int, path: string} $error
-         */
         foreach($ignoreErrors as $error) {
             yield $error['message'];
         }
