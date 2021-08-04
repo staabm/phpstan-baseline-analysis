@@ -10,7 +10,7 @@ use function Safe\sprintf;
 
 final class Baseline {
     /**
-     * @var array{parameters?: array{ignoreErrors?: array{message: string, count: int, path: string}}}
+     * @var array{parameters?: array{ignoreErrors?: list<array{message: string, count: int, path: string}>}}
      */
     private $content;
 
