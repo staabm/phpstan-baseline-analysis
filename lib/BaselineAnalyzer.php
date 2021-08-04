@@ -2,6 +2,8 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
+use function Safe\preg_match
+
 final class BaselineAnalyzer {
     /**
      * @var Baseline

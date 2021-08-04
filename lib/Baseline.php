@@ -6,6 +6,7 @@ use Iterator;
 use Nette\Neon\Neon;
 use RuntimeException;
 use Safe\Exceptions\FilesystemException;
+use function Safe\sprintf;
 
 final class Baseline {
     /**
