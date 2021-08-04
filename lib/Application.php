@@ -19,7 +19,7 @@ final class Application
         }
     }
 
-    public function help()
+    public function help(): void
     {
         printf('USAGE: phpstan-baseline-analyze <GLOB-PATTERN>');
     }
