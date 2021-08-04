@@ -1,0 +1,40 @@
+name: Static Analysis
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+    phpstan:
+        name: phpstan static code analysis
+        runs-on: ${{ matrix.os }}
+
+        strategy:
+            matrix:
+                include:
+                    #-   os: ubuntu-18.04
+                    #    php-version: '7.2'
+                    -   os: ubuntu-latest
+                        php-version: '7.4'
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-version }}
+                    extensions: gd, intl, pdo_mysql
+                    coverage: none # disable xdebug, pcov
+
+            -   name: Composer install
+                uses: ramsey/composer-install@v1
+                with:
+                    composer-options: '--ansi --prefer-dist'
+
+            -   name: Run phpstan analysis
+                run: vendor/bin/phpstan analyse --ansi

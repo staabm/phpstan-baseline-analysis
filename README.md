@@ -1,0 +1,1 @@
+Analyzes phpstan baseline files

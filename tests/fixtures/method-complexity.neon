@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property AccountController\\:\\:\\$anredekurz\\.$#"
+			count: 2
+			path: controllers/AccountController.php
+
+		-
+			message: "#^Cognitive complexity for \"ApplicationController\\:\\:app_init\\(\\)\" is 12, keep it under 10$#"
+			count: 1
+			path: controllers/ApplicationController.php

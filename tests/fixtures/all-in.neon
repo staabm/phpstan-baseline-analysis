@@ -1,0 +1,62 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property AccountController\\:\\:\\$anredekurz\\.$#"
+			count: 2
+			path: controllers/AccountController.php
+
+		-
+			message: "#^Class cognitive complexity is 48, keep it under 30$#"
+			count: 1
+			path: controllers/ApplicationController.php
+
+		-
+			message: "#^Cognitive complexity for \"ApplicationController\\:\\:app_init\\(\\)\" is 12, keep it under 10$#"
+			count: 1
+			path: controllers/ApplicationController.php
+
+		-
+			message: "#^Cognitive complexity for \"ApplicationController\\:\\:check_breadrumbs\\(\\)\" is 16, keep it under 10$#"
+			count: 1
+			path: controllers/ApplicationController.php
+
+		-
+			message: "#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#"
+			count: 10
+			path: controllers/ApplicationController.php
+
+		-
+			message: "#^Cognitive complexity for \"TablePdf\\:\\:NbLines\\(\\)\" is 17, keep it under 10$#"
+			count: 1
+			path: ../../models/TablePdf.php
+
+		-
+			message: "#^Use explicit return value over magic &reference$#"
+			count: 1
+			path: ../../models/TablePdf.php
+
+		-
+			message: "#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#"
+			count: 1
+			path: ../../models/Tarif.php
+
+		-
+			message: "#^Use explicit names over dynamic ones$#"
+			count: 1
+			path: ../../models/Zubehoer.php
+
+		-
+			message: "#^Access to an undefined property Zugabe\\:\\:\\$feat\\.$#"
+			count: 1
+			path: ../../models/Zugabe.php
+
+		-
+			message: "#^Access to an undefined property Zugabe\\:\\:\\$hersteller\\.$#"
+			count: 1
+			path: ../../models/Zugabe.php
+
+		-
+			message: "#^Use explicit names over dynamic ones$#"
+			count: 1
+			path: ../../models/Zugabe.php
+
