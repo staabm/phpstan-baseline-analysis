@@ -29,6 +29,10 @@ final class TrendApplication
         $content = \Safe\file_get_contents($filePath);
         $json = \Safe\json_decode($content, true);
 
+        if (!is_array($json)) {
+            throw new \RuntimeException('Expecting array, got '. gettype($data));
+        }
+
         $decoded = [];
         foreach($json as $data) {
 
