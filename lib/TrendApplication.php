@@ -13,10 +13,12 @@ final class TrendApplication
     /**
      * @throws \Safe\Exceptions\FilesystemException
      * @throws \Safe\Exceptions\JsonException
+     *
+     * @return self::EXIT_*
      */
     public function start(string $referenceFilePath, string $comparingFilePath): int
     {
-        $exitCode = self::EXIT_WORSE;
+        $exitCode = self::EXIT_IMPROVED;
 
         $reference = $this->decodeFile($referenceFilePath);
         $comparing = $this->decodeFile($comparingFilePath);
