@@ -18,7 +18,7 @@ $app = new \staabm\PHPStanBaselineAnalysis\AnalyzeApplication();
 
 if ($argc <= 1) {
     $app->help();
-    exit(1);
+    exit(254);
 }
 
 
@@ -27,5 +27,5 @@ if (in_array('--json', $argv)) {
     $format = \staabm\PHPStanBaselineAnalysis\ResultPrinter::FORMAT_JSON;
 }
 
-$app->start($argv[1], $format);
-exit(0);
+$exitCode = $app->start($argv[1], $format);
+exit($exitCode);

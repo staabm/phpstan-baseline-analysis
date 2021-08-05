@@ -10,7 +10,7 @@ final class TrendApplication
      * @throws \Safe\Exceptions\FilesystemException
      * @throws \Safe\Exceptions\JsonException
      */
-    public function start(string $referenceFilePath, string $comparingFilePath): void
+    public function start(string $referenceFilePath, string $comparingFilePath): int
     {
         $reference = $this->decodeFile($referenceFilePath);
         $comparing = $this->decodeFile($comparingFilePath);
@@ -22,6 +22,8 @@ final class TrendApplication
                 printf('  %s: %d -> %d', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
             }
         }
+
+        return 0;
     }
 
     public function help(): void

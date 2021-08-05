@@ -18,8 +18,8 @@ $app = new \staabm\PHPStanBaselineAnalysis\TrendApplication();
 
 if ($argc <= 2) {
     $app->help();
-    exit(1);
+    exit(254);
 }
 
-$app->start($argv[1], $argv[2]);
-exit(0);
+$exitCode = $app->start($argv[1], $argv[2]);
+exit($exitCode);
