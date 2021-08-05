@@ -6,6 +6,10 @@ use \Iterator;
 
 final class TrendApplication
 {
+    /**
+     * @throws \Safe\Exceptions\FilesystemException
+     * @throws \Safe\Exceptions\JsonException
+     */
     public function start(string $referenceFilePath, string $comparingFilePath): void
     {
         $reference = $this->decodeFile($referenceFilePath);
@@ -20,6 +24,11 @@ final class TrendApplication
         }
     }
 
+    public function help(): void
+    {
+        printf('USAGE: phpstan-baseline-trend <reference-result.json> <comparing-result.json>');
+    }
+
     /**
      * @return array<string, AnalyzerResult>
      * @throws \Safe\Exceptions\FilesystemException
@@ -30,7 +39,7 @@ final class TrendApplication
         $json = \Safe\json_decode($content, true);
 
         if (!is_array($json)) {
-            throw new \RuntimeException('Expecting array, got '. gettype($data));
+            throw new \RuntimeException('Expecting array, got '. gettype($json));
         }
 
         $decoded = [];

@@ -16,16 +16,10 @@ foreach ($paths as $path) {
 
 $app = new \staabm\PHPStanBaselineAnalysis\TrendApplication();
 
-if ($argc <= 1) {
+if ($argc <= 2) {
     $app->help();
     exit(1);
 }
 
-
-$format = \staabm\PHPStanBaselineAnalysis\ResultPrinter::FORMAT_TEXT;
-if (in_array('--json', $argv)) {
-    $format = \staabm\PHPStanBaselineAnalysis\ResultPrinter::FORMAT_JSON;
-}
-
-$app->start($argv[1], $format);
+$app->start($argv[1], $argv[2]);
 exit(0);
