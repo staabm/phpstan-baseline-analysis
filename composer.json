@@ -30,6 +30,7 @@
         "phpunit": "phpunit"
     },
     "bin": [
-        "bin/phpstan-baseline-analyze"
+        "bin/phpstan-baseline-analyze",
+        "bin/phpstan-baseline-trend",
     ]
 }
