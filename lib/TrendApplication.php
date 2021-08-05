@@ -19,7 +19,12 @@ final class TrendApplication
             echo 'Analyzing Trend for '. $baselinePath ."\n";
 
             if (isset($comparing[$baselinePath])) {
-                printf('  %s: %d -> %d', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+                if ($comparing[$baselinePath]->overallComplexity > $result->overallComplexity)
+                {
+                    printf('  %s: %d -> %d => worse', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+                } else {
+                    printf('  %s: %d -> %d => good', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+                }
             }
         }
 
