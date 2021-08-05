@@ -4,7 +4,7 @@ namespace staabm\PHPStanBaselineAnalysis;
 
 use \Iterator;
 
-final class Application
+final class AnalyzeApplication
 {
 
     /**
