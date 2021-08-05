@@ -32,7 +32,18 @@ final class TrendApplication
         $decoded = [];
         foreach($json as $data) {
 
+            if (!is_array($data)) {
+                throw new \RuntimeException('Expecting array, got '. gettype($data));
+            }
+
             foreach($data as $baselinePath => $resultArray) {
+
+                if (!is_string($baselinePath)) {
+                    throw new \RuntimeException('Expecting string, got '. gettype($baselinePath));
+                }
+                if (!is_array($resultArray)) {
+                    throw new \RuntimeException('Expecting string, got '. gettype($resultArray));
+                }
 
                 $result = new AnalyzerResult();
                 $result->overallComplexity = $resultArray[ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY];
