@@ -6,12 +6,18 @@ use \Iterator;
 
 final class TrendApplication
 {
+    const EXIT_IMPROVED = 0;
+    const EXIT_STEADY = 1;
+    const EXIT_WORSE = 2;
+
     /**
      * @throws \Safe\Exceptions\FilesystemException
      * @throws \Safe\Exceptions\JsonException
      */
     public function start(string $referenceFilePath, string $comparingFilePath): int
     {
+        $exitCode = self::EXIT_WORSE;
+
         $reference = $this->decodeFile($referenceFilePath);
         $comparing = $this->decodeFile($comparingFilePath);
 
@@ -21,15 +27,21 @@ final class TrendApplication
             if (isset($comparing[$baselinePath])) {
                 if ($comparing[$baselinePath]->overallComplexity > $result->overallComplexity) {
                     printf('  %s: %d -> %d => worse', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+
+                    $exitCode = max($exitCode, self::EXIT_WORSE);
                 } elseif ($comparing[$baselinePath]->overallComplexity < $result->overallComplexity) {
                     printf('  %s: %d -> %d => improved', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+
+                    $exitCode = max($exitCode, self::EXIT_IMPROVED);
                 } else {
                     printf('  %s: %d -> %d => good', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+
+                    $exitCode = max($exitCode, self::EXIT_STEADY);
                 }
             }
         }
 
-        return 0;
+        return $exitCode;
     }
 
     public function help(): void
