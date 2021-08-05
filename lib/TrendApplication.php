@@ -40,6 +40,8 @@ final class TrendApplication
 
                     $exitCode = max($exitCode, self::EXIT_STEADY);
                 }
+
+                echo "\n";
             }
         }
 
