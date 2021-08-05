@@ -21,5 +21,11 @@ if ($argc <= 1) {
     exit(1);
 }
 
-$app->start($argv[1]);
+
+$format = \staabm\PHPStanBaselineAnalysis\ResultPrinter::FORMAT_TEXT;
+if (in_array('--json', $argv)) {
+    $format = \staabm\PHPStanBaselineAnalysis\ResultPrinter::FORMAT_JSON;
+}
+
+$app->start($argv[1], $format);
 exit(0);

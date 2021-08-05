@@ -2,15 +2,39 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
+use \Iterator;
+use function Safe\sprintf;
+use function Safe\json_encode;
+
 final class ResultPrinter {
+    const FORMAT_JSON = 'json';
+    const FORMAT_TEXT = 'text';
+
+    const KEY_OVERALL_CLASS_COMPLEXITY = 'Overall-Class-Cognitive-Complexity';
+
     /**
      * @var int
      */
     public $overallComplexity = 0;
 
-    public function printText(Baseline $baseline, AnalyzerResult $result): void
+    /**
+     * @return Iterator<string>
+     */
+    public function streamText(Baseline $baseline, AnalyzerResult $result): Iterator
     {
-        printf("Analyzing %s\n", $baseline->getFilePath());
-        printf("  Overall-Class-Cognitive-Complexity: %s\n", $result->overallComplexity);
+        yield sprintf("Analyzing %s\n", $baseline->getFilePath());
+        yield sprintf("  %s: %s\n", self::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity);
+    }
+
+    /**
+     * @return Iterator<string>
+     */
+    public function streamJson(Baseline $baseline, AnalyzerResult $result): Iterator
+    {
+        yield json_encode([
+            $baseline->getFilePath() => [
+                self::KEY_OVERALL_CLASS_COMPLEXITY => $result->overallComplexity
+            ]
+        ]);
     }
 }
