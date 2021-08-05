@@ -8,7 +8,7 @@ use staabm\PHPStanBaselineAnalysis\BaselineAnalyzer;
 
 class BaselineAnalyzerTest extends TestCase
 {
-    function testAllInComplexity()
+    function testAllInComplexity():void
     {
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/all-in.neon'));
         $result = $analyzer->analyze();
@@ -16,7 +16,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(70, $result->overallComplexity);
     }
 
-    function testClassComplexity()
+    function testClassComplexity():void
     {
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/class-complexity.neon'));
         $result = $analyzer->analyze();
@@ -24,7 +24,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(26, $result->overallComplexity);
     }
 
-    function testMethodComplexityIgnored()
+    function testMethodComplexityIgnored():void
     {
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/method-complexity.neon'));
         $result = $analyzer->analyze();
