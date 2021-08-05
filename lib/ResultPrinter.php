@@ -11,7 +11,6 @@ final class ResultPrinter {
     public function printText(Baseline $baseline, AnalyzerResult $result): void
     {
         printf("Analyzing %s\n", $baseline->getFilePath());
-        printf("  Overall-Complexity: %s\n", $result->overallComplexity);
+        printf("  Overall-Class-Cognitive-Complexity: %s\n", $result->overallComplexity);
     }
-
 }
