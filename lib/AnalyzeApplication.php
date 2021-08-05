@@ -6,9 +6,14 @@ use \Iterator;
 
 final class AnalyzeApplication
 {
+    const EXIT_SUCCESS = 0;
+    const EXIT_ERROR = 1;
 
     /**
      * @param ResultPrinter::FORMAT_* $format
+     *
+     * @return self::EXIT_*
+     *
      * @throws \Safe\Exceptions\FilesystemException
      */
     public function start(string $glob, string $format): int
@@ -34,7 +39,10 @@ final class AnalyzeApplication
             $this->printResult($format, $isFirst, $isLast, $stream);
         }
 
-        return 0;
+        if ($numBaselines > 0) {
+            return self::EXIT_SUCCESS;
+        }
+        return self::EXIT_ERROR;
     }
 
     public function help(): void

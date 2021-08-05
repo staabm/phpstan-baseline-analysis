@@ -12,7 +12,7 @@ class AnalyzeApplicationTest extends BaseTestCase
         $app = new AnalyzeApplication();
 
         ob_start();
-        $app->start(__DIR__ . '/fixtures/all-in.neon', ResultPrinter::FORMAT_TEXT);
+        $exitCode = $app->start(__DIR__ . '/fixtures/all-in.neon', ResultPrinter::FORMAT_TEXT);
         $rendered = ob_get_clean();
 
         $rendered = str_replace(__DIR__, '', $rendered);
@@ -24,6 +24,7 @@ Analyzing /fixtures/all-in.neon
 PHP;
 
         $this->assertSame($expected, $rendered);
+        $this->assertSame(0, $exitCode);
     }
 
     function testJsonPrinting():void
@@ -31,7 +32,7 @@ PHP;
         $app = new AnalyzeApplication();
 
         ob_start();
-        $app->start(__DIR__ . '/fixtures/all-in.neon', ResultPrinter::FORMAT_JSON);
+        $exitCode = $app->start(__DIR__ . '/fixtures/all-in.neon', ResultPrinter::FORMAT_JSON);
         $rendered = ob_get_clean();
 
         $rendered = str_replace(trim(json_encode(__DIR__), '"'), '', $rendered);
@@ -41,5 +42,18 @@ PHP;
 PHP;
 
         $this->assertSame($expected, $rendered);
+        $this->assertSame(0, $exitCode);
+    }
+
+    function testNoMatchingGlob():void
+    {
+        $app = new AnalyzeApplication();
+
+        ob_start();
+        $exitCode = $app->start('this/file/does/not/exist*baseline.neon', ResultPrinter::FORMAT_TEXT);
+        $rendered = ob_get_clean();
+
+        $this->assertSame('', $rendered);
+        $this->assertSame(1, $exitCode);
     }
 }
