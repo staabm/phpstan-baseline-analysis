@@ -11,7 +11,7 @@ final class AnalyzeApplication
      * @param ResultPrinter::FORMAT_* $format
      * @throws \Safe\Exceptions\FilesystemException
      */
-    public function start(string $glob, string $format): void
+    public function start(string $glob, string $format): int
     {
         $printer = new ResultPrinter();
         $baselines = BaselineFinder::forGlob($glob);
@@ -33,6 +33,8 @@ final class AnalyzeApplication
 
             $this->printResult($format, $isFirst, $isLast, $stream);
         }
+
+        return 0;
     }
 
     public function help(): void
