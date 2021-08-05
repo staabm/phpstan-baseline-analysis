@@ -7,15 +7,14 @@ final class Application
 
     public function start(string $glob): void
     {
+        $printer = new ResultPrinter();
         $baselines = BaselineFinder::forGlob($glob);
 
         foreach ($baselines as $baseline) {
-            printf("Analyzing %s\n", $baseline->getFilePath());
-
             $analyzer = new BaselineAnalyzer($baseline);
             $result = $analyzer->analyze();
 
-            printf("  Overall-Complexity: %s\n", $result->overallComplexity);
+            $printer->printText($baseline, $result);
         }
     }
 
