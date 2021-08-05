@@ -19,6 +19,7 @@ class TrendApplicationTest extends BaseTestCase
         $expected = <<<PHP
 Analyzing Trend for /fixtures/all-in.neon
   Overall-Class-Cognitive-Complexity: 70 -> 70 => good
+
 PHP;
 
         $this->assertSame($expected, $rendered);
@@ -38,6 +39,7 @@ PHP;
         $expected = <<<PHP
 Analyzing Trend for /fixtures/all-in.neon
   Overall-Class-Cognitive-Complexity: 70 -> 90 => worse
+
 PHP;
 
         $this->assertSame($expected, $rendered);
@@ -57,6 +59,7 @@ PHP;
         $expected = <<<PHP
 Analyzing Trend for /fixtures/all-in.neon
   Overall-Class-Cognitive-Complexity: 70 -> 50 => improved
+
 PHP;
 
         $this->assertSame($expected, $rendered);
