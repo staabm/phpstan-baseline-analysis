@@ -17,7 +17,7 @@ class TrendApplicationTest extends BaseTestCase
         $rendered = str_replace(__DIR__, '', $rendered);
 
         $expected = <<<PHP
-Analyzing /fixtures/all-in.neon
+Analyzing Trend for /fixtures/all-in.neon
   Overall-Class-Cognitive-Complexity: 70 -> 70
 PHP;
 

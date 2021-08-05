@@ -16,7 +16,7 @@ final class TrendApplication
         $comparing = $this->decodeFile($comparingFilePath);
 
         foreach ($reference as $baselinePath => $result) {
-            echo 'Analyzing '. $baselinePath ."\n";
+            echo 'Analyzing Trend for '. $baselinePath ."\n";
 
             if (isset($comparing[$baselinePath])) {
                 printf('  %s: %d -> %d', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
