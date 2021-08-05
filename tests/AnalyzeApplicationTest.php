@@ -19,12 +19,14 @@ class AnalyzeApplicationTest extends TestCase
         $rendered = ob_get_clean();
 
         $rendered = str_replace(__DIR__, '', $rendered);
+        $rendered = $this->normalizeNewlines($rendered);
 
         $expected = <<<PHP
 Analyzing /fixtures/all-in.neon
   Overall-Class-Cognitive-Complexity: 70
 
 PHP;
+        $expected = $this->normalizeNewlines($expected);
 
         $this->assertSame($expected, $rendered);
     }
@@ -46,4 +48,7 @@ PHP;
         $this->assertSame($expected, $rendered);
     }
 
+    private function normalizeNewlines(string $string):string {
+        return str_replace("\r\n", "\n", $string);
+    }
 }
