@@ -41,4 +41,22 @@ PHP;
 
         $this->assertSame($expected, $rendered);
     }
+
+    function testLowerTrend():void
+    {
+        $app = new TrendApplication();
+
+        ob_start();
+        $app->start(__DIR__.'/fixtures/reference-result.json', __DIR__.'/fixtures/compare-lower-result.json');
+        $rendered = ob_get_clean();
+
+        $rendered = str_replace(__DIR__, '', $rendered);
+
+        $expected = <<<PHP
+Analyzing Trend for /fixtures/all-in.neon
+  Overall-Class-Cognitive-Complexity: 70 -> 50 => improved
+PHP;
+
+        $this->assertSame($expected, $rendered);
+    }
 }

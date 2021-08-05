@@ -16,12 +16,13 @@ final class TrendApplication
         $comparing = $this->decodeFile($comparingFilePath);
 
         foreach ($reference as $baselinePath => $result) {
-            echo 'Analyzing Trend for '. $baselinePath ."\n";
+            echo 'Analyzing Trend for ' . $baselinePath . "\n";
 
             if (isset($comparing[$baselinePath])) {
-                if ($comparing[$baselinePath]->overallComplexity > $result->overallComplexity)
-                {
+                if ($comparing[$baselinePath]->overallComplexity > $result->overallComplexity) {
                     printf('  %s: %d -> %d => worse', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+                } elseif ($comparing[$baselinePath]->overallComplexity < $result->overallComplexity) {
+                    printf('  %s: %d -> %d => improved', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
                 } else {
                     printf('  %s: %d -> %d => good', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
                 }
@@ -41,28 +42,29 @@ final class TrendApplication
      * @throws \Safe\Exceptions\FilesystemException
      * @throws \Safe\Exceptions\JsonException
      */
-    private function decodeFile(string $filePath):array {
+    private function decodeFile(string $filePath): array
+    {
         $content = \Safe\file_get_contents($filePath);
         $json = \Safe\json_decode($content, true);
 
         if (!is_array($json)) {
-            throw new \RuntimeException('Expecting array, got '. gettype($json));
+            throw new \RuntimeException('Expecting array, got ' . gettype($json));
         }
 
         $decoded = [];
-        foreach($json as $data) {
+        foreach ($json as $data) {
 
             if (!is_array($data)) {
-                throw new \RuntimeException('Expecting array, got '. gettype($data));
+                throw new \RuntimeException('Expecting array, got ' . gettype($data));
             }
 
-            foreach($data as $baselinePath => $resultArray) {
+            foreach ($data as $baselinePath => $resultArray) {
 
                 if (!is_string($baselinePath)) {
-                    throw new \RuntimeException('Expecting string, got '. gettype($baselinePath));
+                    throw new \RuntimeException('Expecting string, got ' . gettype($baselinePath));
                 }
                 if (!is_array($resultArray)) {
-                    throw new \RuntimeException('Expecting string, got '. gettype($resultArray));
+                    throw new \RuntimeException('Expecting string, got ' . gettype($resultArray));
                 }
 
                 $result = new AnalyzerResult();
