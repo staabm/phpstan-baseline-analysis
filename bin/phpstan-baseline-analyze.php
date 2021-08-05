@@ -14,7 +14,7 @@ foreach ($paths as $path) {
     }
 }
 
-$app = new \staabm\PHPStanBaselineAnalysis\Application();
+$app = new \staabm\PHPStanBaselineAnalysis\AnalyzeApplication();
 
 if ($argc <= 1) {
     $app->help();
