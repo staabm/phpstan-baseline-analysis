@@ -69,3 +69,8 @@ parameters:
 			message: "#^Instantiation of deprecated class Zend_Db_Expr\\.$#"
 			count: 2
 			path: controllers/AccountWatchlistController.php
+
+		-
+			message: "#^PHPDoc tag @throws with type Throws is not subtype of Throwable$#"
+			count: 5
+			path: lib/rest/RestClient.php

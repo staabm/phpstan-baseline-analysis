@@ -21,6 +21,7 @@ class AnalyzeApplicationTest extends BaseTestCase
 Analyzing /fixtures/all-in.neon
   Classes-Cognitive-Complexity: 70
   Deprecations: 2
+  Invalid-Phpdocs: 5
 
 PHP;
 
@@ -39,7 +40,7 @@ PHP;
         $rendered = str_replace(trim(json_encode(__DIR__), '"'), '', $rendered);
 
         $expected = <<<PHP
-[{"\/fixtures\/all-in.neon":{"Classes-Cognitive-Complexity":70,"Deprecations":2}}]
+[{"\/fixtures\/all-in.neon":{"Classes-Cognitive-Complexity":70,"Deprecations":2,"Invalid-Phpdocs":5}}]
 PHP;
 
         $this->assertSame($expected, $rendered);
