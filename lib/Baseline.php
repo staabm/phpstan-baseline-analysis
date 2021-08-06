@@ -37,7 +37,7 @@ final class Baseline {
     }
 
     /**
-     * @return Iterator<string>
+     * @return Iterator<BaselineError>
      */
     public function getIgnoreErrors(): Iterator {
         if (!array_key_exists('parameters', $this->content) || !is_array($this->content['parameters'])) {
@@ -51,7 +51,10 @@ final class Baseline {
         $ignoreErrors = $parameters['ignoreErrors'];
 
         foreach($ignoreErrors as $error) {
-            yield $error['message'];
+            $baselineError = new BaselineError();
+            $baselineError->message = $error['message'];
+            $baselineError->count = $error['count'];
+            yield $baselineError;
         }
     }
 
