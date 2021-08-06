@@ -10,7 +10,7 @@ final class ResultPrinter {
     const FORMAT_JSON = 'json';
     const FORMAT_TEXT = 'text';
 
-    const KEY_OVERALL_CLASS_COMPLEXITY = 'Overall-Class-Cognitive-Complexity';
+    const KEY_OVERALL_CLASS_COMPLEXITY = 'Classes-Cognitive-Complexity';
 
     /**
      * @var int
