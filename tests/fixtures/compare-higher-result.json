@@ -1,1 +1,1 @@
-[{"\/fixtures\/all-in.neon":{"Classes-Cognitive-Complexity":90,"Deprecations": 10,"Invalid-Phpdocs": 30}}]
+[{"\/fixtures\/all-in.neon":{"Classes-Cognitive-Complexity":90,"Deprecations": 10,"Invalid-Phpdocs": 30,"Unknown-Types": 15}}]

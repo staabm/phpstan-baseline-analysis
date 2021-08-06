@@ -1,0 +1,31 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to method find_one\\(\\) on an unknown class Shopdomain\\.$#"
+			count: 1
+			path: builtin/controllers/CmsgroupController.php
+
+		-
+			message: "#^Instantiated class Wgr not found\\.$#"
+			count: 1
+			path: builtin/controllers/CmsgroupController.php
+
+		-
+			message: "#^Call to static method config\\(\\) on an unknown class clxMobileNet\\.$#"
+			count: 1
+			path: builtin/controllers/CmsgroupController.php
+
+		-
+			message: "#^Access to property \\$artikeltext on an unknown class Art\\.$#"
+			count: 2
+			path: builtin/controllers/CmsgroupController.php
+
+		-
+			message: "#^Return typehint of method Cmsangk\\:\\:generate_offername\\(\\) has invalid type unknown\\.$#"
+			count: 1
+			path: builtin/models/Cmsangk.php
+
+		-
+			message: "#^Property ActionMailer\\:\\:\\$template_root has unknown class unknown_type as its type\\.$#"
+			count: 1
+			path: lib/ActionMailer.php

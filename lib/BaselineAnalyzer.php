@@ -35,6 +35,14 @@ final class BaselineAnalyzer
                 }
             } elseif (str_contains($errorMessage, 'PHPDoc tag ')) {
                 $result->invalidPhpdocs += $baselineError->count;
+            } elseif (str_contains($errorMessage, ' not found')) {
+                preg_match('/Instantiated class .+ not found/', $errorMessage, $matches);
+                if ($matches) {
+                    $result->unknownTypes += $baselineError->count;
+                }
+
+            } elseif (str_contains($errorMessage, 'on an unknown class') || str_contains($errorMessage, 'has invalid type unknown') || str_contains($errorMessage, 'unknown_type as its type')) {
+                $result->unknownTypes += $baselineError->count;
             }
         }
 

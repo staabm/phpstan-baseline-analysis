@@ -27,13 +27,16 @@ final class TrendApplication
             echo 'Analyzing Trend for ' . $baselinePath . "\n";
 
             if (isset($comparing[$baselinePath])) {
-                $exitCode = $this->compare(ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
+                $exitCode = $this->compare(ResultPrinter::KEY_CLASSES_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
                 echo "\n";
 
                 $exitCode = $this->compare(ResultPrinter::KEY_DEPRECATIONS, $result->deprecations, $comparing[$baselinePath]->deprecations, $exitCode);
                 echo "\n";
 
                 $exitCode = $this->compare(ResultPrinter::KEY_INVALID_PHPDOCS, $result->invalidPhpdocs, $comparing[$baselinePath]->invalidPhpdocs, $exitCode);
+                echo "\n";
+
+                $exitCode = $this->compare(ResultPrinter::KEY_UNKNOWN_TYPES, $result->unknownTypes, $comparing[$baselinePath]->unknownTypes, $exitCode);
                 echo "\n";
             }
         }
@@ -77,14 +80,17 @@ final class TrendApplication
                 }
 
                 $result = new AnalyzerResult();
-                if (array_key_exists(ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $resultArray)) {
-                    $result->classesComplexity = $resultArray[ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY];
+                if (array_key_exists(ResultPrinter::KEY_CLASSES_COMPLEXITY, $resultArray)) {
+                    $result->classesComplexity = $resultArray[ResultPrinter::KEY_CLASSES_COMPLEXITY];
                 }
                 if (array_key_exists(ResultPrinter::KEY_DEPRECATIONS, $resultArray)) {
                     $result->deprecations = $resultArray[ResultPrinter::KEY_DEPRECATIONS];
                 }
                 if (array_key_exists(ResultPrinter::KEY_INVALID_PHPDOCS, $resultArray)) {
                     $result->invalidPhpdocs = $resultArray[ResultPrinter::KEY_INVALID_PHPDOCS];
+                }
+                if (array_key_exists(ResultPrinter::KEY_UNKNOWN_TYPES, $resultArray)) {
+                    $result->unknownTypes = $resultArray[ResultPrinter::KEY_UNKNOWN_TYPES];
                 }
 
                 $decoded[$baselinePath] = $result;
