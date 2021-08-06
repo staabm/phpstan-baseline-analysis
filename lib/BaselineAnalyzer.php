@@ -18,13 +18,17 @@ final class BaselineAnalyzer {
         $result = new AnalyzerResult();
 
         foreach($this->baseline->getIgnoreErrors() as $errorMessage) {
-            if (!str_contains($errorMessage, 'cognitive complexity')) {
+            if (str_contains($errorMessage, ' deprecated class ') || str_contains($errorMessage, ' deprecated method ')) {
+                $result->deprecations += 1;
                 continue;
             }
 
-            preg_match('/Class cognitive complexity is (?P<value>\d+), keep it under (?P<limit>\d+)/', $errorMessage, $matches);
-            if ($matches) {
-                $result->classesComplexity += $matches['value'];
+            if (str_contains($errorMessage, 'cognitive complexity')) {
+                preg_match('/Class cognitive complexity is (?P<value>\d+), keep it under (?P<limit>\d+)/', $errorMessage, $matches);
+                if ($matches) {
+                    $result->classesComplexity += $matches['value'];
+                    continue;
+                }
             }
         }
 

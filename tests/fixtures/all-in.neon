@@ -65,3 +65,7 @@ parameters:
 			count: 1
 			path: ../../models/Zugabe.php
 
+		-
+			message: "#^Instantiation of deprecated class Zend_Db_Expr\\.$#"
+			count: 2
+			path: controllers/AccountWatchlistController.php
