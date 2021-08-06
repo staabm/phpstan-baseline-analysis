@@ -12,4 +12,9 @@ final class AnalyzerResult {
      * @var int
      */
     public $deprecations = 0;
+
+    /**
+     * @var int
+     */
+    public $invalidPhpdocs = 0;
 }

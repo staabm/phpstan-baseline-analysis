@@ -5,6 +5,7 @@ Analyzes phpstan baseline files
 - https://github.com/phpstan/phpstan-deprecation-rules
 
 ## Supported PHPStan Rules
+- PHPStan\Rules\PhpDoc\InvalidPhpDocTagValueRule
 - Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule
 
 ## example report
@@ -14,6 +15,7 @@ $ phpstan-baseline-analyze app/*phpstan-baseline.neon
 Analyzing app/portal/phpstan-baseline.neon
   Classes-Cognitive-Complexity: 270
   Deprecations: 2
+  Invalid-Phpdocs: 5
 ```
 
 ## example trend analysis
@@ -34,4 +36,5 @@ $ phpstan-baseline-trend reference.json now.json
 Analyzing Trend for app/portal/phpstan-baseline.neon
   Classes-Cognitive-Complexity: 309 -> 177 => improved
   Deprecations: 1 -> 2 => worse
+  Invalid-Phpdocs: 3 -> 1 => good
 ```

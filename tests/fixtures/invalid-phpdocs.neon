@@ -1,0 +1,21 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\)\\: Unexpected token \"\\\\n     \\*\", expected type at offset 113$#"
+			count: 1
+			path: lib/SimpleRecord.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$options$#"
+			count: 1
+			path: helpers/FileHelper.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\$cache CacheInterface\\)\\: Unexpected token \"\\$cache\", expected type at offset 9$#"
+			count: 1
+			path: lib/Debug.php
+
+		-
+			message: "#^PHPDoc tag @throws with type Throws is not subtype of Throwable$#"
+			count: 5
+			path: lib/rest/RestClient.php

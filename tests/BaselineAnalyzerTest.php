@@ -37,8 +37,15 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/deprecations.neon'));
         $result = $analyzer->analyze();
 
-        $this->assertSame(0, $result->classesComplexity);
         $this->assertSame(12, $result->deprecations);
+    }
+
+    function testInvalidPhpdocs():void
+    {
+        $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/invalid-phpdocs.neon'));
+        $result = $analyzer->analyze();
+
+        $this->assertSame(8, $result->invalidPhpdocs);
     }
 
 }
