@@ -27,16 +27,16 @@ final class TrendApplication
             echo 'Analyzing Trend for ' . $baselinePath . "\n";
 
             if (isset($comparing[$baselinePath])) {
-                if ($comparing[$baselinePath]->overallComplexity > $result->overallComplexity) {
-                    printf('  %s: %d -> %d => worse', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+                if ($comparing[$baselinePath]->classesComplexity > $result->classesComplexity) {
+                    printf('  %s: %d -> %d => worse', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity);
 
                     $exitCode = max($exitCode, self::EXIT_WORSE);
-                } elseif ($comparing[$baselinePath]->overallComplexity < $result->overallComplexity) {
-                    printf('  %s: %d -> %d => improved', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+                } elseif ($comparing[$baselinePath]->classesComplexity < $result->classesComplexity) {
+                    printf('  %s: %d -> %d => improved', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity);
 
                     $exitCode = max($exitCode, self::EXIT_IMPROVED);
                 } else {
-                    printf('  %s: %d -> %d => good', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity, $comparing[$baselinePath]->overallComplexity);
+                    printf('  %s: %d -> %d => good', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity);
 
                     $exitCode = max($exitCode, self::EXIT_STEADY);
                 }
@@ -84,7 +84,7 @@ final class TrendApplication
                 }
 
                 $result = new AnalyzerResult();
-                $result->overallComplexity = $resultArray[ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY];
+                $result->classesComplexity = $resultArray[ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY];
 
                 $decoded[$baselinePath] = $result;
             }

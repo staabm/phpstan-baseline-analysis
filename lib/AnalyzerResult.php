@@ -6,5 +6,5 @@ final class AnalyzerResult {
     /**
      * @var int
      */
-    public $overallComplexity = 0;
+    public $classesComplexity = 0;
 }

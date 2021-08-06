@@ -13,7 +13,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/all-in.neon'));
         $result = $analyzer->analyze();
 
-        $this->assertSame(70, $result->overallComplexity);
+        $this->assertSame(70, $result->classesComplexity);
     }
 
     function testClassComplexity():void
@@ -21,7 +21,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/class-complexity.neon'));
         $result = $analyzer->analyze();
 
-        $this->assertSame(26, $result->overallComplexity);
+        $this->assertSame(26, $result->classesComplexity);
     }
 
     function testMethodComplexityIgnored():void
@@ -29,7 +29,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/method-complexity.neon'));
         $result = $analyzer->analyze();
 
-        $this->assertSame(0, $result->overallComplexity);
+        $this->assertSame(0, $result->classesComplexity);
     }
 
 }
