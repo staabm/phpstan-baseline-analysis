@@ -42,6 +42,10 @@ final class BaselineFinder
     {
         $files = glob($pattern, $flags);
         foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
+            if (basename($dir) == 'vendor') {
+                continue;
+            }
+
             $files = array_merge($files, self::rglob($dir . '/' . basename($pattern), $flags));
         }
         return $files;
