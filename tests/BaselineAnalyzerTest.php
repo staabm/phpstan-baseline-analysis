@@ -21,7 +21,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/class-complexity.neon'));
         $result = $analyzer->analyze();
 
-        $this->assertSame(26, $result->classesComplexity);
+        $this->assertSame(50, $result->classesComplexity);
     }
 
     function testMethodComplexityIgnored():void
@@ -38,7 +38,7 @@ class BaselineAnalyzerTest extends TestCase
         $result = $analyzer->analyze();
 
         $this->assertSame(0, $result->classesComplexity);
-        $this->assertSame(3, $result->deprecations);
+        $this->assertSame(12, $result->deprecations);
     }
 
 }

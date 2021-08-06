@@ -17,16 +17,21 @@ final class BaselineAnalyzer {
     public function analyze():AnalyzerResult {
         $result = new AnalyzerResult();
 
-        foreach($this->baseline->getIgnoreErrors() as $errorMessage) {
+        /**
+         * @var BaselineError $baselineError
+         */
+        foreach($this->baseline->getIgnoreErrors() as $baselineError) {
+            $errorMessage = $baselineError->message;
+
             if (str_contains($errorMessage, ' deprecated class ') || str_contains($errorMessage, ' deprecated method ')) {
-                $result->deprecations += 1;
+                $result->deprecations += $baselineError->count;
                 continue;
             }
 
             if (str_contains($errorMessage, 'cognitive complexity')) {
                 preg_match('/Class cognitive complexity is (?P<value>\d+), keep it under (?P<limit>\d+)/', $errorMessage, $matches);
                 if ($matches) {
-                    $result->classesComplexity += $matches['value'];
+                    $result->classesComplexity += ($matches['value'] * $baselineError->count);
                     continue;
                 }
             }
