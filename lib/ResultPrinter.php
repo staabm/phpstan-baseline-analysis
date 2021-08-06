@@ -23,7 +23,7 @@ final class ResultPrinter {
     public function streamText(Baseline $baseline, AnalyzerResult $result): Iterator
     {
         yield sprintf("Analyzing %s\n", $baseline->getFilePath());
-        yield sprintf("  %s: %s\n", self::KEY_OVERALL_CLASS_COMPLEXITY, $result->overallComplexity);
+        yield sprintf("  %s: %s\n", self::KEY_OVERALL_CLASS_COMPLEXITY, $result->classesComplexity);
     }
 
     /**
@@ -33,7 +33,7 @@ final class ResultPrinter {
     {
         yield json_encode([
             $baseline->getFilePath() => [
-                self::KEY_OVERALL_CLASS_COMPLEXITY => $result->overallComplexity
+                self::KEY_OVERALL_CLASS_COMPLEXITY => $result->classesComplexity
             ]
         ]);
     }
