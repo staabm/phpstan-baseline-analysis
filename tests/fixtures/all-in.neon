@@ -74,3 +74,8 @@ parameters:
 			message: "#^PHPDoc tag @throws with type Throws is not subtype of Throwable$#"
 			count: 5
 			path: lib/rest/RestClient.php
+
+		-
+			message: "#^Property ActionMailer\\:\\:\\$template_root has unknown class unknown_type as its type\\.$#"
+			count: 1
+			path: lib/ActionMailer.php

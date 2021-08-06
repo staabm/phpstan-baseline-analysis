@@ -48,4 +48,12 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(8, $result->invalidPhpdocs);
     }
 
+    function testUnknownTypes():void
+    {
+        $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/unknown-types.neon'));
+        $result = $analyzer->analyze();
+
+        $this->assertSame(7, $result->unknownTypes);
+    }
+
 }

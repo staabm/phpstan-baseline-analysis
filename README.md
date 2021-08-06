@@ -16,6 +16,7 @@ Analyzing app/portal/phpstan-baseline.neon
   Classes-Cognitive-Complexity: 270
   Deprecations: 2
   Invalid-Phpdocs: 5
+  Unknown-Types: 1
 ```
 
 ## example trend analysis
@@ -37,4 +38,5 @@ Analyzing Trend for app/portal/phpstan-baseline.neon
   Classes-Cognitive-Complexity: 309 -> 177 => improved
   Deprecations: 1 -> 2 => worse
   Invalid-Phpdocs: 3 -> 1 => good
+  Unknown-Types: 5 -> 15 => worse
 ```

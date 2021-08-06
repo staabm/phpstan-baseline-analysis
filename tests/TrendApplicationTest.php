@@ -21,6 +21,7 @@ Analyzing Trend for /fixtures/all-in.neon
   Classes-Cognitive-Complexity: 70 -> 70 => good
   Deprecations: 1 -> 1 => good
   Invalid-Phpdocs: 3 -> 3 => good
+  Unknown-Types: 5 -> 5 => good
 
 PHP;
 
@@ -43,6 +44,7 @@ Analyzing Trend for /fixtures/all-in.neon
   Classes-Cognitive-Complexity: 70 -> 90 => worse
   Deprecations: 1 -> 10 => worse
   Invalid-Phpdocs: 3 -> 30 => worse
+  Unknown-Types: 5 -> 15 => worse
 
 PHP;
 
@@ -65,6 +67,7 @@ Analyzing Trend for /fixtures/all-in.neon
   Classes-Cognitive-Complexity: 70 -> 50 => improved
   Deprecations: 1 -> 0 => improved
   Invalid-Phpdocs: 3 -> 1 => improved
+  Unknown-Types: 5 -> 3 => improved
 
 PHP;
 

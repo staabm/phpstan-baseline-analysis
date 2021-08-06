@@ -17,4 +17,9 @@ final class AnalyzerResult {
      * @var int
      */
     public $invalidPhpdocs = 0;
+
+    /**
+     * @var int
+     */
+    public $unknownTypes = 0;
 }
