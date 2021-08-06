@@ -26,11 +26,11 @@ see the trend between 2 different points in time like:
 ```
 $ git clone ...
 
-$ phpstan-baseline-analyze app/*phpstan-baseline.neon --json > reference.json
+$ phpstan-baseline-analyze app/*phpstan-baseline.neon --json > now.json
 
 $ git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
 
-$ phpstan-baseline-analyze app/*phpstan-baseline.neon --json > now.json
+$ phpstan-baseline-analyze app/*phpstan-baseline.neon --json > reference.json
 
 $ phpstan-baseline-trend reference.json now.json
 Analyzing Trend for app/portal/phpstan-baseline.neon
