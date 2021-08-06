@@ -40,7 +40,21 @@ final class TrendApplication
 
                     $exitCode = max($exitCode, self::EXIT_STEADY);
                 }
+                echo "\n";
 
+                if ($comparing[$baselinePath]->deprecations > $result->deprecations) {
+                    printf('  %s: %d -> %d => worse', ResultPrinter::KEY_DEPRECATIONS, $result->deprecations, $comparing[$baselinePath]->deprecations);
+
+                    $exitCode = max($exitCode, self::EXIT_WORSE);
+                } elseif ($comparing[$baselinePath]->deprecations < $result->deprecations) {
+                    printf('  %s: %d -> %d => improved', ResultPrinter::KEY_DEPRECATIONS, $result->deprecations, $comparing[$baselinePath]->deprecations);
+
+                    $exitCode = max($exitCode, self::EXIT_IMPROVED);
+                } else {
+                    printf('  %s: %d -> %d => good', ResultPrinter::KEY_DEPRECATIONS, $result->deprecations, $comparing[$baselinePath]->deprecations);
+
+                    $exitCode = max($exitCode, self::EXIT_STEADY);
+                }
                 echo "\n";
             }
         }
@@ -85,6 +99,9 @@ final class TrendApplication
 
                 $result = new AnalyzerResult();
                 $result->classesComplexity = $resultArray[ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY];
+                if (array_key_exists(ResultPrinter::KEY_DEPRECATIONS, $resultArray)) {
+                    $result->deprecations = $resultArray[ResultPrinter::KEY_DEPRECATIONS];
+                }
 
                 $decoded[$baselinePath] = $result;
             }

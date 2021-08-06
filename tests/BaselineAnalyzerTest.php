@@ -32,4 +32,13 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->classesComplexity);
     }
 
+    function testDeprecations():void
+    {
+        $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/deprecations.neon'));
+        $result = $analyzer->analyze();
+
+        $this->assertSame(0, $result->classesComplexity);
+        $this->assertSame(3, $result->deprecations);
+    }
+
 }

@@ -7,4 +7,9 @@ final class AnalyzerResult {
      * @var int
      */
     public $classesComplexity = 0;
+
+    /**
+     * @var int
+     */
+    public $deprecations = 0;
 }

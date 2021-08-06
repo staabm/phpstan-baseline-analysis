@@ -1,0 +1,24 @@
+parameters:
+	ignoreErrors:
+		-
+			message:
+				"""
+					#^Call to method set\\(\\) of deprecated class ClxProductNet_Registry\\:
+					you shouldn't rely on this global registry, but use more local mechanics to store your data \\(e\\.g\\. a view\\-property\\)$#
+				"""
+			count: 9
+			path: controllers/AccountAddressesController.php
+
+		-
+			message:
+				"""
+					#^Call to deprecated method getRequest\\(\\) of class ClxProductNet_Mvc\\:
+					sollte nicht verwendet werden, da der rückgabewert ein objekt von Zend\\* ist$#
+				"""
+			count: 1
+			path: controllers/AccountController.php
+
+		-
+			message: "#^Instantiation of deprecated class Zend_Db_Expr\\.$#"
+			count: 2
+			path: controllers/AccountWatchlistController.php
