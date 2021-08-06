@@ -11,10 +11,10 @@ final class TrendApplication
     const EXIT_WORSE = 2;
 
     /**
-     * @throws \Safe\Exceptions\FilesystemException
+     * @return self::EXIT_*
      * @throws \Safe\Exceptions\JsonException
      *
-     * @return self::EXIT_*
+     * @throws \Safe\Exceptions\FilesystemException
      */
     public function start(string $referenceFilePath, string $comparingFilePath): int
     {
@@ -27,34 +27,10 @@ final class TrendApplication
             echo 'Analyzing Trend for ' . $baselinePath . "\n";
 
             if (isset($comparing[$baselinePath])) {
-                if ($comparing[$baselinePath]->classesComplexity > $result->classesComplexity) {
-                    printf('  %s: %d -> %d => worse', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity);
-
-                    $exitCode = max($exitCode, self::EXIT_WORSE);
-                } elseif ($comparing[$baselinePath]->classesComplexity < $result->classesComplexity) {
-                    printf('  %s: %d -> %d => improved', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity);
-
-                    $exitCode = max($exitCode, self::EXIT_IMPROVED);
-                } else {
-                    printf('  %s: %d -> %d => good', ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity);
-
-                    $exitCode = max($exitCode, self::EXIT_STEADY);
-                }
+                $exitCode = $this->compare(ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
                 echo "\n";
 
-                if ($comparing[$baselinePath]->deprecations > $result->deprecations) {
-                    printf('  %s: %d -> %d => worse', ResultPrinter::KEY_DEPRECATIONS, $result->deprecations, $comparing[$baselinePath]->deprecations);
-
-                    $exitCode = max($exitCode, self::EXIT_WORSE);
-                } elseif ($comparing[$baselinePath]->deprecations < $result->deprecations) {
-                    printf('  %s: %d -> %d => improved', ResultPrinter::KEY_DEPRECATIONS, $result->deprecations, $comparing[$baselinePath]->deprecations);
-
-                    $exitCode = max($exitCode, self::EXIT_IMPROVED);
-                } else {
-                    printf('  %s: %d -> %d => good', ResultPrinter::KEY_DEPRECATIONS, $result->deprecations, $comparing[$baselinePath]->deprecations);
-
-                    $exitCode = max($exitCode, self::EXIT_STEADY);
-                }
+                $exitCode = $this->compare(ResultPrinter::KEY_DEPRECATIONS, $result->deprecations, $comparing[$baselinePath]->deprecations, $exitCode);
                 echo "\n";
             }
         }
@@ -98,7 +74,9 @@ final class TrendApplication
                 }
 
                 $result = new AnalyzerResult();
-                $result->classesComplexity = $resultArray[ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY];
+                if (array_key_exists(ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $resultArray)) {
+                    $result->classesComplexity = $resultArray[ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY];
+                }
                 if (array_key_exists(ResultPrinter::KEY_DEPRECATIONS, $resultArray)) {
                     $result->deprecations = $resultArray[ResultPrinter::KEY_DEPRECATIONS];
                 }
@@ -108,5 +86,31 @@ final class TrendApplication
         }
 
         return $decoded;
+    }
+
+    /**
+     * @param ResultPrinter::KEY_* $key
+     * @param int $referenceValue
+     * @param int $comparingValue
+     * @param self::EXIT_* $exitCode
+     *
+     * @return self::EXIT_*
+     */
+    private function compare($key, $referenceValue, $comparingValue, $exitCode): int
+    {
+        if ($comparingValue > $referenceValue) {
+            printf('  %s: %d -> %d => worse', $key, $referenceValue, $comparingValue);
+
+            $exitCode = max($exitCode, self::EXIT_WORSE);
+        } elseif ($comparingValue < $referenceValue) {
+            printf('  %s: %d -> %d => improved', $key, $referenceValue, $comparingValue);
+
+            $exitCode = max($exitCode, self::EXIT_IMPROVED);
+        } else {
+            printf('  %s: %d -> %d => good', $key, $referenceValue, $comparingValue);
+
+            $exitCode = max($exitCode, self::EXIT_STEADY);
+        }
+        return $exitCode;
     }
 }
