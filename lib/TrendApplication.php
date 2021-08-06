@@ -74,7 +74,9 @@ final class TrendApplication
                 }
 
                 $result = new AnalyzerResult();
-                $result->classesComplexity = $resultArray[ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY];
+                if (array_key_exists(ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY, $resultArray)) {
+                    $result->classesComplexity = $resultArray[ResultPrinter::KEY_OVERALL_CLASS_COMPLEXITY];
+                }
                 if (array_key_exists(ResultPrinter::KEY_DEPRECATIONS, $resultArray)) {
                     $result->deprecations = $resultArray[ResultPrinter::KEY_DEPRECATIONS];
                 }
