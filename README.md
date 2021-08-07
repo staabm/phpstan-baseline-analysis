@@ -1,6 +1,8 @@
 Analyzes phpstan baseline files
 -------------------------------
 
+Analyzes PHPStan baseline files and creates aggregated error trend-reports.
+
 ## Supported PHPStan RuleSets
 - https://github.com/phpstan/phpstan-deprecation-rules
 
