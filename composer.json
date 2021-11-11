@@ -19,7 +19,7 @@
         "phpstan/phpstan": "^1.0",
         "phpunit/phpunit": "^9.5",
         "symfony/var-dumper": "^5.3",
-        "thecodingmachine/phpstan-safe-rule": "^1.0"
+        "thecodingmachine/phpstan-safe-rule": "dev-patch-1"
     },
     "config": {
         "optimize-autoloader": true,
@@ -32,5 +32,11 @@
     "bin": [
         "bin/phpstan-baseline-analyze",
         "bin/phpstan-baseline-trend"
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/staabm/phpstan-safe-rule"
+        }
     ]
 }
