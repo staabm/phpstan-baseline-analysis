@@ -19,7 +19,7 @@
         "phpstan/phpstan": "^1.4",
         "phpunit/phpunit": "^9.5",
         "symfony/var-dumper": "^5.3",
-        "thecodingmachine/phpstan-safe-rule": "^1.1"
+        "thecodingmachine/phpstan-safe-rule": "^1.2"
     },
     "config": {
         "optimize-autoloader": true,
