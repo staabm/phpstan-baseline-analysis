@@ -38,6 +38,9 @@ final class TrendApplication
 
                 $exitCode = $this->compare(ResultPrinter::KEY_UNKNOWN_TYPES, $result->unknownTypes, $comparing[$baselinePath]->unknownTypes, $exitCode);
                 echo "\n";
+
+                $exitCode = $this->compare(ResultPrinter::KEY_ANONYMOUS_VARIABLES, $result->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
+                echo "\n";
             }
         }
 
@@ -91,6 +94,9 @@ final class TrendApplication
                 }
                 if (array_key_exists(ResultPrinter::KEY_UNKNOWN_TYPES, $resultArray)) {
                     $result->unknownTypes = $resultArray[ResultPrinter::KEY_UNKNOWN_TYPES];
+                }
+                if (array_key_exists(ResultPrinter::KEY_ANONYMOUS_VARIABLES, $resultArray)) {
+                    $result->anonymousVariables = $resultArray[ResultPrinter::KEY_ANONYMOUS_VARIABLES];
                 }
 
                 $decoded[$baselinePath] = $result;
