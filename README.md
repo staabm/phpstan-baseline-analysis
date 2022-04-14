@@ -9,6 +9,8 @@ Analyzes PHPStan baseline files and creates aggregated error trend-reports.
 ## Supported PHPStan Rules
 - PHPStan\Rules\PhpDoc\InvalidPhpDocTagValueRule
 - Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule
+- Symplify\PHPStanRules\Rules\Explicit\NoMixedMethodCallerRule
+- Symplify\PHPStanRules\Rules\Explicit\NoMixedPropertyFetcherRule
 
 ## example report
 
