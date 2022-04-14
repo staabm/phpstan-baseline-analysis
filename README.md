@@ -21,6 +21,7 @@ Analyzing app/portal/phpstan-baseline.neon
   Deprecations: 2
   Invalid-Phpdocs: 5
   Unknown-Types: 1
+  Anonymous-Variables: 4
 ```
 
 ## example trend analysis
@@ -43,4 +44,5 @@ Analyzing Trend for app/portal/phpstan-baseline.neon
   Deprecations: 1 -> 2 => worse
   Invalid-Phpdocs: 3 -> 1 => good
   Unknown-Types: 5 -> 15 => worse
+  Anonymous-Variables: 4 -> 3 => good
 ```
