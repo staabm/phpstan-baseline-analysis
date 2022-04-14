@@ -43,6 +43,8 @@ final class BaselineAnalyzer
 
             } elseif (str_contains($errorMessage, 'on an unknown class') || str_contains($errorMessage, 'has invalid type unknown') || str_contains($errorMessage, 'unknown_type as its type')) {
                 $result->unknownTypes += $baselineError->count;
+            } elseif (str_contains($errorMessage, 'Anonymous variable')) {
+                $result->anonymousVariables += $baselineError->count;
             }
         }
 
