@@ -56,4 +56,12 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(7, $result->unknownTypes);
     }
 
+    function testAnonymousVariables():void
+    {
+        $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/anonymous-variables.neon'));
+        $result = $analyzer->analyze();
+
+        $this->assertSame(4, $result->anonymousVariables);
+    }
+
 }

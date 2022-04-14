@@ -79,3 +79,13 @@ parameters:
 			message: "#^Property ActionMailer\\:\\:\\$template_root has unknown class unknown_type as its type\\.$#"
 			count: 1
 			path: lib/ActionMailer.php
+
+		-
+			message: "#^Anonymous variable in a `\\$lang\\-\\>\\.\\.\\.\\(\\)` method call can lead to false dead methods\\. Make sure the variable type is known$#"
+			count: 1
+			path: application/Rocket/lib/Prospect/Service/ProspectDetailService.php
+
+		-
+			message: "#^Anonymous variables in a \"\\$element\\-\\>value\\[0\\]\\-\\>\\.\\.\\.\" property fetch can lead to false dead property\\. Make sure the variable type is known$#"
+			count: 3
+			path: application/Rocket/lib/bulkConsumerCheckout/integration/VatValidationClient.php
