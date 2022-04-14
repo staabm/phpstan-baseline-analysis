@@ -15,6 +15,7 @@ final class ResultPrinter {
     const KEY_DEPRECATIONS = 'Deprecations';
     const KEY_INVALID_PHPDOCS = 'Invalid-Phpdocs';
     const KEY_UNKNOWN_TYPES = 'Unknown-Types';
+    const KEY_ANONYMOUS_VARIABLES = 'Anonymous-Variables';
 
     /**
      * @var int
@@ -31,6 +32,7 @@ final class ResultPrinter {
         yield sprintf("  %s: %s\n", self::KEY_DEPRECATIONS, $result->deprecations);
         yield sprintf("  %s: %s\n", self::KEY_INVALID_PHPDOCS, $result->invalidPhpdocs);
         yield sprintf("  %s: %s\n", self::KEY_UNKNOWN_TYPES, $result->unknownTypes);
+        yield sprintf("  %s: %s\n", self::KEY_ANONYMOUS_VARIABLES, $result->anonymousVariables);
     }
 
     /**
@@ -44,6 +46,7 @@ final class ResultPrinter {
                 self::KEY_DEPRECATIONS => $result->deprecations,
                 self::KEY_INVALID_PHPDOCS => $result->invalidPhpdocs,
                 self::KEY_UNKNOWN_TYPES => $result->unknownTypes,
+                self::KEY_ANONYMOUS_VARIABLES => $result->anonymousVariables,
             ]
         ]);
     }

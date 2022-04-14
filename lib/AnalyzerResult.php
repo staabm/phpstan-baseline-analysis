@@ -22,4 +22,9 @@ final class AnalyzerResult {
      * @var int
      */
     public $unknownTypes = 0;
+
+    /**
+     * @var int
+     */
+    public $anonymousVariables = 0;
 }
