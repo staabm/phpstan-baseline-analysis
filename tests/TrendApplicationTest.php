@@ -22,6 +22,7 @@ Analyzing Trend for /fixtures/all-in.neon
   Deprecations: 1 -> 1 => good
   Invalid-Phpdocs: 3 -> 3 => good
   Unknown-Types: 5 -> 5 => good
+  Anonymous-Variables: 2 -> 2 => good
 
 PHP;
 
@@ -45,6 +46,7 @@ Analyzing Trend for /fixtures/all-in.neon
   Deprecations: 1 -> 10 => worse
   Invalid-Phpdocs: 3 -> 30 => worse
   Unknown-Types: 5 -> 15 => worse
+  Anonymous-Variables: 2 -> 5 => worse
 
 PHP;
 
@@ -68,6 +70,7 @@ Analyzing Trend for /fixtures/all-in.neon
   Deprecations: 1 -> 0 => improved
   Invalid-Phpdocs: 3 -> 1 => improved
   Unknown-Types: 5 -> 3 => improved
+  Anonymous-Variables: 2 -> 1 => improved
 
 PHP;
 
