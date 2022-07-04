@@ -3,6 +3,8 @@ Analyzes phpstan baseline files
 
 Analyzes PHPStan baseline files and creates aggregated error trend-reports.
 
+[Read more in the Blog post.](https://staabm.github.io/2022/07/04/phpstan-baseline-analysis.html)
+
 ### 💌 Give back some love
 
 [Consider supporting the project](https://github.com/sponsors/staabm), so we can make this tool even better even faster for everyone.
