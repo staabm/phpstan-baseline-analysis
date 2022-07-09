@@ -3,6 +3,8 @@
 namespace staabm\PHPStanBaselineAnalysis;
 
 use \Iterator;
+use function Safe\file_get_contents;
+use function Safe\json_decode;
 
 final class TrendApplication
 {
@@ -59,8 +61,8 @@ final class TrendApplication
      */
     private function decodeFile(string $filePath): array
     {
-        $content = \Safe\file_get_contents($filePath);
-        $json = \Safe\json_decode($content, true);
+        $content = file_get_contents($filePath);
+        $json = json_decode($content, true);
 
         if (!is_array($json)) {
             throw new \RuntimeException('Expecting array, got ' . gettype($json));
