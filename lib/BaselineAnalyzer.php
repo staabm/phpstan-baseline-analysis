@@ -24,28 +24,12 @@ final class BaselineAnalyzer
          * @var BaselineError $baselineError
          */
         foreach ($this->baseline->getIgnoreErrors() as $baselineError) {
-            $errorMessage = $baselineError->message;
-
-            if (str_contains($errorMessage, ' deprecated class ') || str_contains($errorMessage, ' deprecated method ')) {
-                $result->deprecations += $baselineError->count;
-            } elseif (str_contains($errorMessage, 'cognitive complexity')) {
-                preg_match('/Class cognitive complexity is (?P<value>\d+), keep it under (?P<limit>\d+)/', $errorMessage, $matches);
-                if ($matches) {
-                    $result->classesComplexity += ($matches['value'] * $baselineError->count);
-                }
-            } elseif (str_contains($errorMessage, 'PHPDoc tag ')) {
-                $result->invalidPhpdocs += $baselineError->count;
-            } elseif (str_contains($errorMessage, ' not found')) {
-                preg_match('/Instantiated class .+ not found/', $errorMessage, $matches);
-                if ($matches) {
-                    $result->unknownTypes += $baselineError->count;
-                }
-
-            } elseif (str_contains($errorMessage, 'on an unknown class') || str_contains($errorMessage, 'has invalid type unknown') || str_contains($errorMessage, 'unknown_type as its type')) {
-                $result->unknownTypes += $baselineError->count;
-            } elseif (str_contains($errorMessage, 'Anonymous variable')) {
-                $result->anonymousVariables += $baselineError->count;
-            }
+            $this->increment('deprecations', [' deprecated class ', ' deprecated method ']);
+            $this->increment('classesComplexity', ['cognitive complexity'], '/Class cognitive complexity is (?P<value>\d+), keep it under (?P<limit>\d+)/');
+            $this->increment('invalidPhpdocs', ['PHPDoc tag ']);
+            $this->increment('unknownTypes', [' not found'], '/Instantiated class .+ not found/');
+            $this->increment('unknownTypes', ['on an unknown class', 'has invalid type unknown', 'unknown_type as its type']);
+            $this->increment('anonymousVariables', ['Anonymous variable']);
         }
 
         return $result;
