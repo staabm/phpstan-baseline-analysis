@@ -5,19 +5,19 @@ Analyzes PHPStan baseline files and creates aggregated error trend-reports.
 
 [Read more in the Blog post.](https://staabm.github.io/2022/07/04/phpstan-baseline-analysis.html)
 
-### 💌 Give back some love
-
-[Consider supporting the project](https://github.com/sponsors/staabm), so we can make this tool even better even faster for everyone.
-
+You need at least one of the supported PHPStan RuleSets/Rules configured in your project, to get meaningful results.
 
 ## Supported PHPStan RuleSets
 - https://github.com/phpstan/phpstan-deprecation-rules
 
 ## Supported PHPStan Rules
 - PHPStan\Rules\PhpDoc\InvalidPhpDocTagValueRule
+
+## Supported [Symplify PHPStan Rules](https://github.com/symplify/phpstan-rules)
 - Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule
 - Symplify\PHPStanRules\Rules\Explicit\NoMixedMethodCallerRule
 - Symplify\PHPStanRules\Rules\Explicit\NoMixedPropertyFetcherRule
+
 
 ## example report
 
@@ -53,3 +53,10 @@ Analyzing Trend for app/portal/phpstan-baseline.neon
   Unknown-Types: 5 -> 15 => worse
   Anonymous-Variables: 4 -> 3 => good
 ```
+
+Tracking the teams progress over time is great way to make the work you put into the software visible, either to gamify the process for developers involved, but also to make this metrics transparent for the management. Often times its not easy to get the points of software quality across to business people.
+
+
+## 💌 Give back some love
+
+[Consider supporting the project](https://github.com/sponsors/staabm), so we can make this tool even better even faster for everyone.
