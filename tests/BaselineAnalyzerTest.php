@@ -38,6 +38,10 @@ class BaselineAnalyzerTest extends TestCase
         $result = $analyzer->analyze();
 
         $this->assertSame(0, $result->classesComplexity);
+        $this->assertSame(0, $result->deprecations);
+        $this->assertSame(0, $result->invalidPhpdocs);
+        $this->assertSame(0, $result->unknownTypes);
+        $this->assertSame(0, $result->anonymousVariables);
     }
 
     function testDeprecations():void
@@ -45,7 +49,11 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/deprecations.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(0, $result->classesComplexity);
         $this->assertSame(12, $result->deprecations);
+        $this->assertSame(0, $result->invalidPhpdocs);
+        $this->assertSame(0, $result->unknownTypes);
+        $this->assertSame(0, $result->anonymousVariables);
     }
 
     function testInvalidPhpdocs():void
