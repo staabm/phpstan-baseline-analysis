@@ -24,29 +24,54 @@ final class BaselineAnalyzer
          * @var BaselineError $baselineError
          */
         foreach ($this->baseline->getIgnoreErrors() as $baselineError) {
-            $errorMessage = $baselineError->message;
-
-            if (str_contains($errorMessage, ' deprecated class ') || str_contains($errorMessage, ' deprecated method ')) {
-                $result->deprecations += $baselineError->count;
-            } elseif (str_contains($errorMessage, 'cognitive complexity')) {
-                preg_match('/Class cognitive complexity is (?P<value>\d+), keep it under (?P<limit>\d+)/', $errorMessage, $matches);
-                if ($matches) {
-                    $result->classesComplexity += ($matches['value'] * $baselineError->count);
-                }
-            } elseif (str_contains($errorMessage, 'PHPDoc tag ')) {
-                $result->invalidPhpdocs += $baselineError->count;
-            } elseif (str_contains($errorMessage, ' not found')) {
-                preg_match('/Instantiated class .+ not found/', $errorMessage, $matches);
-                if ($matches) {
-                    $result->unknownTypes += $baselineError->count;
-                }
-            } elseif (str_contains($errorMessage, 'on an unknown class') || str_contains($errorMessage, 'has invalid type unknown') || str_contains($errorMessage, 'unknown_type as its type')) {
-                $result->unknownTypes += $baselineError->count;
-            } elseif (str_contains($errorMessage, 'Anonymous variable')) {
-                $result->anonymousVariables += $baselineError->count;
-            }
+            $result->deprecations += $this->countDeprecations($baselineError);
+            $result->classesComplexity += $this->countClassesComplexity($baselineError);
+            $result->invalidPhpdocs += $this->countInvalidPhpdocs($baselineError);
+            $result->unknownTypes += $this->countUnknownTypes($baselineError);
+            $result->anonymousVariables += $this->countAnonymousVariables($baselineError);
         }
 
         return $result;
+    }
+
+    private function countDeprecations(BaselineError $baselineError): int
+    {
+        return str_contains($baselineError->message, ' deprecated class ') || str_contains($baselineError->message, ' deprecated method ')
+            ? $baselineError->count
+            : 0;
+    }
+
+    private function countClassesComplexity(BaselineError $baselineError): int
+    {
+        return preg_match('/Class cognitive complexity is (?P<value>\d+), keep it under (?P<limit>\d+)/', $baselineError->message, $matches) === 1
+            ? (int)$matches['value'] * $baselineError->count
+            : 0;
+    }
+
+    private function countInvalidPhpdocs(BaselineError $baselineError): int
+    {
+        return str_contains($baselineError->message, 'PHPDoc tag ')
+            ? $baselineError->count
+            : 0;
+    }
+
+    private function countUnknownTypes(BaselineError $baselineError): int
+    {
+        $notFoundCount = preg_match('/Instantiated class .+ not found/', $baselineError->message, $matches) === 1
+            ? $baselineError->count
+            : 0;
+
+        $unknownCount = str_contains($baselineError->message, 'on an unknown class') || str_contains($baselineError->message, 'has invalid type unknown') || str_contains($baselineError->message, 'unknown_type as its type')
+            ? $baselineError->count
+            : 0;
+
+        return $notFoundCount + $unknownCount;
+    }
+
+    private function countAnonymousVariables(BaselineError $baselineError): int
+    {
+        return str_contains($baselineError->message, 'Anonymous variable')
+            ? $baselineError->count
+            : 0;
     }
 }
