@@ -26,6 +26,10 @@ class BaselineAnalyzerTest extends TestCase
         $result = $analyzer->analyze();
 
         $this->assertSame(50, $result->classesComplexity);
+        $this->assertSame(0, $result->deprecations);
+        $this->assertSame(0, $result->invalidPhpdocs);
+        $this->assertSame(0, $result->unknownTypes);
+        $this->assertSame(0, $result->anonymousVariables);
     }
 
     function testMethodComplexityIgnored():void
