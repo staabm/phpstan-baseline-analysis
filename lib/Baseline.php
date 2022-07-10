@@ -6,6 +6,7 @@ use Iterator;
 use Nette\Neon\Neon;
 use RuntimeException;
 use Safe\Exceptions\FilesystemException;
+use function Safe\file_get_contents;
 use function Safe\sprintf;
 
 final class Baseline {
@@ -23,7 +24,7 @@ final class Baseline {
      * @throws FilesystemException
      */
     static public function forFile(string $filePath):self {
-        $content = \Safe\file_get_contents($filePath);
+        $content = file_get_contents($filePath);
         $decoded = Neon::decode($content);
 
         if (!is_array($decoded)) {
