@@ -20,7 +20,7 @@ final class AnalyzeApplication
     {
         $printer = new ResultPrinter();
         $baselines = BaselineFinder::forGlob($glob);
-        $numBaselines = count ($baselines);
+        $numBaselines = count($baselines);
 
         for($i = 0; $i < $numBaselines; $i++) {
             $baseline = $baselines[$i];
