@@ -61,7 +61,11 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/invalid-phpdocs.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(0, $result->classesComplexity);
+        $this->assertSame(0, $result->deprecations);
         $this->assertSame(8, $result->invalidPhpdocs);
+        $this->assertSame(0, $result->unknownTypes);
+        $this->assertSame(0, $result->anonymousVariables);
     }
 
     function testUnknownTypes():void
@@ -69,7 +73,11 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/unknown-types.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(0, $result->classesComplexity);
+        $this->assertSame(0, $result->deprecations);
+        $this->assertSame(0, $result->invalidPhpdocs);
         $this->assertSame(7, $result->unknownTypes);
+        $this->assertSame(0, $result->anonymousVariables);
     }
 
     function testAnonymousVariables():void
@@ -77,6 +85,10 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/anonymous-variables.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(0, $result->classesComplexity);
+        $this->assertSame(0, $result->deprecations);
+        $this->assertSame(0, $result->invalidPhpdocs);
+        $this->assertSame(0, $result->unknownTypes);
         $this->assertSame(4, $result->anonymousVariables);
     }
 
