@@ -2,14 +2,15 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-final class BaselineError {
+final class BaselineError
+{
     /**
      * @var int
      */
     public $count;
+
     /**
      * @var string
      */
     public $message;
-
 }
