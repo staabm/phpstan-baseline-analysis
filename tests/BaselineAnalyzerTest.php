@@ -16,7 +16,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(70, $result->classesComplexity);
         $this->assertSame(2, $result->deprecations);
         $this->assertSame(5, $result->invalidPhpdocs);
-        $this->assertSame(7, $result->unknownTypes);
+        $this->assertSame(1, $result->unknownTypes);
         $this->assertSame(4, $result->anonymousVariables);
     }
 
