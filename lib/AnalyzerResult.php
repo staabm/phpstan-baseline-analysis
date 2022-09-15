@@ -6,6 +6,10 @@ final class AnalyzerResult {
     /**
      * @var int
      */
+    public $overallErrors = 0;
+    /**
+     * @var int
+     */
     public $classesComplexity = 0;
 
     /**

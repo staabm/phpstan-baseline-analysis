@@ -29,6 +29,9 @@ final class TrendApplication
             echo 'Analyzing Trend for ' . $baselinePath . "\n";
 
             if (isset($comparing[$baselinePath])) {
+                $exitCode = $this->compare(ResultPrinter::KEY_OVERALL_ERRORS, $result->overallErrors, $comparing[$baselinePath]->overallErrors, $exitCode);
+                echo "\n";
+
                 $exitCode = $this->compare(ResultPrinter::KEY_CLASSES_COMPLEXITY, $result->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
                 echo "\n";
 
@@ -85,6 +88,9 @@ final class TrendApplication
                 }
 
                 $result = new AnalyzerResult();
+                if (array_key_exists(ResultPrinter::KEY_OVERALL_ERRORS, $resultArray)) {
+                    $result->overallErrors = $resultArray[ResultPrinter::KEY_OVERALL_ERRORS];
+                }
                 if (array_key_exists(ResultPrinter::KEY_CLASSES_COMPLEXITY, $resultArray)) {
                     $result->classesComplexity = $resultArray[ResultPrinter::KEY_CLASSES_COMPLEXITY];
                 }

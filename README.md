@@ -24,6 +24,7 @@ You need at least one of the supported PHPStan RuleSets/Rules configured in your
 ```
 $ phpstan-baseline-analyze *phpstan-baseline.neon
 Analyzing app/portal/phpstan-baseline.neon
+  Overall-Errors: 18
   Classes-Cognitive-Complexity: 270
   Deprecations: 2
   Invalid-Phpdocs: 5
@@ -47,6 +48,7 @@ $ phpstan-baseline-analyze *phpstan-baseline.neon --json > reference.json
 
 $ phpstan-baseline-trend reference.json now.json
 Analyzing Trend for app/portal/phpstan-baseline.neon
+  Overall-Errors: 30 -> 17 => improved
   Classes-Cognitive-Complexity: 309 -> 177 => improved
   Deprecations: 1 -> 2 => worse
   Invalid-Phpdocs: 3 -> 1 => good

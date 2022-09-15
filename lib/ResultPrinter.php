@@ -11,6 +11,7 @@ final class ResultPrinter {
     const FORMAT_TEXT = 'text';
 
     // use plural string-values
+    const KEY_OVERALL_ERRORS = 'Overall-Errors';
     const KEY_CLASSES_COMPLEXITY = 'Classes-Cognitive-Complexity';
     const KEY_DEPRECATIONS = 'Deprecations';
     const KEY_INVALID_PHPDOCS = 'Invalid-Phpdocs';
@@ -28,6 +29,7 @@ final class ResultPrinter {
     public function streamText(Baseline $baseline, AnalyzerResult $result): Iterator
     {
         yield sprintf("Analyzing %s\n", $baseline->getFilePath());
+        yield sprintf("  %s: %s\n", self::KEY_OVERALL_ERRORS, $result->overallErrors);
         yield sprintf("  %s: %s\n", self::KEY_CLASSES_COMPLEXITY, $result->classesComplexity);
         yield sprintf("  %s: %s\n", self::KEY_DEPRECATIONS, $result->deprecations);
         yield sprintf("  %s: %s\n", self::KEY_INVALID_PHPDOCS, $result->invalidPhpdocs);
@@ -42,6 +44,7 @@ final class ResultPrinter {
     {
         yield json_encode([
             $baseline->getFilePath() => [
+                self::KEY_OVERALL_ERRORS => $result->overallErrors,
                 self::KEY_CLASSES_COMPLEXITY => $result->classesComplexity,
                 self::KEY_DEPRECATIONS => $result->deprecations,
                 self::KEY_INVALID_PHPDOCS => $result->invalidPhpdocs,
