@@ -19,7 +19,7 @@ class AnalyzeApplicationTest extends BaseTestCase
 
         $expected = <<<PHP
 Analyzing /fixtures/all-in.neon
-  Overall-Errors: 18
+  Overall-Errors: 35
   Classes-Cognitive-Complexity: 70
   Deprecations: 2
   Invalid-Phpdocs: 5
@@ -43,7 +43,7 @@ PHP;
         $rendered = str_replace(trim(json_encode(__DIR__), '"'), '', $rendered);
 
         $expected = <<<PHP
-[{"\/fixtures\/all-in.neon":{"Overall-Errors":18,"Classes-Cognitive-Complexity":70,"Deprecations":2,"Invalid-Phpdocs":5,"Unknown-Types":1,"Anonymous-Variables":4}}]
+[{"\/fixtures\/all-in.neon":{"Overall-Errors":35,"Classes-Cognitive-Complexity":70,"Deprecations":2,"Invalid-Phpdocs":5,"Unknown-Types":1,"Anonymous-Variables":4}}]
 PHP;
 
         $this->assertSame($expected, $rendered);
