@@ -13,6 +13,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/all-in.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(18, $result->overallErrors);
         $this->assertSame(70, $result->classesComplexity);
         $this->assertSame(2, $result->deprecations);
         $this->assertSame(5, $result->invalidPhpdocs);
@@ -25,6 +26,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/class-complexity.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(3, $result->overallErrors);
         $this->assertSame(50, $result->classesComplexity);
         $this->assertSame(0, $result->deprecations);
         $this->assertSame(0, $result->invalidPhpdocs);
@@ -37,6 +39,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/method-complexity.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(3, $result->overallErrors);
         $this->assertSame(0, $result->classesComplexity);
         $this->assertSame(0, $result->deprecations);
         $this->assertSame(0, $result->invalidPhpdocs);
@@ -49,6 +52,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/deprecations.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(3, $result->overallErrors);
         $this->assertSame(0, $result->classesComplexity);
         $this->assertSame(12, $result->deprecations);
         $this->assertSame(0, $result->invalidPhpdocs);
@@ -61,6 +65,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/invalid-phpdocs.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(4, $result->overallErrors);
         $this->assertSame(0, $result->classesComplexity);
         $this->assertSame(0, $result->deprecations);
         $this->assertSame(8, $result->invalidPhpdocs);
@@ -73,6 +78,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/unknown-types.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(6, $result->overallErrors);
         $this->assertSame(0, $result->classesComplexity);
         $this->assertSame(0, $result->deprecations);
         $this->assertSame(0, $result->invalidPhpdocs);
@@ -85,6 +91,7 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/anonymous-variables.neon'));
         $result = $analyzer->analyze();
 
+        $this->assertSame(2, $result->overallErrors);
         $this->assertSame(0, $result->classesComplexity);
         $this->assertSame(0, $result->deprecations);
         $this->assertSame(0, $result->invalidPhpdocs);

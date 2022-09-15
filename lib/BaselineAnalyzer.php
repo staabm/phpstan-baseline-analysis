@@ -24,6 +24,7 @@ final class BaselineAnalyzer
          * @var BaselineError $baselineError
          */
         foreach ($this->baseline->getIgnoreErrors() as $baselineError) {
+            $result->overallErrors += 1;
             $result->deprecations += $this->countDeprecations($baselineError);
             $result->classesComplexity += $this->countClassesComplexity($baselineError);
             $result->invalidPhpdocs += $this->countInvalidPhpdocs($baselineError);
