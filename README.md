@@ -61,6 +61,7 @@ Analyzing Trend for app/portal/phpstan-baseline.neon
 Copy the following workflow into your repository. Make sure to adjust as needed:
 - adjust the cron schedule pattern
 - actions/checkout might require a token - e.g. for private repos
+- adjust the comparison period, as you see fit
 - adjust the notification to your needs - e.g. use Slack, Discord, E-Mail,..
 
 ```
