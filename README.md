@@ -7,6 +7,12 @@ Analyzes PHPStan baseline files and creates aggregated error trend-reports.
 
 You need at least one of the supported PHPStan RuleSets/Rules configured in your project, to get meaningful results.
 
+## Installation
+
+```
+composer require staabm/phpstan-baseline-analysis
+```
+
 ## Supported PHPStan RuleSets
 - https://github.com/phpstan/phpstan-deprecation-rules
 
