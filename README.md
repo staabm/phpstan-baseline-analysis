@@ -38,6 +38,23 @@ Analyzing app/portal/phpstan-baseline.neon
   Anonymous-Variables: 4
 ```
 
+## example graph analysis
+
+```
+$ git clone ...
+
+$ phpstan-baseline-analyze *phpstan-baseline.neon --json > now.json
+
+$ git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
+$ phpstan-baseline-analyze *phpstan-baseline.neon --json > 1-weeks-ago.json
+
+$ git checkout `git rev-list -n 1 --before="2 week ago" HEAD`
+$ phpstan-baseline-analyze *phpstan-baseline.neon --json > 2-weeks-ago.json
+
+$ php phpstan-baseline-graph '*.json' > result.html
+```
+
+
 ## example trend analysis
 
 the following example shows the evolution of errors in your phpstan baselines.
