@@ -2,8 +2,10 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
+use Safe\DateTimeImmutable;
 use function Safe\file_get_contents;
 use function Safe\json_decode;
+use function Safe\strtotime;
 
 final class AnalyzerResultReader {
     /**
@@ -14,6 +16,9 @@ final class AnalyzerResultReader {
     public function readFile(string $filePath): array
     {
         $content = file_get_contents($filePath);
+        if ($content === '') {
+            throw new \RuntimeException('File '. $filePath .' is empty');
+        }
         $json = json_decode($content, true);
 
         if (!is_array($json)) {
@@ -37,6 +42,16 @@ final class AnalyzerResultReader {
                 }
 
                 $result = new AnalyzerResult();
+                if (array_key_exists(ResultPrinter::KEY_REFERENCE_DATE, $resultArray)) {
+
+                    $dt = \DateTimeImmutable::createFromFormat(
+                        ResultPrinter::DATE_FORMAT,
+                        $resultArray[ResultPrinter::KEY_REFERENCE_DATE]
+                    );
+                    if ($dt !== false) {
+                        $result->referenceDate = $dt;
+                    }
+                }
                 if (array_key_exists(ResultPrinter::KEY_OVERALL_ERRORS, $resultArray)) {
                     $result->overallErrors = $resultArray[ResultPrinter::KEY_OVERALL_ERRORS];
                 }

@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * Analyzes PHPStan baseline files and creates aggregated error trend-reports.
+ *
+ * (c) Markus Staab <markus.staab@redaxo.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * https://github.com/staabm/phpstan-baseline-analysis
+ */
+
+require __DIR__ .'/phpstan-baseline-graph.php';

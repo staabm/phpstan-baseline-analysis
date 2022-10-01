@@ -31,6 +31,7 @@
     },
     "bin": [
         "bin/phpstan-baseline-analyze",
-        "bin/phpstan-baseline-trend"
+        "bin/phpstan-baseline-trend",
+        "bin/phpstan-baseline-graph"
     ]
 }
