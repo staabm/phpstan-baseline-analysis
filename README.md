@@ -54,6 +54,8 @@ $ phpstan-baseline-analyze *phpstan-baseline.neon --json > 2-weeks-ago.json
 $ php phpstan-baseline-graph '*.json' > result.html
 ```
 
+![PHPStan baseline analysis graph](https://user-images.githubusercontent.com/120441/193406129-72f6d56a-a8bb-4d45-95ec-ad68b9747264.png)
+
 
 ## example trend analysis
 
