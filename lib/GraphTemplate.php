@@ -65,7 +65,7 @@ final class GraphTemplate
                 }';
             }
             $chartsHtml .= '
-                    <div id="chartContainer'. md5($baselinePath).'" style="height: 370px; width: 100%; margin-bottom: 20px;"></div>
+                    <div id="chartContainer'. md5($baselinePath).'" style="height: 370px; width: 100%; margin-bottom: 30px;"></div>
                     <script>
                     (function () {
                         var chart = new CanvasJS.Chart("chartContainer'. md5($baselinePath).'", {
