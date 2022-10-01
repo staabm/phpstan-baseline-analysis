@@ -4,6 +4,7 @@ namespace staabm\PHPStanBaselineAnalysis\Tests;
 
 use staabm\PHPStanBaselineAnalysis\AnalyzeApplication;
 use staabm\PHPStanBaselineAnalysis\ResultPrinter;
+use function Safe\json_encode;
 
 class AnalyzeApplicationTest extends BaseTestCase
 {
@@ -17,8 +18,10 @@ class AnalyzeApplicationTest extends BaseTestCase
 
         $rendered = str_replace(__DIR__, '', $rendered);
 
+        $expectedDate = date(ResultPrinter::DATE_FORMAT);
         $expected = <<<PHP
 Analyzing /fixtures/all-in.neon
+  Date: {$expectedDate}
   Overall-Errors: 35
   Classes-Cognitive-Complexity: 70
   Deprecations: 2
@@ -42,8 +45,9 @@ PHP;
 
         $rendered = str_replace(trim(json_encode(__DIR__), '"'), '', $rendered);
 
+        $expectedDate = date(ResultPrinter::DATE_FORMAT);
         $expected = <<<PHP
-[{"\/fixtures\/all-in.neon":{"Overall-Errors":35,"Classes-Cognitive-Complexity":70,"Deprecations":2,"Invalid-Phpdocs":5,"Unknown-Types":1,"Anonymous-Variables":4}}]
+[{"\/fixtures\/all-in.neon":{"Date":"{$expectedDate}","Overall-Errors":35,"Classes-Cognitive-Complexity":70,"Deprecations":2,"Invalid-Phpdocs":5,"Unknown-Types":1,"Anonymous-Variables":4}}]
 PHP;
 
         $this->assertSame($expected, $rendered);
