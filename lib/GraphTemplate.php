@@ -9,7 +9,7 @@ final class GraphTemplate
     const COMPLEXITY_COLOR = '#C24642';
 
     /**
-     * @param Iterator<string, array{string, AnalyzerResult}> $it
+     * @param Iterator<array{string, AnalyzerResult}> $it
      */
     public function render(Iterator $it):string {
         $splines = [];
@@ -19,7 +19,7 @@ final class GraphTemplate
         $splines[ResultPrinter::KEY_INVALID_PHPDOCS] = [];
         $splines[ResultPrinter::KEY_UNKNOWN_TYPES] = [];
         $splines[ResultPrinter::KEY_ANONYMOUS_VARIABLES] = [];
-        foreach($it as $fileName => $data) {
+        foreach($it as $data) {
             /** @var AnalyzerResult $analyzerResult */
             list($baselinePath, $analyzerResult) = $data;
             // XXX timestamp aus result verwenden

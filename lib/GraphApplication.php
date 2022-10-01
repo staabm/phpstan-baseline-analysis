@@ -34,7 +34,7 @@ final class GraphApplication
 
     /**
      * @param list<string> $jsonFiles
-     * @return Iterator<string, array{string, AnalyzerResult}>
+     * @return Iterator<array{string, AnalyzerResult}>
      */
     private function iterateOverFiles(array $jsonFiles): Iterator
     {
@@ -43,7 +43,7 @@ final class GraphApplication
             $results = $reader->readFile($jsonFile);
 
             foreach ($results as $baselinePath => $analyzerResult) {
-                yield $jsonFile => [$baselinePath, $analyzerResult];
+                yield [$baselinePath, $analyzerResult];
             }
         }
     }
