@@ -46,7 +46,7 @@ $ git clone ...
 $ phpstan-baseline-analyze *phpstan-baseline.neon --json > now.json
 
 $ git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
-$ phpstan-baseline-analyze *phpstan-baseline.neon --json > 1-weeks-ago.json
+$ phpstan-baseline-analyze *phpstan-baseline.neon --json > 1-week-ago.json
 
 $ git checkout `git rev-list -n 1 --before="2 week ago" HEAD`
 $ phpstan-baseline-analyze *phpstan-baseline.neon --json > 2-weeks-ago.json
