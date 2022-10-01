@@ -6,6 +6,8 @@ use Iterator;
 
 final class GraphTemplate
 {
+    const COMPLEXITY_COLOR = '#C24642';
+
     /**
      * @param Iterator<string, array{string, AnalyzerResult}> $it
      */
@@ -36,18 +38,20 @@ final class GraphTemplate
 
         $jsData = [];
         foreach($splines as $name => $dataPoints) {
-            $lineColor = '';
+            $type = 'line';
+            $complexityProps = '';
             $axisYIndex = 0;
             if ($name == ResultPrinter::KEY_CLASSES_COMPLEXITY) {
-                $lineColor = '#369EAD';
+                $type = 'spline';
+                $complexityProps = 'color: "'. self::COMPLEXITY_COLOR .'", lineThickness: 4, axisYType: "secondary",';
                 $axisYIndex = 1;
             }
 
             $jsData[] = '{
-                type:"spline",
+                type: "'.$type.'",
                 name: "'.$name.'",
                 axisYIndex: '. $axisYIndex.',
-                lineColor: "'. $lineColor .'",
+                '. $complexityProps .'
                 showInLegend: true,
                 xValueType: "dateTime",
                 dataPoints: ['. implode(',', $dataPoints) .']
@@ -74,11 +78,14 @@ final class GraphTemplate
                             },
                             axisY: {
                                 title: "Number of issues",
-                                lineColor: "",
+                                complexityProps: "",
                             }, 
                             axisY2: {
                                 title: "Complexity",
-                                lineColor: "#369EAD",
+                                lineColor: "'. self::COMPLEXITY_COLOR .'",
+                                tickColor: "'. self::COMPLEXITY_COLOR .'",
+                                labelFontColor: "'. self::COMPLEXITY_COLOR .'",
+                                titleFontColor: "'. self::COMPLEXITY_COLOR .'",
                             },
                             data: ['. implode(',', $jsData).']
                         });
