@@ -4,6 +4,10 @@ namespace staabm\PHPStanBaselineAnalysis;
 
 final class AnalyzerResult {
     /**
+     * @var \DateTimeImmutable
+     */
+    public $referenceDate;
+    /**
      * @var int
      */
     public $overallErrors = 0;

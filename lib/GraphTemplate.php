@@ -21,7 +21,10 @@ final class GraphTemplate
             /** @var AnalyzerResult $analyzerResult */
             list($baselinePath, $analyzerResult) = $data;
             // XXX timestamp aus result verwenden
-            $timestamp = pathinfo($fileName, PATHINFO_FILENAME);
+            if ($analyzerResult->referenceDate === null) {
+                continue;
+            }
+            $timestamp = $analyzerResult->referenceDate->getTimestamp();
 
             $splines[ResultPrinter::KEY_OVERALL_ERRORS][] = '{x: new Date('. $timestamp.' * 1000), y: '.$analyzerResult->overallErrors.'}';
             $splines[ResultPrinter::KEY_CLASSES_COMPLEXITY][] = '{x: new Date('. $timestamp.' * 1000), y: '.$analyzerResult->classesComplexity.'}';
@@ -67,7 +70,7 @@ final class GraphTemplate
                                 shared: true
                             },
                             axisX: {
-                                valueFormatString: "DD MMM YYYY"
+                                valueFormatString: "HH:mm - DD MMM YYYY"
                             },
                             axisY: {
                                 title: "Number of issues",

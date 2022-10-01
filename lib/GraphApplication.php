@@ -17,7 +17,6 @@ final class GraphApplication
     public function start(string $jsonGlob): int
     {
         $jsonFiles = glob($jsonGlob);
-        // XXX sort?
 
         $it = $this->iterateOverFiles($jsonFiles);
 

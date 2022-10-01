@@ -2,6 +2,7 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
+use Safe\DateTimeImmutable;
 use function Safe\preg_match;
 
 final class BaselineAnalyzer
@@ -19,6 +20,7 @@ final class BaselineAnalyzer
     public function analyze(): AnalyzerResult
     {
         $result = new AnalyzerResult();
+        $result->referenceDate = new DateTimeImmutable();
 
         /**
          * @var BaselineError $baselineError
