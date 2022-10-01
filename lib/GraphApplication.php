@@ -37,6 +37,10 @@ final class GraphApplication
     {
         $reader = new AnalyzerResultReader();
         foreach ($jsonFiles as $jsonFile) {
+            if (strpos($jsonFile, '.json') === false) {
+                throw new \RuntimeException('Expecting json file, got ' . $jsonFile);
+            }
+
             $results = $reader->readFile($jsonFile);
 
             foreach ($results as $baselinePath => $analyzerResult) {
