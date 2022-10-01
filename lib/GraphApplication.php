@@ -3,8 +3,6 @@
 namespace staabm\PHPStanBaselineAnalysis;
 
 use \Iterator;
-use function Safe\file_get_contents;
-use function Safe\json_decode;
 use function Safe\glob;
 
 final class GraphApplication
@@ -21,8 +19,7 @@ final class GraphApplication
         $it = $this->iterateOverFiles($jsonFiles);
 
         $graph = new GraphTemplate();
-        // XXX echo
-        file_put_contents('./test.html', $graph->render($it));
+        echo $graph->render($it);
 
         return 0;
     }
