@@ -3,6 +3,7 @@
 namespace staabm\PHPStanBaselineAnalysis;
 
 use Iterator;
+use function Safe\json_encode;
 
 final class GraphTemplate
 {
