@@ -3,165 +3,49 @@
             <html>
             <head></head>
             <body>
-                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
                 
-                    <div id="chartContainerb56ee3eb73cd65912b11edba59cc68c2" style="height: 370px; width: 100%; margin-bottom: 30px;"></div>
+                    <canvas id="chartContainerb56ee3eb73cd65912b11edba59cc68c2" style="height: 370px; width: 100%; margin-bottom: 30px;"></canvas>
                     <script>
                     (function () {
-                        var chart = new CanvasJS.Chart("chartContainerb56ee3eb73cd65912b11edba59cc68c2", {
-                            animationEnabled: true,
-                            title:{
-                                text: "PHPStan Baseline Analysis all-in.neon"
+                        const ctx = document.getElementById('chartContainerb56ee3eb73cd65912b11edba59cc68c2');
+                        const chart = new Chart(ctx, {
+                            type: 'line',
+                            options: {
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'PHPStan Baseline Analysis all-in.neon',
+                                    }
+                                }
                             },
-                                toolTip: {
-                                shared: true
-                            },
-                            axisX: {
-                                valueFormatString: "HH:mm - DD MMM YYYY"
-                            },
-                            axisY: {
-                                title: "Number of issues",
-                                complexityProps: "",
-                            }, 
-                            axisY2: {
-                                title: "Complexity",
-                                lineColor: "#C24642",
-                                tickColor: "#C24642",
-                                labelFontColor: "#C24642",
-                                titleFontColor: "#C24642",
-                            },
-                            data: [{
-                    type: "line",
-                    name: "Overall-Errors",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664621068 * 1000), y: 35}]
-                },{
-                    type: "spline",
-                    name: "Classes-Cognitive-Complexity",
-                    axisYIndex: 1,
-                    color: "#C24642", lineThickness: 4, axisYType: "secondary",
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664621068 * 1000), y: 70}]
-                },{
-                    type: "line",
-                    name: "Deprecations",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664621068 * 1000), y: 2}]
-                },{
-                    type: "line",
-                    name: "Invalid-Phpdocs",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664621068 * 1000), y: 5}]
-                },{
-                    type: "line",
-                    name: "Unknown-Types",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664621068 * 1000), y: 1}]
-                },{
-                    type: "line",
-                    name: "Anonymous-Variables",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664621068 * 1000), y: 4}]
-                }]
+                            data: {
+                                labels:  [new Date(1664621068 * 1000).toLocaleDateString("de-DE")],
+                                datasets: [{"label":"Overall-Errors","borderColor":"blue","data":[35]},{"label":"Classes-Cognitive-Complexity","borderColor":"#C24642","data":[70]},{"label":"Deprecations","borderColor":"lightgreen","data":[2]},{"label":"Invalid-Phpdocs","borderColor":"lightblue","data":[5]},{"label":"Unknown-Types","borderColor":"purple","data":[1]},{"label":"Anonymous-Variables","borderColor":"pink","data":[4]}]
+                            }
                         });
-            
-                        chart.render();
                     })();
                 </script>
 
-                    <div id="chartContainer7b39166f92c8f32388d25c18147b8f5d" style="height: 370px; width: 100%; margin-bottom: 30px;"></div>
+                    <canvas id="chartContainer7b39166f92c8f32388d25c18147b8f5d" style="height: 370px; width: 100%; margin-bottom: 30px;"></canvas>
                     <script>
                     (function () {
-                        var chart = new CanvasJS.Chart("chartContainer7b39166f92c8f32388d25c18147b8f5d", {
-                            animationEnabled: true,
-                            title:{
-                                text: "PHPStan Baseline Analysis anonymous-variables.neon"
+                        const ctx = document.getElementById('chartContainer7b39166f92c8f32388d25c18147b8f5d');
+                        const chart = new Chart(ctx, {
+                            type: 'line',
+                            options: {
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'PHPStan Baseline Analysis anonymous-variables.neon',
+                                    }
+                                }
                             },
-                                toolTip: {
-                                shared: true
-                            },
-                            axisX: {
-                                valueFormatString: "HH:mm - DD MMM YYYY"
-                            },
-                            axisY: {
-                                title: "Number of issues",
-                                complexityProps: "",
-                            }, 
-                            axisY2: {
-                                title: "Complexity",
-                                lineColor: "#C24642",
-                                tickColor: "#C24642",
-                                labelFontColor: "#C24642",
-                                titleFontColor: "#C24642",
-                            },
-                            data: [{
-                    type: "line",
-                    name: "Overall-Errors",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664620967 * 1000), y: 4}]
-                },{
-                    type: "spline",
-                    name: "Classes-Cognitive-Complexity",
-                    axisYIndex: 1,
-                    color: "#C24642", lineThickness: 4, axisYType: "secondary",
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664620967 * 1000), y: 0}]
-                },{
-                    type: "line",
-                    name: "Deprecations",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664620967 * 1000), y: 0}]
-                },{
-                    type: "line",
-                    name: "Invalid-Phpdocs",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664620967 * 1000), y: 0}]
-                },{
-                    type: "line",
-                    name: "Unknown-Types",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664620967 * 1000), y: 0}]
-                },{
-                    type: "line",
-                    name: "Anonymous-Variables",
-                    axisYIndex: 0,
-                    
-                    showInLegend: true,
-                    xValueType: "dateTime",
-                    dataPoints: [{x: new Date(1664620967 * 1000), y: 4}]
-                }]
+                            data: {
+                                labels:  [new Date(1664620967 * 1000).toLocaleDateString("de-DE")],
+                                datasets: [{"label":"Overall-Errors","borderColor":"blue","data":[4]},{"label":"Classes-Cognitive-Complexity","borderColor":"#C24642","data":[0]},{"label":"Deprecations","borderColor":"lightgreen","data":[0]},{"label":"Invalid-Phpdocs","borderColor":"lightblue","data":[0]},{"label":"Unknown-Types","borderColor":"purple","data":[0]},{"label":"Anonymous-Variables","borderColor":"pink","data":[4]}]
+                            }
                         });
-            
-                        chart.render();
                     })();
                 </script>
 
