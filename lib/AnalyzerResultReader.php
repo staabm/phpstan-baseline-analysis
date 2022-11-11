@@ -15,12 +15,13 @@ final class AnalyzerResultReader {
      */
     public function readFile(string $filePath): array
     {
+        \Safe\fwrite(STDERR, 'Reading file '.$filePath.PHP_EOL);
+
         $content = file_get_contents($filePath);
         if ($content === '') {
             throw new \RuntimeException('File '. $filePath .' is empty');
         }
         $json = json_decode($content, true);
-
         if (!is_array($json)) {
             throw new \RuntimeException('Expecting array, got ' . gettype($json));
         }
