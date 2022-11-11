@@ -2,10 +2,8 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use Safe\DateTimeImmutable;
 use function Safe\file_get_contents;
 use function Safe\json_decode;
-use function Safe\strtotime;
 
 final class AnalyzerResultReader {
     /**
