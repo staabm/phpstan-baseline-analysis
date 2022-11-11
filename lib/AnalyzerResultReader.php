@@ -38,7 +38,7 @@ final class AnalyzerResultReader {
                     throw new \RuntimeException('Expecting string, got ' . gettype($baselinePath));
                 }
                 if (!is_array($resultArray)) {
-                    throw new \RuntimeException('Expecting string, got ' . gettype($resultArray));
+                    throw new \RuntimeException('Expecting array, got ' . gettype($resultArray));
                 }
 
                 $result = new AnalyzerResult();
