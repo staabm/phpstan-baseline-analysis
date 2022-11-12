@@ -18,6 +18,8 @@ class GraphApplicationTest extends BaseTestCase
         $exitCode = $app->start(__DIR__ . '/fixtures/graph*.json');
         $rendered = ob_get_clean();
 
+        // file_put_contents(__DIR__ . '/fixtures/graph.html.expected', $rendered);
+        // file_put_contents(__DIR__ . '/fixtures/graph.html', $rendered);
         $this->assertSame(file_get_contents(__DIR__ . '/fixtures/graph.html.expected'), $rendered);
         $this->assertSame(0, $exitCode);
     }
