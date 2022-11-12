@@ -17,7 +17,7 @@ final class BaselineError
     /**
      * Returns the baseline error message, without regex delimiters.
      * Note: the message may still contain escaped regex meta characters.
-     * 
+     *
      * @return string
      */
     public function unwrapMessage(): string {
