@@ -101,6 +101,10 @@ class BaselineAnalyzerTest extends TestCase
     }
 
     public function testSymplifyCompat() {
+        if (PHP_VERSION_ID < 80000) {
+            $this->markTestSkipped('symplify is only compatible with PHP 8');
+        }
+
         $this->assertSame(
             BaselineAnalyzer::CLASS_COMPLEXITY_ERROR_MESSAGE,
             ClassLikeCognitiveComplexityRule::ERROR_MESSAGE
