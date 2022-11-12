@@ -27,15 +27,57 @@ final class GraphTemplate
             if (!array_key_exists($baselinePath, $splines)) {
                 $splines[$baselinePath] = [];
 
-                $splines[$baselinePath][0] = ['label' => ResultPrinter::KEY_OVERALL_ERRORS, 'borderColor' => 'blue', 'data' => []];
-                $splines[$baselinePath][1] = ['label' => ResultPrinter::KEY_CLASSES_COMPLEXITY, 'borderColor' => self::COMPLEXITY_COLOR, 'data' => []];
-                $splines[$baselinePath][2] = ['label' => ResultPrinter::KEY_DEPRECATIONS, 'borderColor' => 'lightgreen', 'data' => []];
-                $splines[$baselinePath][3] = ['label' => ResultPrinter::KEY_INVALID_PHPDOCS, 'borderColor' => 'lightblue', 'data' => []];
-                $splines[$baselinePath][4] = ['label' => ResultPrinter::KEY_UNKNOWN_TYPES, 'borderColor' => 'purple', 'data' => []];
-                $splines[$baselinePath][5] = ['label' => ResultPrinter::KEY_ANONYMOUS_VARIABLES, 'borderColor' => 'pink', 'data' => []];
-                $splines[$baselinePath][6] = ['label' => ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE, 'borderColor' => 'lightcoral', 'data' => []];
-                $splines[$baselinePath][7] = ['label' => ResultPrinter::KEY_PARAM_TYPE_COVERAGE, 'borderColor' => 'lightseagreen', 'data' => []];
-                $splines[$baselinePath][8] = ['label' => ResultPrinter::KEY_RETURN_TYPE_COVERAGE, 'borderColor' => 'lightsteelblue', 'data' => []];
+                $splines[$baselinePath][0] = [
+                    'label' => ResultPrinter::KEY_OVERALL_ERRORS,
+                    'borderColor' => 'blue',
+                    'data' => []
+                ];
+                $splines[$baselinePath][1] = [
+                    'label' => ResultPrinter::KEY_CLASSES_COMPLEXITY,
+                    'borderColor' => self::COMPLEXITY_COLOR,
+                    'data' => []
+                ];
+                $splines[$baselinePath][2] = [
+                    'label' => ResultPrinter::KEY_DEPRECATIONS,
+                    'borderColor' => 'lightgreen',
+                    'data' => []
+                ];
+                $splines[$baselinePath][3] = [
+                    'label' => ResultPrinter::KEY_INVALID_PHPDOCS,
+                    'borderColor' => 'lightblue',
+                    'data' => []
+                ];
+                $splines[$baselinePath][4] = [
+                    'label' => ResultPrinter::KEY_UNKNOWN_TYPES,
+                    'borderColor' => 'purple',
+                    'data' => []
+                ];
+                $splines[$baselinePath][5] = [
+                    'label' => ResultPrinter::KEY_ANONYMOUS_VARIABLES,
+                    'borderColor' => 'pink',
+                    'data' => []
+                ];
+                $splines[$baselinePath][6] = [
+                    'label' => ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE,
+                    'borderColor' => 'lightcoral',
+                    'borderWidth' => 2,
+                    'type' => 'bar',
+                    'data' => []
+                ];
+                $splines[$baselinePath][7] = [
+                    'label' => ResultPrinter::KEY_PARAM_TYPE_COVERAGE,
+                    'borderColor' => 'lightseagreen',
+                    'borderWidth' => 2,
+                    'type' => 'bar',
+                    'data' => []
+                ];
+                $splines[$baselinePath][8] = [
+                    'label' => ResultPrinter::KEY_RETURN_TYPE_COVERAGE,
+                    'borderColor' => 'lightsteelblue',
+                    'borderWidth' => 2,
+                    'type' => 'bar',
+                    'data' => []
+                ];
             }
 
             $dataByDates[$baselinePath][$analyzerResult->referenceDate->getTimestamp()] = [
@@ -79,12 +121,27 @@ final class GraphTemplate
                         const ctx = document.getElementById(\'chartContainer' . md5($baselinePath) . '\');
                         const chart = new Chart(ctx, {
                             type: \'line\',
-                            options: {
+                            options: {  
                                 plugins: {
                                     title: {
                                         display: true,
                                         text: \'PHPStan Baseline Analysis '. $baselinePath .'\',
                                     }
+                                },
+                                scales: {
+                                    x: {
+                                        beginAtZero: true,
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                    },
+                                    yPercent: {
+                                        beginAtZero: true,
+                                        position: \'right\',
+                                        grid: {
+                                            display: false,
+                                        },
+                                    },
                                 }
                             },
                             data: {
