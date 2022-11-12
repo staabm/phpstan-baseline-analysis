@@ -19,15 +19,19 @@
         "phpstan/phpstan": "^1.8",
         "phpunit/phpunit": "^9.5",
         "symfony/var-dumper": "^5.3",
+        "symplify/symplify": "^11.1",
         "thecodingmachine/phpstan-safe-rule": "^1.2"
     },
     "config": {
         "optimize-autoloader": true,
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "cweagans/composer-patches": false
+        }
     },
     "scripts": {
         "phpstan": "phpstan analyze",
-        "phpunit": "phpunit"
+        "test": "phpunit"
     },
     "bin": [
         "bin/phpstan-baseline-analyze",

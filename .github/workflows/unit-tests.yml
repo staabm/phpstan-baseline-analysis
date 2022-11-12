@@ -42,5 +42,7 @@ jobs:
             -   name: Setup Problem Matchers for PHPUnit
                 run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-            -   name: Run phpunit
+            -   run: composer require symplify/symplify
+
+            -   name: Run unit tests
                 run: vendor/bin/phpunit --colors=always
