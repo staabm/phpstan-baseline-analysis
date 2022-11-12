@@ -11,17 +11,32 @@
                         const ctx = document.getElementById('chartContainerb56ee3eb73cd65912b11edba59cc68c2');
                         const chart = new Chart(ctx, {
                             type: 'line',
-                            options: {
+                            options: {  
                                 plugins: {
                                     title: {
                                         display: true,
                                         text: 'PHPStan Baseline Analysis all-in.neon',
                                     }
+                                },
+                                scales: {
+                                    x: {
+                                        beginAtZero: true,
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                    },
+                                    yPercent: {
+                                        beginAtZero: true,
+                                        position: 'right',
+                                        grid: {
+                                            display: false,
+                                        },
+                                    },
                                 }
                             },
                             data: {
                                 labels:  [new Date(1664621068 * 1000).toLocaleDateString("de-DE")],
-                                datasets: [{"label":"Overall-Errors","borderColor":"blue","data":[35]},{"label":"Classes-Cognitive-Complexity","borderColor":"#C24642","data":[70]},{"label":"Deprecations","borderColor":"lightgreen","data":[2]},{"label":"Invalid-Phpdocs","borderColor":"lightblue","data":[5]},{"label":"Unknown-Types","borderColor":"purple","data":[1]},{"label":"Anonymous-Variables","borderColor":"pink","data":[4]},{"label":"Native-Property-Type-Coverage","borderColor":"lightcoral","data":[1]},{"label":"Native-Param-Type-Coverage","borderColor":"lightseagreen","data":[27]},{"label":"Native-Return-Type-Coverage","borderColor":"lightsteelblue","data":[4]}]
+                                datasets: [{"label":"Overall-Errors","borderColor":"blue","data":[35]},{"label":"Classes-Cognitive-Complexity","borderColor":"#C24642","data":[70]},{"label":"Deprecations","borderColor":"lightgreen","data":[2]},{"label":"Invalid-Phpdocs","borderColor":"lightblue","data":[5]},{"label":"Unknown-Types","borderColor":"purple","data":[1]},{"label":"Anonymous-Variables","borderColor":"pink","data":[4]},{"label":"Native-Property-Type-Coverage","borderColor":"lightcoral","borderWidth":2,"type":"bar","data":[1]},{"label":"Native-Param-Type-Coverage","borderColor":"lightseagreen","borderWidth":2,"type":"bar","data":[27]},{"label":"Native-Return-Type-Coverage","borderColor":"lightsteelblue","borderWidth":2,"type":"bar","data":[4]}]
                             }
                         });
                     })();
@@ -33,17 +48,32 @@
                         const ctx = document.getElementById('chartContainer7b39166f92c8f32388d25c18147b8f5d');
                         const chart = new Chart(ctx, {
                             type: 'line',
-                            options: {
+                            options: {  
                                 plugins: {
                                     title: {
                                         display: true,
                                         text: 'PHPStan Baseline Analysis anonymous-variables.neon',
                                     }
+                                },
+                                scales: {
+                                    x: {
+                                        beginAtZero: true,
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                    },
+                                    yPercent: {
+                                        beginAtZero: true,
+                                        position: 'right',
+                                        grid: {
+                                            display: false,
+                                        },
+                                    },
                                 }
                             },
                             data: {
                                 labels:  [new Date(1664620967 * 1000).toLocaleDateString("de-DE")],
-                                datasets: [{"label":"Overall-Errors","borderColor":"blue","data":[4]},{"label":"Classes-Cognitive-Complexity","borderColor":"#C24642","data":[0]},{"label":"Deprecations","borderColor":"lightgreen","data":[0]},{"label":"Invalid-Phpdocs","borderColor":"lightblue","data":[0]},{"label":"Unknown-Types","borderColor":"purple","data":[0]},{"label":"Anonymous-Variables","borderColor":"pink","data":[4]},{"label":"Native-Property-Type-Coverage","borderColor":"lightcoral","data":[0]},{"label":"Native-Param-Type-Coverage","borderColor":"lightseagreen","data":[0]},{"label":"Native-Return-Type-Coverage","borderColor":"lightsteelblue","data":[0]}]
+                                datasets: [{"label":"Overall-Errors","borderColor":"blue","data":[4]},{"label":"Classes-Cognitive-Complexity","borderColor":"#C24642","data":[0]},{"label":"Deprecations","borderColor":"lightgreen","data":[0]},{"label":"Invalid-Phpdocs","borderColor":"lightblue","data":[0]},{"label":"Unknown-Types","borderColor":"purple","data":[0]},{"label":"Anonymous-Variables","borderColor":"pink","data":[4]},{"label":"Native-Property-Type-Coverage","borderColor":"lightcoral","borderWidth":2,"type":"bar","data":[0]},{"label":"Native-Param-Type-Coverage","borderColor":"lightseagreen","borderWidth":2,"type":"bar","data":[0]},{"label":"Native-Return-Type-Coverage","borderColor":"lightsteelblue","borderWidth":2,"type":"bar","data":[0]}]
                             }
                         });
                     })();
