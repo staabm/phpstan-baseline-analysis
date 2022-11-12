@@ -59,6 +59,7 @@ final class GraphTemplate
                 ];
                 $splines[$baselinePath][6] = [
                     'label' => ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE,
+                    'yAxisID' => 'yPercent',
                     'borderColor' => 'lightcoral',
                     'borderWidth' => 2,
                     'type' => 'bar',
@@ -66,6 +67,7 @@ final class GraphTemplate
                 ];
                 $splines[$baselinePath][7] = [
                     'label' => ResultPrinter::KEY_PARAM_TYPE_COVERAGE,
+                    'yAxisID' => 'yPercent',
                     'borderColor' => 'lightseagreen',
                     'borderWidth' => 2,
                     'type' => 'bar',
@@ -73,6 +75,7 @@ final class GraphTemplate
                 ];
                 $splines[$baselinePath][8] = [
                     'label' => ResultPrinter::KEY_RETURN_TYPE_COVERAGE,
+                    'yAxisID' => 'yPercent',
                     'borderColor' => 'lightsteelblue',
                     'borderWidth' => 2,
                     'type' => 'bar',
@@ -136,6 +139,8 @@ final class GraphTemplate
                                         beginAtZero: true,
                                     },
                                     yPercent: {
+                                        min: 0,
+                                        max: 100,
                                         beginAtZero: true,
                                         position: \'right\',
                                         grid: {
