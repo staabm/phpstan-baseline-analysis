@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use staabm\PHPStanBaselineAnalysis\Baseline;
 use staabm\PHPStanBaselineAnalysis\BaselineAnalyzer;
 use Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule;
+use Symplify\PHPStanRules\Rules\Explicit\ParamTypeDeclarationSeaLevelRule;
+use Symplify\PHPStanRules\Rules\Explicit\PropertyTypeDeclarationSeaLevelRule;
+use Symplify\PHPStanRules\Rules\Explicit\ReturnTypeDeclarationSeaLevelRule;
 
 class BaselineAnalyzerTest extends TestCase
 {
@@ -14,12 +17,15 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/all-in.neon'));
         $result = $analyzer->analyze();
 
-        $this->assertSame(35, $result->overallErrors);
+        $this->assertSame(38, $result->overallErrors);
         $this->assertSame(70, $result->classesComplexity);
         $this->assertSame(2, $result->deprecations);
         $this->assertSame(5, $result->invalidPhpdocs);
         $this->assertSame(1, $result->unknownTypes);
         $this->assertSame(4, $result->anonymousVariables);
+        $this->assertSame(1, $result->propertyTypeCoverage);
+        $this->assertSame(27, $result->paramTypeCoverage);
+        $this->assertSame(4, $result->returnTypeCoverage);
     }
 
     function testClassComplexity():void
@@ -33,6 +39,9 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->invalidPhpdocs);
         $this->assertSame(0, $result->unknownTypes);
         $this->assertSame(0, $result->anonymousVariables);
+        $this->assertSame(0, $result->propertyTypeCoverage);
+        $this->assertSame(0, $result->paramTypeCoverage);
+        $this->assertSame(0, $result->returnTypeCoverage);
     }
 
     function testMethodComplexityIgnored():void
@@ -46,6 +55,9 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->invalidPhpdocs);
         $this->assertSame(0, $result->unknownTypes);
         $this->assertSame(0, $result->anonymousVariables);
+        $this->assertSame(0, $result->propertyTypeCoverage);
+        $this->assertSame(0, $result->paramTypeCoverage);
+        $this->assertSame(0, $result->returnTypeCoverage);
     }
 
     function testDeprecations():void
@@ -59,6 +71,9 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->invalidPhpdocs);
         $this->assertSame(0, $result->unknownTypes);
         $this->assertSame(0, $result->anonymousVariables);
+        $this->assertSame(0, $result->propertyTypeCoverage);
+        $this->assertSame(0, $result->paramTypeCoverage);
+        $this->assertSame(0, $result->returnTypeCoverage);
     }
 
     function testInvalidPhpdocs():void
@@ -72,6 +87,9 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(8, $result->invalidPhpdocs);
         $this->assertSame(0, $result->unknownTypes);
         $this->assertSame(0, $result->anonymousVariables);
+        $this->assertSame(0, $result->propertyTypeCoverage);
+        $this->assertSame(0, $result->paramTypeCoverage);
+        $this->assertSame(0, $result->returnTypeCoverage);
     }
 
     function testUnknownTypes():void
@@ -85,6 +103,9 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->invalidPhpdocs);
         $this->assertSame(7, $result->unknownTypes);
         $this->assertSame(0, $result->anonymousVariables);
+        $this->assertSame(0, $result->propertyTypeCoverage);
+        $this->assertSame(0, $result->paramTypeCoverage);
+        $this->assertSame(0, $result->returnTypeCoverage);
     }
 
     function testAnonymousVariables():void
@@ -98,12 +119,43 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->invalidPhpdocs);
         $this->assertSame(0, $result->unknownTypes);
         $this->assertSame(4, $result->anonymousVariables);
+        $this->assertSame(0, $result->propertyTypeCoverage);
+        $this->assertSame(0, $result->paramTypeCoverage);
+        $this->assertSame(0, $result->returnTypeCoverage);
+    }
+
+    function testSeaLevels():void
+    {
+        $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/sea-level.neon'));
+        $result = $analyzer->analyze();
+
+        $this->assertSame(3, $result->overallErrors);
+        $this->assertSame(0, $result->classesComplexity);
+        $this->assertSame(0, $result->deprecations);
+        $this->assertSame(0, $result->invalidPhpdocs);
+        $this->assertSame(0, $result->unknownTypes);
+        $this->assertSame(0, $result->anonymousVariables);
+        $this->assertSame(1, $result->propertyTypeCoverage);
+        $this->assertSame(27, $result->paramTypeCoverage);
+        $this->assertSame(4, $result->returnTypeCoverage);
     }
 
     public function testSymplifyCompat() {
         $this->assertSame(
             BaselineAnalyzer::CLASS_COMPLEXITY_ERROR_MESSAGE,
             ClassLikeCognitiveComplexityRule::ERROR_MESSAGE
+        );
+        $this->assertSame(
+            BaselineAnalyzer::PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE,
+            PropertyTypeDeclarationSeaLevelRule::ERROR_MESSAGE
+        );
+        $this->assertSame(
+            BaselineAnalyzer::PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE,
+            ParamTypeDeclarationSeaLevelRule::ERROR_MESSAGE
+        );
+        $this->assertSame(
+            BaselineAnalyzer::RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE,
+            ReturnTypeDeclarationSeaLevelRule::ERROR_MESSAGE
         );
     }
 

@@ -21,6 +21,9 @@ final class BaselineError
      * @return string
      */
     public function unwrapMessage(): string {
-        return trim($this->message, '#^$');
+        $msg = $this->message;
+        $msg = str_replace(['\\.', '%%'], ['.', '%'], $msg);
+        $msg = trim($msg, '#^$');
+        return $msg;
     }
 }

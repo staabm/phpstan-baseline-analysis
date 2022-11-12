@@ -21,6 +21,9 @@ final class ResultPrinter {
     const KEY_INVALID_PHPDOCS = 'Invalid-Phpdocs';
     const KEY_UNKNOWN_TYPES = 'Unknown-Types';
     const KEY_ANONYMOUS_VARIABLES = 'Anonymous-Variables';
+    const KEY_PROPERTY_TYPE_COVERAGE = 'Native-Property-Type-Coverage';
+    const KEY_PARAM_TYPE_COVERAGE = 'Native-Param-Type-Coverage';
+    const KEY_RETURN_TYPE_COVERAGE = 'Native-Return-Type-Coverage';
 
     /**
      * @var int
@@ -44,7 +47,11 @@ final class ResultPrinter {
         yield sprintf("  %s: %s\n", self::KEY_INVALID_PHPDOCS, $result->invalidPhpdocs);
         yield sprintf("  %s: %s\n", self::KEY_UNKNOWN_TYPES, $result->unknownTypes);
         yield sprintf("  %s: %s\n", self::KEY_ANONYMOUS_VARIABLES, $result->anonymousVariables);
+        yield sprintf("  %s: %s\n", self::KEY_PROPERTY_TYPE_COVERAGE, $result->propertyTypeCoverage);
+        yield sprintf("  %s: %s\n", self::KEY_PARAM_TYPE_COVERAGE, $result->paramTypeCoverage);
+        yield sprintf("  %s: %s\n", self::KEY_RETURN_TYPE_COVERAGE, $result->returnTypeCoverage);
     }
+
 
     /**
      * @return Iterator<string>
@@ -65,6 +72,9 @@ final class ResultPrinter {
                 self::KEY_INVALID_PHPDOCS => $result->invalidPhpdocs,
                 self::KEY_UNKNOWN_TYPES => $result->unknownTypes,
                 self::KEY_ANONYMOUS_VARIABLES => $result->anonymousVariables,
+                self::KEY_PROPERTY_TYPE_COVERAGE => $result->propertyTypeCoverage,
+                self::KEY_PARAM_TYPE_COVERAGE => $result->paramTypeCoverage,
+                self::KEY_RETURN_TYPE_COVERAGE => $result->returnTypeCoverage,
             ]
         ]);
     }

@@ -35,4 +35,19 @@ final class AnalyzerResult {
      * @var int
      */
     public $anonymousVariables = 0;
+
+    /**
+     * @var int<0, 100>
+     */
+    public $propertyTypeCoverage = 0;
+
+    /**
+     * @var int<0, 100>
+     */
+    public $paramTypeCoverage = 0;
+
+    /**
+     * @var int<0, 100>
+     */
+    public $returnTypeCoverage = 0;
 }

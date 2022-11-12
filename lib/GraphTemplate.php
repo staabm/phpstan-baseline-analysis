@@ -33,6 +33,9 @@ final class GraphTemplate
                 $splines[$baselinePath][3] = ['label' => ResultPrinter::KEY_INVALID_PHPDOCS, 'borderColor' => 'lightblue', 'data' => []];
                 $splines[$baselinePath][4] = ['label' => ResultPrinter::KEY_UNKNOWN_TYPES, 'borderColor' => 'purple', 'data' => []];
                 $splines[$baselinePath][5] = ['label' => ResultPrinter::KEY_ANONYMOUS_VARIABLES, 'borderColor' => 'pink', 'data' => []];
+                $splines[$baselinePath][6] = ['label' => ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE, 'borderColor' => 'lightcoral', 'data' => []];
+                $splines[$baselinePath][7] = ['label' => ResultPrinter::KEY_PARAM_TYPE_COVERAGE, 'borderColor' => 'lightseagreen', 'data' => []];
+                $splines[$baselinePath][8] = ['label' => ResultPrinter::KEY_RETURN_TYPE_COVERAGE, 'borderColor' => 'lightsteelblue', 'data' => []];
             }
 
             $dataByDates[$baselinePath][$analyzerResult->referenceDate->getTimestamp()] = [
@@ -42,6 +45,9 @@ final class GraphTemplate
                 $analyzerResult->invalidPhpdocs,
                 $analyzerResult->unknownTypes,
                 $analyzerResult->anonymousVariables,
+                $analyzerResult->propertyTypeCoverage,
+                $analyzerResult->paramTypeCoverage,
+                $analyzerResult->returnTypeCoverage,
             ];
         }
 
@@ -54,6 +60,9 @@ final class GraphTemplate
                 $splines[$baselinePath][3]['data'][] = $data[3];
                 $splines[$baselinePath][4]['data'][] = $data[4];
                 $splines[$baselinePath][5]['data'][] = $data[5];
+                $splines[$baselinePath][6]['data'][] = $data[6];
+                $splines[$baselinePath][7]['data'][] = $data[7];
+                $splines[$baselinePath][8]['data'][] = $data[8];
             }
         }
 

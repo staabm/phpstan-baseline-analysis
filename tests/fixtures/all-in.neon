@@ -89,3 +89,18 @@ parameters:
 			message: "#^Anonymous variables in a \"\\$element\\-\\>value\\[0\\]\\-\\>\\.\\.\\.\" property fetch can lead to false dead property\\. Make sure the variable type is known$#"
 			count: 3
 			path: application/Rocket/lib/bulkConsumerCheckout/integration/VatValidationClient.php
+
+		-
+			message: "#^Out of 1 possible property types, only 1 %% actually have it\\. Add more property types to get over 99 %%$#"
+			count: 1
+			path: N/A
+
+		-
+			message: "#^Out of 22 possible return types, only 4 %% actually have it\\. Add more return types to get over 99 %%$#"
+			count: 1
+			path: N/A
+
+		-
+			message: "#^Out of 33 possible param types, only 27 %% actually have it\\. Add more param types to get over 99 %%$#"
+			count: 1
+			path: N/A
