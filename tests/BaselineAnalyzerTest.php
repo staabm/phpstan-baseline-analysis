@@ -5,6 +5,7 @@ namespace staabm\PHPStanBaselineAnalysis\Tests;
 use PHPUnit\Framework\TestCase;
 use staabm\PHPStanBaselineAnalysis\Baseline;
 use staabm\PHPStanBaselineAnalysis\BaselineAnalyzer;
+use Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule;
 
 class BaselineAnalyzerTest extends TestCase
 {
@@ -97,6 +98,13 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->invalidPhpdocs);
         $this->assertSame(0, $result->unknownTypes);
         $this->assertSame(4, $result->anonymousVariables);
+    }
+
+    public function testSymplifyCompat() {
+        $this->assertSame(
+            BaselineAnalyzer::CLASS_COMPLEXITY_ERROR_MESSAGE,
+            ClassLikeCognitiveComplexityRule::ERROR_MESSAGE
+        );
     }
 
 }

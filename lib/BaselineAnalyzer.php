@@ -8,6 +8,11 @@ use function Safe\preg_match;
 final class BaselineAnalyzer
 {
     /**
+     * @var string
+     */
+    public const CLASS_COMPLEXITY_ERROR_MESSAGE = 'Class cognitive complexity is %d, keep it under %d';
+
+    /**
      * @var Baseline
      */
     private $baseline;
@@ -46,9 +51,10 @@ final class BaselineAnalyzer
 
     private function countClassesComplexity(BaselineError $baselineError): int
     {
-        return preg_match('/Class cognitive complexity is (?P<value>\d+), keep it under (?P<limit>\d+)/', $baselineError->message, $matches) === 1
-            ? (int)$matches['value'] * $baselineError->count
-            : 0;
+        if (sscanf($baselineError->unwrapMessage(), self::CLASS_COMPLEXITY_ERROR_MESSAGE, $value, $limit) > 0) {
+            return (int)$value * $baselineError->count;
+        }
+        return 0;
     }
 
     private function countInvalidPhpdocs(BaselineError $baselineError): int
