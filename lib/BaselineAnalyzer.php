@@ -8,18 +8,22 @@ use function Safe\preg_match;
 final class BaselineAnalyzer
 {
     /**
+     * @api
      * @var string
      */
     public const CLASS_COMPLEXITY_ERROR_MESSAGE = 'Class cognitive complexity is %d, keep it under %d';
     /**
+     * @api
      * @var string
      */
     public const PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible property types, only %d %% actually have it. Add more property types to get over %d %%';
     /**
+     * @api
      * @var string
      */
     public const PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible param types, only %d %% actually have it. Add more param types to get over %d %%';
     /**
+     * @api
      * @var string
      */
     public const RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible return types, only %d %% actually have it. Add more return types to get over %d %%';

@@ -26,11 +26,6 @@ final class ResultPrinter {
     const KEY_RETURN_TYPE_COVERAGE = 'Native-Return-Type-Coverage';
 
     /**
-     * @var int
-     */
-    public $overallComplexity = 0;
-
-    /**
      * @return Iterator<string>
      */
     public function streamText(Baseline $baseline, AnalyzerResult $result): Iterator
