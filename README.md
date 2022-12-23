@@ -23,10 +23,10 @@ composer require staabm/phpstan-baseline-analysis
 - Symplify\PHPStanRules\Rules\Explicit\NoMixedMethodCallerRule
 - Symplify\PHPStanRules\Rules\Explicit\NoMixedPropertyFetcherRule
 
-## Supported TomasVotruba/cognitive-complexity Rules
+## Supported [tomasvotruba/cognitive-complexity](https://github.com/TomasVotruba/cognitive-complexity) Rules
 - TomasVotruba\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule
 
-## Supported tomasvotruba/type-coverage Rules
+## Supported [tomasvotruba/type-coverage](https://github.com/TomasVotruba/type-coverage) Rules
 - TomasVotruba\TypeCoverage\Rules\ParamTypeCoverageRule;
 - TomasVotruba\TypeCoverage\Rules\PropertyTypeCoverageRule;
 - TomasVotruba\TypeCoverage\Rules\ReturnTypeCoverageRule;
