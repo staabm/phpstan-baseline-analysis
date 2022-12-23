@@ -5,7 +5,7 @@ namespace staabm\PHPStanBaselineAnalysis\Tests;
 use PHPUnit\Framework\TestCase;
 use staabm\PHPStanBaselineAnalysis\Baseline;
 use staabm\PHPStanBaselineAnalysis\BaselineAnalyzer;
-use Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule;
+use TomasVotruba\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule;
 use TomasVotruba\TypeCoverage\Rules\ParamTypeCoverageRule;
 use TomasVotruba\TypeCoverage\Rules\PropertyTypeCoverageRule;
 use TomasVotruba\TypeCoverage\Rules\ReturnTypeCoverageRule;
