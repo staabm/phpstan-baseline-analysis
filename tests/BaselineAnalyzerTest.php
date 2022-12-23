@@ -6,9 +6,9 @@ use PHPUnit\Framework\TestCase;
 use staabm\PHPStanBaselineAnalysis\Baseline;
 use staabm\PHPStanBaselineAnalysis\BaselineAnalyzer;
 use Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule;
-use Symplify\PHPStanRules\Rules\Explicit\ParamTypeDeclarationSeaLevelRule;
-use Symplify\PHPStanRules\Rules\Explicit\PropertyTypeDeclarationSeaLevelRule;
-use Symplify\PHPStanRules\Rules\Explicit\ReturnTypeDeclarationSeaLevelRule;
+use TomasVotruba\TypeCoverage\Rules\ParamTypeCoverageRule;
+use TomasVotruba\TypeCoverage\Rules\PropertyTypeCoverageRule;
+use TomasVotruba\TypeCoverage\Rules\ReturnTypeCoverageRule;
 
 class BaselineAnalyzerTest extends TestCase
 {
@@ -147,15 +147,15 @@ class BaselineAnalyzerTest extends TestCase
         );
         $this->assertSame(
             BaselineAnalyzer::PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE,
-            PropertyTypeDeclarationSeaLevelRule::ERROR_MESSAGE
+            PropertyTypeCoverageRule::ERROR_MESSAGE
         );
         $this->assertSame(
             BaselineAnalyzer::PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE,
-            ParamTypeDeclarationSeaLevelRule::ERROR_MESSAGE
+            ParamTypeCoverageRule::ERROR_MESSAGE
         );
         $this->assertSame(
             BaselineAnalyzer::RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE,
-            ReturnTypeDeclarationSeaLevelRule::ERROR_MESSAGE
+            ReturnTypeCoverageRule::ERROR_MESSAGE
         );
     }
 
