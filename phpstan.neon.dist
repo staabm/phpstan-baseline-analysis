@@ -12,7 +12,7 @@ parameters:
 
     cognitive_complexity:
         class: 50
-        function: 10
+        function: 12
 
     type_coverage:
         return_type: 100
