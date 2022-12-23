@@ -7,7 +7,7 @@ use function Safe\json_encode;
 
 final class GraphTemplate
 {
-    const COMPLEXITY_COLOR = '#C24642';
+    private const COMPLEXITY_COLOR = '#C24642';
 
     /**
      * @param Iterator<array{string, AnalyzerResult}> $it

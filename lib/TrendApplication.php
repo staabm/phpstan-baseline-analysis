@@ -8,8 +8,17 @@ use function Safe\json_decode;
 
 final class TrendApplication
 {
+    /**
+     * @api
+     */
     const EXIT_IMPROVED = 0;
+    /**
+     * @api
+     */
     const EXIT_STEADY = 1;
+    /**
+     * @api
+     */
     const EXIT_WORSE = 2;
 
     /**

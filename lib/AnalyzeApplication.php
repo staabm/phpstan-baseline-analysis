@@ -6,7 +6,13 @@ use \Iterator;
 
 final class AnalyzeApplication
 {
+    /**
+     * @api
+     */
     const EXIT_SUCCESS = 0;
+    /**
+     * @api
+     */
     const EXIT_ERROR = 1;
 
     /**
