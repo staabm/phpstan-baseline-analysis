@@ -16,7 +16,8 @@ final class GraphApplication
      */
     public function start(string $jsonGlob): int
     {
-        $jsonFiles = glob($jsonGlob);
+        $jsonFiles = glob($jsonGlob, GLOB_NOSORT);
+        usort( $jsonFiles, function( $a, $b ) { return filemtime($a) - filemtime($b); } );
 
         $it = $this->iterateOverFiles($jsonFiles);
 
