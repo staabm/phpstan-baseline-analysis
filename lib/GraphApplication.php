@@ -17,7 +17,7 @@ final class GraphApplication
     public function start(string $jsonGlob): int
     {
         $jsonFiles = glob($jsonGlob, GLOB_NOSORT);
-        \Safe\usort( $jsonFiles, function( $a, $b ) {
+        \Safe\usort( $jsonFiles, function( string $a, string $b ) {
             return \Safe\filemtime($a) - \Safe\filemtime($b);
         });
 
