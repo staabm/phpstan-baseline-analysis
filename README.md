@@ -10,7 +10,7 @@ You need at least one of the supported PHPStan RuleSets/Rules configured in your
 ## Installation
 
 ```
-composer require staabm/phpstan-baseline-analysis
+composer require staabm/phpstan-baseline-analysis --dev
 ```
 
 ## Supported PHPStan RuleSets
