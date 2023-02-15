@@ -1,6 +1,7 @@
 {
     "name": "staabm/phpstan-baseline-analysis",
     "license": "MIT",
+    "keywords": ["dev", "phpstan", "phpstan-extension", "static analysis", "database access layer", "code quality"],
     "autoload": {
         "classmap": ["lib/"]
     },
