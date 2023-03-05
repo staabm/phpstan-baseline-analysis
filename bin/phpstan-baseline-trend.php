@@ -1,5 +1,10 @@
 <?php
 
+use function Safe\ini_set;
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'stderr');
+
 // Finding composer
 
 $paths = [
