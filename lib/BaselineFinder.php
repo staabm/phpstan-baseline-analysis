@@ -21,7 +21,7 @@ final class BaselineFinder
                 continue;
             }
 
-            if (!str_ends_with($baseline, '.neon')) {
+            if (!str_ends_with($baseline, '.neon') && !str_ends_with($baseline, '.php')) {
                 continue;
             }
 
