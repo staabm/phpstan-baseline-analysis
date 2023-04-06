@@ -3,6 +3,7 @@
 namespace staabm\PHPStanBaselineAnalysis\Tests;
 
 use PHPUnit\Framework\TestCase;
+use staabm\PHPStanBaselineAnalysis\AnalyzerResult;
 use staabm\PHPStanBaselineAnalysis\Baseline;
 use staabm\PHPStanBaselineAnalysis\BaselineAnalyzer;
 use TomasVotruba\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule;
@@ -17,15 +18,15 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/all-in.neon'));
         $result = $analyzer->analyze();
 
-        $this->assertSame(38, $result->overallErrors);
-        $this->assertSame(70, $result->classesComplexity);
-        $this->assertSame(2, $result->deprecations);
-        $this->assertSame(5, $result->invalidPhpdocs);
-        $this->assertSame(1, $result->unknownTypes);
-        $this->assertSame(4, $result->anonymousVariables);
-        $this->assertSame(1, $result->propertyTypeCoverage);
-        $this->assertSame(27, $result->paramTypeCoverage);
-        $this->assertSame(4, $result->returnTypeCoverage);
+        $this->allInAssertions($result);
+    }
+
+    function testAllInComplexityPhp():void
+    {
+        $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/all-in.php'));
+        $result = $analyzer->analyze();
+
+        $this->allInAssertions($result);
     }
 
     function testClassComplexity():void
@@ -157,6 +158,19 @@ class BaselineAnalyzerTest extends TestCase
             BaselineAnalyzer::RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE,
             ReturnTypeCoverageRule::ERROR_MESSAGE
         );
+    }
+
+    private function allInAssertions(AnalyzerResult $result): void
+    {
+        $this->assertSame(38, $result->overallErrors);
+        $this->assertSame(70, $result->classesComplexity);
+        $this->assertSame(2, $result->deprecations);
+        $this->assertSame(5, $result->invalidPhpdocs);
+        $this->assertSame(1, $result->unknownTypes);
+        $this->assertSame(4, $result->anonymousVariables);
+        $this->assertSame(1, $result->propertyTypeCoverage);
+        $this->assertSame(27, $result->paramTypeCoverage);
+        $this->assertSame(4, $result->returnTypeCoverage);
     }
 
 }

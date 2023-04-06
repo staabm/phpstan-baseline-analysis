@@ -24,8 +24,14 @@ final class Baseline {
      * @throws FilesystemException
      */
     static public function forFile(string $filePath):self {
-        $content = file_get_contents($filePath);
-        $decoded = Neon::decode($content);
+        $baselineExtension = pathinfo($filePath, PATHINFO_EXTENSION);
+
+        if ($baselineExtension === 'php') {
+            $decoded = require $filePath;
+        } else {
+            $content = file_get_contents($filePath);
+            $decoded = Neon::decode($content);
+        }
 
         if (!is_array($decoded)) {
             throw new RuntimeException(sprintf('expecting baseline %s to be non-empty', $filePath));
