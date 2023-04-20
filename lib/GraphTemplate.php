@@ -58,11 +58,6 @@ final class GraphTemplate
                     'data' => []
                 ];
                 $splines[$baselinePath][6] = [
-                    'label' => ResultPrinter::KEY_UNUSED_SYMBOLS,
-                    'borderColor' => 'lightyellow',
-                    'data' => []
-                ];
-                $splines[$baselinePath][7] = [
                     'label' => ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE,
                     'yAxisID' => 'yPercent',
                     'borderColor' => 'lightcoral',
@@ -70,7 +65,7 @@ final class GraphTemplate
                     'type' => 'bar',
                     'data' => []
                 ];
-                $splines[$baselinePath][8] = [
+                $splines[$baselinePath][7] = [
                     'label' => ResultPrinter::KEY_PARAM_TYPE_COVERAGE,
                     'yAxisID' => 'yPercent',
                     'borderColor' => 'lightseagreen',
@@ -78,12 +73,17 @@ final class GraphTemplate
                     'type' => 'bar',
                     'data' => []
                 ];
-                $splines[$baselinePath][9] = [
+                $splines[$baselinePath][8] = [
                     'label' => ResultPrinter::KEY_RETURN_TYPE_COVERAGE,
                     'yAxisID' => 'yPercent',
                     'borderColor' => 'lightsteelblue',
                     'borderWidth' => 2,
                     'type' => 'bar',
+                    'data' => []
+                ];
+                $splines[$baselinePath][9] = [
+                    'label' => ResultPrinter::KEY_UNUSED_SYMBOLS,
+                    'borderColor' => 'lightyellow',
                     'data' => []
                 ];
             }
@@ -95,10 +95,10 @@ final class GraphTemplate
                 $analyzerResult->invalidPhpdocs,
                 $analyzerResult->unknownTypes,
                 $analyzerResult->anonymousVariables,
-                $analyzerResult->unusedSymbols,
                 $analyzerResult->propertyTypeCoverage,
                 $analyzerResult->paramTypeCoverage,
                 $analyzerResult->returnTypeCoverage,
+                $analyzerResult->unusedSymbols,
             ];
         }
 
