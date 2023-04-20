@@ -95,10 +95,10 @@ final class GraphTemplate
                 $analyzerResult->invalidPhpdocs,
                 $analyzerResult->unknownTypes,
                 $analyzerResult->anonymousVariables,
+                $analyzerResult->unusedSymbols,
                 $analyzerResult->propertyTypeCoverage,
                 $analyzerResult->paramTypeCoverage,
                 $analyzerResult->returnTypeCoverage,
-                $analyzerResult->unusedSymbols,
             ];
         }
 
