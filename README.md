@@ -27,9 +27,15 @@ composer require staabm/phpstan-baseline-analysis --dev
 - TomasVotruba\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule
 
 ## Supported [tomasvotruba/type-coverage](https://github.com/TomasVotruba/type-coverage) Rules
-- TomasVotruba\TypeCoverage\Rules\ParamTypeCoverageRule;
-- TomasVotruba\TypeCoverage\Rules\PropertyTypeCoverageRule;
-- TomasVotruba\TypeCoverage\Rules\ReturnTypeCoverageRule;
+- TomasVotruba\TypeCoverage\Rules\ParamTypeCoverageRule
+- TomasVotruba\TypeCoverage\Rules\PropertyTypeCoverageRule
+- TomasVotruba\TypeCoverage\Rules\ReturnTypeCoverageRule
+
+## Supported [tomasvotruba/unused-public](https://github.com/TomasVotruba/unused-public) Rules
+- TomasVotruba\UnusedPublic\Rules\UnusedPublicClassConstRule
+- TomasVotruba\UnusedPublic\Rules\UnusedPublicClassMethodRule
+- TomasVotruba\UnusedPublic\Rules\UnusedPublicPropertyRule
+
 
 ## example report
 
