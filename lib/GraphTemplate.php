@@ -57,12 +57,12 @@ final class GraphTemplate
                     'borderColor' => 'pink',
                     'data' => []
                 ];
-                $splines[$baselinePath][5] = [
+                $splines[$baselinePath][6] = [
                     'label' => ResultPrinter::KEY_UNUSED_SYMBOLS,
                     'borderColor' => 'lightyellow',
                     'data' => []
                 ];
-                $splines[$baselinePath][6] = [
+                $splines[$baselinePath][7] = [
                     'label' => ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE,
                     'yAxisID' => 'yPercent',
                     'borderColor' => 'lightcoral',
@@ -70,7 +70,7 @@ final class GraphTemplate
                     'type' => 'bar',
                     'data' => []
                 ];
-                $splines[$baselinePath][7] = [
+                $splines[$baselinePath][8] = [
                     'label' => ResultPrinter::KEY_PARAM_TYPE_COVERAGE,
                     'yAxisID' => 'yPercent',
                     'borderColor' => 'lightseagreen',
@@ -78,7 +78,7 @@ final class GraphTemplate
                     'type' => 'bar',
                     'data' => []
                 ];
-                $splines[$baselinePath][8] = [
+                $splines[$baselinePath][9] = [
                     'label' => ResultPrinter::KEY_RETURN_TYPE_COVERAGE,
                     'yAxisID' => 'yPercent',
                     'borderColor' => 'lightsteelblue',
