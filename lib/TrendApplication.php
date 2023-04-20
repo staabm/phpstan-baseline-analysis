@@ -56,6 +56,9 @@ final class TrendApplication
 
                 $exitCode = $this->compare(ResultPrinter::KEY_ANONYMOUS_VARIABLES, $result->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
                 echo "\n";
+
+                $exitCode = $this->compare(ResultPrinter::KEY_UNUSED_SYMBOLS, $result->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
+                echo "\n";
             }
         }
 

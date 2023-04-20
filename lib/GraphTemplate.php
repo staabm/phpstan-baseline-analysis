@@ -57,6 +57,11 @@ final class GraphTemplate
                     'borderColor' => 'pink',
                     'data' => []
                 ];
+                $splines[$baselinePath][5] = [
+                    'label' => ResultPrinter::KEY_UNUSED_SYMBOLS,
+                    'borderColor' => 'lightyellow',
+                    'data' => []
+                ];
                 $splines[$baselinePath][6] = [
                     'label' => ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE,
                     'yAxisID' => 'yPercent',
