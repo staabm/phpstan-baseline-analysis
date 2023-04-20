@@ -52,10 +52,10 @@ $ git clone ...
 $ phpstan-baseline-analyze *phpstan-baseline.neon --json > now.json
 
 $ git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
-$ phpstan-baseline-analyze *phpstan-baseline.neon --json > 1-week-ago.json
+$ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > 1-week-ago.json
 
 $ git checkout `git rev-list -n 1 --before="2 week ago" HEAD`
-$ phpstan-baseline-analyze *phpstan-baseline.neon --json > 2-weeks-ago.json
+$ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > 2-weeks-ago.json
 
 $ php phpstan-baseline-graph '*.json' > result.html
 ```
@@ -71,11 +71,11 @@ see the trend between 2 different points in time like:
 ```
 $ git clone ...
 
-$ phpstan-baseline-analyze *phpstan-baseline.neon --json > now.json
+$ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > now.json
 
 $ git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
 
-$ phpstan-baseline-analyze *phpstan-baseline.neon --json > reference.json
+$ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > reference.json
 
 $ phpstan-baseline-trend reference.json now.json
 Analyzing Trend for app/portal/phpstan-baseline.neon
@@ -118,11 +118,11 @@ jobs:
         with:
           fetch-depth: 50 # fetch the last X commits.
 
-      - run: "phpstan-baseline-analyze *baseline.neon --json > ../now.json"
+      - run: "phpstan-baseline-analyze '*phpstan-baseline.neon' --json > ../now.json"
 
       - run: git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
 
-      - run: "phpstan-baseline-analyze *baseline.neon --json > ../reference.json"
+      - run: "phpstan-baseline-analyze '*phpstan-baseline.neon' --json > ../reference.json"
 
       - name: analyze trend
         shell: php {0}
