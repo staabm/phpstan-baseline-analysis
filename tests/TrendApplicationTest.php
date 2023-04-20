@@ -24,6 +24,7 @@ Analyzing Trend for /fixtures/all-in.neon
   Invalid-Phpdocs: 3 -> 3 => good
   Unknown-Types: 5 -> 5 => good
   Anonymous-Variables: 2 -> 2 => good
+  Unused-Symbols: 1 -> 1 => good
 
 PHP;
 
@@ -49,6 +50,7 @@ Analyzing Trend for /fixtures/all-in.neon
   Invalid-Phpdocs: 3 -> 30 => worse
   Unknown-Types: 5 -> 15 => worse
   Anonymous-Variables: 2 -> 5 => worse
+  Unused-Symbols: 1 -> 10 => worse
 
 PHP;
 
@@ -74,6 +76,7 @@ Analyzing Trend for /fixtures/all-in.neon
   Invalid-Phpdocs: 3 -> 1 => improved
   Unknown-Types: 5 -> 3 => improved
   Anonymous-Variables: 2 -> 1 => improved
+  Unused-Symbols: 1 -> 0 => improved
 
 PHP;
 
