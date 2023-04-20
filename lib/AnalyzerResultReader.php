@@ -103,6 +103,9 @@ final class AnalyzerResultReader {
         if (array_key_exists(ResultPrinter::KEY_RETURN_TYPE_COVERAGE, $resultArray)) {
             $result->returnTypeCoverage = $resultArray[ResultPrinter::KEY_RETURN_TYPE_COVERAGE];
         }
+        if (array_key_exists(ResultPrinter::KEY_UNUSED_SYMBOLS, $resultArray)) {
+            $result->unusedSymbols = $resultArray[ResultPrinter::KEY_UNUSED_SYMBOLS];
+        }
         return $result;
     }
 }

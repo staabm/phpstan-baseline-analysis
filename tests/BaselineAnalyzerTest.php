@@ -43,6 +43,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->propertyTypeCoverage);
         $this->assertSame(0, $result->paramTypeCoverage);
         $this->assertSame(0, $result->returnTypeCoverage);
+        $this->assertSame(0, $result->unusedSymbols);
     }
 
     function testMethodComplexityIgnored():void
@@ -59,6 +60,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->propertyTypeCoverage);
         $this->assertSame(0, $result->paramTypeCoverage);
         $this->assertSame(0, $result->returnTypeCoverage);
+        $this->assertSame(0, $result->unusedSymbols);
     }
 
     function testDeprecations():void
@@ -75,6 +77,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->propertyTypeCoverage);
         $this->assertSame(0, $result->paramTypeCoverage);
         $this->assertSame(0, $result->returnTypeCoverage);
+        $this->assertSame(0, $result->unusedSymbols);
     }
 
     function testInvalidPhpdocs():void
@@ -91,6 +94,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->propertyTypeCoverage);
         $this->assertSame(0, $result->paramTypeCoverage);
         $this->assertSame(0, $result->returnTypeCoverage);
+        $this->assertSame(0, $result->unusedSymbols);
     }
 
     function testUnknownTypes():void
@@ -107,6 +111,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->propertyTypeCoverage);
         $this->assertSame(0, $result->paramTypeCoverage);
         $this->assertSame(0, $result->returnTypeCoverage);
+        $this->assertSame(0, $result->unusedSymbols);
     }
 
     function testAnonymousVariables():void
@@ -123,6 +128,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(0, $result->propertyTypeCoverage);
         $this->assertSame(0, $result->paramTypeCoverage);
         $this->assertSame(0, $result->returnTypeCoverage);
+        $this->assertSame(0, $result->unusedSymbols);
     }
 
     function testSeaLevels():void
@@ -139,9 +145,10 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(1, $result->propertyTypeCoverage);
         $this->assertSame(27, $result->paramTypeCoverage);
         $this->assertSame(4, $result->returnTypeCoverage);
+        $this->assertSame(0, $result->unusedSymbols);
     }
 
-    public function testSymplifyCompat() {
+    public function testSymplifyCompat(): void {
         $this->assertSame(
             BaselineAnalyzer::CLASS_COMPLEXITY_ERROR_MESSAGE,
             ClassLikeCognitiveComplexityRule::ERROR_MESSAGE
@@ -160,9 +167,26 @@ class BaselineAnalyzerTest extends TestCase
         );
     }
 
+    function testNeverUsed():void
+    {
+        $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/never-used.neon'));
+        $result = $analyzer->analyze();
+
+        $this->assertSame(5, $result->overallErrors);
+        $this->assertSame(0, $result->classesComplexity);
+        $this->assertSame(0, $result->deprecations);
+        $this->assertSame(0, $result->invalidPhpdocs);
+        $this->assertSame(0, $result->unknownTypes);
+        $this->assertSame(0, $result->anonymousVariables);
+        $this->assertSame(0, $result->propertyTypeCoverage);
+        $this->assertSame(0, $result->paramTypeCoverage);
+        $this->assertSame(0, $result->returnTypeCoverage);
+        $this->assertSame(5, $result->unusedSymbols);
+    }
+
     private function allInAssertions(AnalyzerResult $result): void
     {
-        $this->assertSame(38, $result->overallErrors);
+        $this->assertSame(41, $result->overallErrors);
         $this->assertSame(70, $result->classesComplexity);
         $this->assertSame(2, $result->deprecations);
         $this->assertSame(5, $result->invalidPhpdocs);
@@ -171,6 +195,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(1, $result->propertyTypeCoverage);
         $this->assertSame(27, $result->paramTypeCoverage);
         $this->assertSame(4, $result->returnTypeCoverage);
+        $this->assertSame(3, $result->unusedSymbols);
     }
 
 }
