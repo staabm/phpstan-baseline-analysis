@@ -37,6 +37,11 @@ final class AnalyzerResult {
     public $anonymousVariables = 0;
 
     /**
+     * @var int
+     */
+    public $unusedSymbols = 0;
+
+    /**
      * @var int<0, 100>
      */
     public $propertyTypeCoverage = 0;
@@ -50,4 +55,5 @@ final class AnalyzerResult {
      * @var int<0, 100>
      */
     public $returnTypeCoverage = 0;
+
 }

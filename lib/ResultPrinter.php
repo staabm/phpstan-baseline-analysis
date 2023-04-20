@@ -24,6 +24,7 @@ final class ResultPrinter {
     const KEY_PROPERTY_TYPE_COVERAGE = 'Native-Property-Type-Coverage';
     const KEY_PARAM_TYPE_COVERAGE = 'Native-Param-Type-Coverage';
     const KEY_RETURN_TYPE_COVERAGE = 'Native-Return-Type-Coverage';
+    const KEY_UNUSED_SYMBOLS = 'Unused-Symbols';
 
     /**
      * @return Iterator<string>
@@ -45,6 +46,7 @@ final class ResultPrinter {
         yield sprintf("  %s: %s\n", self::KEY_PROPERTY_TYPE_COVERAGE, $result->propertyTypeCoverage);
         yield sprintf("  %s: %s\n", self::KEY_PARAM_TYPE_COVERAGE, $result->paramTypeCoverage);
         yield sprintf("  %s: %s\n", self::KEY_RETURN_TYPE_COVERAGE, $result->returnTypeCoverage);
+        yield sprintf("  %s: %s\n", self::KEY_UNUSED_SYMBOLS, $result->unusedSymbols);
     }
 
 
@@ -70,6 +72,7 @@ final class ResultPrinter {
                 self::KEY_PROPERTY_TYPE_COVERAGE => $result->propertyTypeCoverage,
                 self::KEY_PARAM_TYPE_COVERAGE => $result->paramTypeCoverage,
                 self::KEY_RETURN_TYPE_COVERAGE => $result->returnTypeCoverage,
+                self::KEY_UNUSED_SYMBOLS => $result->unusedSymbols,
             ]
         ]);
     }

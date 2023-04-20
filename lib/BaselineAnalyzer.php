@@ -54,6 +54,7 @@ final class BaselineAnalyzer
             $result->invalidPhpdocs += $this->countInvalidPhpdocs($baselineError);
             $result->unknownTypes += $this->countUnknownTypes($baselineError);
             $result->anonymousVariables += $this->countAnonymousVariables($baselineError);
+            $result->unusedSymbols += $this->countUnusedSymbols($baselineError);
 
             // project wide errors, only reported once per baseline
             $this->checkSeaLevels($result, $baselineError);
@@ -100,6 +101,13 @@ final class BaselineAnalyzer
     private function countAnonymousVariables(BaselineError $baselineError): int
     {
         return str_contains($baselineError->message, 'Anonymous variable')
+            ? $baselineError->count
+            : 0;
+    }
+
+    private function countUnusedSymbols(BaselineError $baselineError): int
+    {
+        return str_ends_with($baselineError->message, 'is never used$#')
             ? $baselineError->count
             : 0;
     }

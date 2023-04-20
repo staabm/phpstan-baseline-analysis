@@ -93,6 +93,7 @@ final class GraphTemplate
                 $analyzerResult->propertyTypeCoverage,
                 $analyzerResult->paramTypeCoverage,
                 $analyzerResult->returnTypeCoverage,
+                $analyzerResult->unusedSymbols,
             ];
         }
 
