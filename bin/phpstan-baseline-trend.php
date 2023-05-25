@@ -27,12 +27,26 @@ if (in_array('--version', $argv)) {
     exit(0);
 }
 
-$format = in_array('--format-json', $argv) ? 'json' : '';
-
 if ($argc <= 2) {
     $app->help();
     exit(254);
 }
 
-$exitCode = $app->start($argv[1], $argv[2], $format);
+$exitCode = $app->start($argv[1], $argv[2], extractFormat($argv));
 exit($exitCode);
+
+/**
+ * @param list<string> $args
+ */
+function extractFormat(array $args): string
+{
+    foreach($args as $arg) {
+        if (false === strpos($arg, '--format=')) {
+            continue;
+        }
+
+        return substr($arg, strlen('--format='));
+    }
+
+    return '';
+}
