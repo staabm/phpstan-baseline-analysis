@@ -27,10 +27,12 @@ if (in_array('--version', $argv)) {
     exit(0);
 }
 
+$format = in_array('--format-json', $argv) ? 'json' : '';
+
 if ($argc <= 2) {
     $app->help();
     exit(254);
 }
 
-$exitCode = $app->start($argv[1], $argv[2]);
+$exitCode = $app->start($argv[1], $argv[2], $format);
 exit($exitCode);
