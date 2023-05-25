@@ -32,13 +32,13 @@ if ($argc <= 2) {
     exit(254);
 }
 
-$exitCode = $app->start($argv[1], $argv[2], extractFormat($argv));
+$exitCode = $app->start($argv[1], $argv[2], extractOutputFormat($argv));
 exit($exitCode);
 
 /**
  * @param list<string> $args
  */
-function extractFormat(array $args): string
+function extractOutputFormat(array $args): string
 {
     foreach($args as $arg) {
         if (false === strpos($arg, '--format=')) {
