@@ -91,7 +91,7 @@ final class TrendApplication
     }
 
     /**
-     * @param array<int, AnalyzerResult> $comparing
+     * @param array<string, AnalyzerResult> $comparing
      *
      * @return array{ComparisonResult, int}
      */
