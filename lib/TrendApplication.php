@@ -19,7 +19,7 @@ final class TrendApplication
 
     public const OUTPUT_FORMAT_DEFAULT = 'text';
 
-    private const OUTPUT_FORMAT_JSON = 'json';
+    public const OUTPUT_FORMAT_JSON = 'json';
 
     /**
      * @param self::OUTPUT_FORMAT_* $outputFormat

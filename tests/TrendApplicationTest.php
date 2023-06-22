@@ -11,7 +11,7 @@ class TrendApplicationTest extends BaseTestCase
         $app = new TrendApplication();
 
         ob_start();
-        $exitCode = $app->start(__DIR__.'/fixtures/reference-result.json', __DIR__.'/fixtures/compare-same-result.json');
+        $exitCode = $app->start(__DIR__.'/fixtures/reference-result.json', __DIR__.'/fixtures/compare-same-result.json', TrendApplication::OUTPUT_FORMAT_DEFAULT);
         $rendered = ob_get_clean();
 
         $rendered = str_replace(__DIR__, '', $rendered);
@@ -37,7 +37,7 @@ PHP;
         $app = new TrendApplication();
 
         ob_start();
-        $exitCode = $app->start(__DIR__.'/fixtures/reference-result.json', __DIR__.'/fixtures/compare-higher-result.json');
+        $exitCode = $app->start(__DIR__.'/fixtures/reference-result.json', __DIR__.'/fixtures/compare-higher-result.json', TrendApplication::OUTPUT_FORMAT_DEFAULT);
         $rendered = ob_get_clean();
 
         $rendered = str_replace(__DIR__, '', $rendered);
@@ -63,7 +63,7 @@ PHP;
         $app = new TrendApplication();
 
         ob_start();
-        $exitCode = $app->start(__DIR__.'/fixtures/reference-result.json', __DIR__.'/fixtures/compare-lower-result.json');
+        $exitCode = $app->start(__DIR__.'/fixtures/reference-result.json', __DIR__.'/fixtures/compare-lower-result.json', TrendApplication::OUTPUT_FORMAT_DEFAULT);
         $rendered = ob_get_clean();
 
         $rendered = str_replace(__DIR__, '', $rendered);
