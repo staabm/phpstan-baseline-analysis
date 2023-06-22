@@ -51,7 +51,7 @@ final class TrendApplication
             return $this->createOutputJson($reference, $comparing, $exitCode);
         }
 
-        return $this->createOutputPlainText($reference, $comparing, $exitCode);
+        return $this->createOutputText($reference, $comparing, $exitCode);
     }
 
     public function help(): void
@@ -67,7 +67,7 @@ final class TrendApplication
      *
      * @return self::EXIT_*
      */
-    private function createOutputPlainText(array $reference, array $comparing, int $exitCode): int
+    private function createOutputText(array $reference, array $comparing, int $exitCode): int
     {
         foreach ($reference as $baselinePath => $result) {
             list($comparisonResult, $exitCode) = $this->createComparisonResult($baselinePath, $comparing, $result, $exitCode);
