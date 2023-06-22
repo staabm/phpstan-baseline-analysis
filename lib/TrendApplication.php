@@ -61,7 +61,7 @@ final class TrendApplication
         foreach ($reference as $baselinePath => $result) {
             list($comparisonResult, $exitCode) = $this->doCompare($baselinePath, $comparing, $result, $exitCode);
 
-            echo 'Analyzing Trend for ' . $comparisonResult->headline . "\n";
+            echo $comparisonResult->headline . "\n";
             foreach($comparisonResult->output as $key => $stats) {
                 echo $key.': '.$stats['reference']." -> ".$stats['comparing']." => ".$stats['trend']."\n";
             }
