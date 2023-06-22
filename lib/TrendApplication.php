@@ -99,15 +99,17 @@ final class TrendApplication
     {
         $comparison = new ComparisonResult('Analyzing Trend for ' . $baselinePath);
 
-        if (isset($comparing[$baselinePath])) {
-            $exitCode = $this->compare($comparison, ResultPrinter::KEY_OVERALL_ERRORS, $reference->overallErrors, $comparing[$baselinePath]->overallErrors, $exitCode);
-            $exitCode = $this->compare($comparison, ResultPrinter::KEY_CLASSES_COMPLEXITY, $reference->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
-            $exitCode = $this->compare($comparison, ResultPrinter::KEY_DEPRECATIONS, $reference->deprecations, $comparing[$baselinePath]->deprecations, $exitCode);
-            $exitCode = $this->compare($comparison, ResultPrinter::KEY_INVALID_PHPDOCS, $reference->invalidPhpdocs, $comparing[$baselinePath]->invalidPhpdocs, $exitCode);
-            $exitCode = $this->compare($comparison, ResultPrinter::KEY_UNKNOWN_TYPES, $reference->unknownTypes, $comparing[$baselinePath]->unknownTypes, $exitCode);
-            $exitCode = $this->compare($comparison, ResultPrinter::KEY_ANONYMOUS_VARIABLES, $reference->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
-            $exitCode = $this->compare($comparison, ResultPrinter::KEY_UNUSED_SYMBOLS, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
+        if (!isset($comparing[$baselinePath])) {
+            return array($comparison, $exitCode);
         }
+
+        $exitCode = $this->compare($comparison, ResultPrinter::KEY_OVERALL_ERRORS, $reference->overallErrors, $comparing[$baselinePath]->overallErrors, $exitCode);
+        $exitCode = $this->compare($comparison, ResultPrinter::KEY_CLASSES_COMPLEXITY, $reference->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
+        $exitCode = $this->compare($comparison, ResultPrinter::KEY_DEPRECATIONS, $reference->deprecations, $comparing[$baselinePath]->deprecations, $exitCode);
+        $exitCode = $this->compare($comparison, ResultPrinter::KEY_INVALID_PHPDOCS, $reference->invalidPhpdocs, $comparing[$baselinePath]->invalidPhpdocs, $exitCode);
+        $exitCode = $this->compare($comparison, ResultPrinter::KEY_UNKNOWN_TYPES, $reference->unknownTypes, $comparing[$baselinePath]->unknownTypes, $exitCode);
+        $exitCode = $this->compare($comparison, ResultPrinter::KEY_ANONYMOUS_VARIABLES, $reference->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
+        $exitCode = $this->compare($comparison, ResultPrinter::KEY_UNUSED_SYMBOLS, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
 
         return array($comparison, $exitCode);
     }
