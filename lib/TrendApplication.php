@@ -90,12 +90,16 @@ final class TrendApplication
      */
     private function createOutputJson(array $reference, array $comparing, int $exitCode): int
     {
+        $comparisonResults = [];
         foreach ($reference as $baselinePath => $result) {
 
             list($comparisonResult, $exitCode) = $this->createComparisonResult($baselinePath, $comparing, $result, $exitCode);
 
-            echo json_encode($comparisonResult);
+            $comparisonResults[] = $comparisonResult;
         }
+
+        echo json_encode($comparisonResults);
+
 
         return $exitCode;
     }
