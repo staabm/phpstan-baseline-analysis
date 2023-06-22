@@ -24,6 +24,8 @@ final class TrendApplication
     private const OUTPUT_FORMAT_JSON = 'json';
 
     /**
+     * @param self::OUTPUT_FORMAT_* $outputFormat
+     *
      * @return self::EXIT_*
      * @throws \Safe\Exceptions\JsonException
      *
