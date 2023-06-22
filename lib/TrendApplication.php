@@ -2,10 +2,6 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use \Iterator;
-use function Safe\file_get_contents;
-use function Safe\json_decode;
-
 final class TrendApplication
 {
     /**
@@ -20,6 +16,8 @@ final class TrendApplication
      * @api
      */
     const EXIT_WORSE = 2;
+
+    public const OUTPUT_FORMAT_DEFAULT = 'text';
 
     private const OUTPUT_FORMAT_JSON = 'json';
 
@@ -54,8 +52,9 @@ final class TrendApplication
     /**
      * @param array<string, AnalyzerResult> $reference
      * @param array<string, AnalyzerResult> $comparing
-     *
      * @param self::EXIT_* $exitCode
+     *
+     * @return self::EXIT_*
      */
     private function createOutputPlainText(array $reference, array $comparing, int $exitCode): int
     {
@@ -94,7 +93,7 @@ final class TrendApplication
      * @param array<string, AnalyzerResult> $comparing
      * @param self::EXIT_* $exitCode
      *
-     * @return array{ComparisonResult, int}
+     * @return array{ComparisonResult, self::EXIT_*}
      */
     private function doCompare(string $baselinePath, array $comparing, AnalyzerResult $reference, int $exitCode): array
     {
