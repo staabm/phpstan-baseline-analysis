@@ -92,6 +92,7 @@ final class TrendApplication
 
     /**
      * @param array<string, AnalyzerResult> $comparing
+     * @param self::EXIT_* $exitCode
      *
      * @return array{ComparisonResult, int}
      */
@@ -122,7 +123,7 @@ final class TrendApplication
      *
      * @return self::EXIT_*
      */
-    private function compare(ComparisonResult $comparison, $key, $referenceValue, $comparingValue, $exitCode): int
+    private function compare(ComparisonResult $comparison, string $key, $referenceValue, $comparingValue, int $exitCode): int
     {
         if ($comparingValue > $referenceValue) {
             $comparison->output[$key] = [

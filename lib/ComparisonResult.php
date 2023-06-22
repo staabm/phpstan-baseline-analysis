@@ -7,7 +7,7 @@ final class ComparisonResult
     public string $headline;
 
     /**
-     * @var array<string, array{reference: int, comparing: int, trend: string}>
+     * @var array<ResultPrinter::KEY_*, array{reference: int, comparing: int, trend: string}>
      */
     public array $output;
 

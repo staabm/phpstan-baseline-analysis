@@ -48,5 +48,5 @@ function extractOutputFormat(array $args): string
         return substr($arg, strlen('--format='));
     }
 
-    return '';
+    return \staabm\PHPStanBaselineAnalysis\TrendApplication::OUTPUT_FORMAT_DEFAULT;
 }
