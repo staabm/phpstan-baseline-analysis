@@ -48,7 +48,7 @@ final class TrendApplication
 
     public function help(): void
     {
-        printf('USAGE: phpstan-baseline-trend <reference-result.json> <comparing-result.json>');
+        printf('USAGE: phpstan-baseline-trend <reference-result.json> <comparing-result.json> [--format]');
     }
 
 
