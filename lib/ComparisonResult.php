@@ -2,7 +2,7 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-final class OutputResultJson
+final class ComparisonResult
 {
     public string $headline;
 
