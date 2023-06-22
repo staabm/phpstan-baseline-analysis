@@ -59,7 +59,7 @@ final class TrendApplication
     private function createOutputPlainText(array $reference, array $comparing, int $exitCode): int
     {
         foreach ($reference as $baselinePath => $result) {
-            list($comparisonResult, $exitCode) = $this->doCompare($baselinePath, $comparing, $result, $exitCode);
+            list($comparisonResult, $exitCode) = $this->createComparisonResult($baselinePath, $comparing, $result, $exitCode);
 
             echo $comparisonResult->headline . "\n";
             foreach($comparisonResult->output as $key => $stats) {
@@ -81,7 +81,7 @@ final class TrendApplication
     {
         foreach ($reference as $baselinePath => $result) {
 
-            list($comparisonResult, $exitCode) = $this->doCompare($baselinePath, $comparing, $result, $exitCode);
+            list($comparisonResult, $exitCode) = $this->createComparisonResult($baselinePath, $comparing, $result, $exitCode);
 
             echo json_encode($comparisonResult);
         }
@@ -95,7 +95,7 @@ final class TrendApplication
      *
      * @return array{ComparisonResult, self::EXIT_*}
      */
-    private function doCompare(string $baselinePath, array $comparing, AnalyzerResult $reference, int $exitCode): array
+    private function createComparisonResult(string $baselinePath, array $comparing, AnalyzerResult $reference, int $exitCode): array
     {
         $comparison = new ComparisonResult('Analyzing Trend for ' . $baselinePath);
 
