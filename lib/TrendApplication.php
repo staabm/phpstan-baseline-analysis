@@ -136,28 +136,13 @@ final class TrendApplication
     private function compare(ComparisonResult $comparison, string $key, $referenceValue, $comparingValue, int $exitCode): int
     {
         if ($comparingValue > $referenceValue) {
-            $comparison->output[$key] = [
-                'reference' => $referenceValue,
-                'comparing' => $comparingValue,
-                'trend' => 'worse',
-            ];
-
+            $comparison->setKey($key, $referenceValue, $comparingValue, 'worse');
             $exitCode = max($exitCode, self::EXIT_WORSE);
         } elseif ($comparingValue < $referenceValue) {
-            $comparison->output[$key] = [
-                'reference' => $referenceValue,
-                'comparing' => $comparingValue,
-                'trend' => 'improved',
-            ];
-
+            $comparison->setKey($key, $referenceValue, $comparingValue, 'improved');
             $exitCode = max($exitCode, self::EXIT_IMPROVED);
         } else {
-            $comparison->output[$key] = [
-                'reference' => $referenceValue,
-                'comparing' => $comparingValue,
-                'trend' => 'good',
-            ];
-
+            $comparison->setKey($key, $referenceValue, $comparingValue, 'good');
             $exitCode = max($exitCode, self::EXIT_STEADY);
         }
 

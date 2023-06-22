@@ -16,4 +16,19 @@ final class ComparisonResult
         $this->headline = $headline;
         $this->output = [];
     }
+
+    /**
+     * @param ResultPrinter::KEY_* $key
+     * @param int $referenceValue
+     * @param int $comparingValue
+     * @return void
+     */
+    public function setKey(string $key, $referenceValue, $comparingValue, string $trend): void
+    {
+        $this->output[$key] = [
+            'reference' => $referenceValue,
+            'comparing' => $comparingValue,
+            'trend' => $trend,
+        ];
+    }
 }
