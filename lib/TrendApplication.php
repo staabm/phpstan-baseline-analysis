@@ -22,6 +22,17 @@ final class TrendApplication
     public const OUTPUT_FORMAT_JSON = 'json';
 
     /**
+     * @return list<self::OUTPUT_FORMAT_*>
+     */
+    public static function getAllowedOutputFormats(): array
+    {
+        return [
+            self::OUTPUT_FORMAT_DEFAULT,
+            self::OUTPUT_FORMAT_JSON,
+        ];
+    }
+
+    /**
      * @param self::OUTPUT_FORMAT_* $outputFormat
      * @return self::EXIT_*
      * @throws \Safe\Exceptions\JsonException

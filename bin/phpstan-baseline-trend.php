@@ -37,6 +37,7 @@ exit($exitCode);
 
 /**
  * @param list<string> $args
+ * @return \staabm\PHPStanBaselineAnalysis\TrendApplication::OUTPUT_FORMAT_*
  */
 function extractOutputFormat(array $args): string
 {
@@ -45,7 +46,12 @@ function extractOutputFormat(array $args): string
             continue;
         }
 
-        return substr($arg, strlen('--format='));
+        $format = substr($arg, strlen('--format='));
+        if (in_array($format, \staabm\PHPStanBaselineAnalysis\TrendApplication::getAllowedOutputFormats(), true)) {
+            return $format;
+        }
+
+        throw new \InvalidArgumentException(sprintf('Invalid output format "%s".', $format));
     }
 
     return \staabm\PHPStanBaselineAnalysis\TrendApplication::OUTPUT_FORMAT_DEFAULT;
