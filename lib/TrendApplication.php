@@ -2,6 +2,8 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
+use function Safe\json_encode;
+
 final class TrendApplication
 {
     /**
