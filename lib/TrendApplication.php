@@ -73,7 +73,7 @@ final class TrendApplication
             list($comparisonResult, $exitCode) = $this->createComparisonResult($baselinePath, $comparing, $result, $exitCode);
 
             echo $comparisonResult->headline . "\n";
-            foreach($comparisonResult->output as $key => $stats) {
+            foreach($comparisonResult->results as $key => $stats) {
                 echo $key.': '.$stats['reference']." -> ".$stats['comparing']." => ".$stats['trend']."\n";
             }
         }

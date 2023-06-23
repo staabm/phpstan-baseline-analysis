@@ -95,7 +95,7 @@ PHP;
         $rendered = str_replace(__DIR__, '', $rendered);
 
         $expected = <<<PHP
-{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","output":{"Overall-Errors":{"reference":18,"comparing":18,"trend":"good"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":70,"trend":"good"},"Deprecations":{"reference":1,"comparing":1,"trend":"good"},"Invalid-Phpdocs":{"reference":3,"comparing":3,"trend":"good"},"Unknown-Types":{"reference":5,"comparing":5,"trend":"good"},"Anonymous-Variables":{"reference":2,"comparing":2,"trend":"good"},"Unused-Symbols":{"reference":1,"comparing":1,"trend":"good"}}}
+{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","results":{"Overall-Errors":{"reference":18,"comparing":18,"trend":"good"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":70,"trend":"good"},"Deprecations":{"reference":1,"comparing":1,"trend":"good"},"Invalid-Phpdocs":{"reference":3,"comparing":3,"trend":"good"},"Unknown-Types":{"reference":5,"comparing":5,"trend":"good"},"Anonymous-Variables":{"reference":2,"comparing":2,"trend":"good"},"Unused-Symbols":{"reference":1,"comparing":1,"trend":"good"}}}
 
 PHP;
 
@@ -114,7 +114,7 @@ PHP;
         $rendered = str_replace(__DIR__, '', $rendered);
 
         $expected = <<<PHP
-{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","output":{"Overall-Errors":{"reference":18,"comparing":24,"trend":"worse"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":90,"trend":"worse"},"Deprecations":{"reference":1,"comparing":10,"trend":"worse"},"Invalid-Phpdocs":{"reference":3,"comparing":30,"trend":"worse"},"Unknown-Types":{"reference":5,"comparing":15,"trend":"worse"},"Anonymous-Variables":{"reference":2,"comparing":5,"trend":"worse"},"Unused-Symbols":{"reference":1,"comparing":10,"trend":"worse"}}}
+{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","results":{"Overall-Errors":{"reference":18,"comparing":24,"trend":"worse"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":90,"trend":"worse"},"Deprecations":{"reference":1,"comparing":10,"trend":"worse"},"Invalid-Phpdocs":{"reference":3,"comparing":30,"trend":"worse"},"Unknown-Types":{"reference":5,"comparing":15,"trend":"worse"},"Anonymous-Variables":{"reference":2,"comparing":5,"trend":"worse"},"Unused-Symbols":{"reference":1,"comparing":10,"trend":"worse"}}}
 
 PHP;
 
@@ -133,7 +133,7 @@ PHP;
         $rendered = str_replace(__DIR__, '', $rendered);
 
         $expected = <<<PHP
-{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","output":{"Overall-Errors":{"reference":18,"comparing":10,"trend":"improved"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":50,"trend":"improved"},"Deprecations":{"reference":1,"comparing":0,"trend":"improved"},"Invalid-Phpdocs":{"reference":3,"comparing":1,"trend":"improved"},"Unknown-Types":{"reference":5,"comparing":3,"trend":"improved"},"Anonymous-Variables":{"reference":2,"comparing":1,"trend":"improved"},"Unused-Symbols":{"reference":1,"comparing":0,"trend":"improved"}}}
+{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","results":{"Overall-Errors":{"reference":18,"comparing":10,"trend":"improved"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":50,"trend":"improved"},"Deprecations":{"reference":1,"comparing":0,"trend":"improved"},"Invalid-Phpdocs":{"reference":3,"comparing":1,"trend":"improved"},"Unknown-Types":{"reference":5,"comparing":3,"trend":"improved"},"Anonymous-Variables":{"reference":2,"comparing":1,"trend":"improved"},"Unused-Symbols":{"reference":1,"comparing":0,"trend":"improved"}}}
 
 PHP;
 

@@ -9,12 +9,12 @@ final class ComparisonResult
     /**
      * @var array<ResultPrinter::KEY_*, array{reference: int, comparing: int, trend: string}>
      */
-    public array $output;
+    public array $results;
 
     public function __construct(string $headline)
     {
         $this->headline = $headline;
-        $this->output = [];
+        $this->results = [];
     }
 
     /**
@@ -25,7 +25,7 @@ final class ComparisonResult
      */
     public function setKey(string $key, $referenceValue, $comparingValue, string $trend): void
     {
-        $this->output[$key] = [
+        $this->results[$key] = [
             'reference' => $referenceValue,
             'comparing' => $comparingValue,
             'trend' => $trend,
