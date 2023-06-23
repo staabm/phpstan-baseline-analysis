@@ -2,7 +2,7 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-final class ComparisonResult
+final class TrendResult
 {
     public string $headline;
 

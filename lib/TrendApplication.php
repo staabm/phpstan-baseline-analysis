@@ -70,10 +70,10 @@ final class TrendApplication
     private function createOutputText(array $reference, array $comparing, int $exitCode): int
     {
         foreach ($reference as $baselinePath => $result) {
-            list($comparisonResult, $exitCode) = $this->createComparisonResult($baselinePath, $comparing, $result, $exitCode);
+            list($trendResult, $exitCode) = $this->createTrendResult($baselinePath, $comparing, $result, $exitCode);
 
-            echo $comparisonResult->headline . "\n";
-            foreach($comparisonResult->results as $key => $stats) {
+            echo $trendResult->headline . "\n";
+            foreach($trendResult->results as $key => $stats) {
                 echo $key.': '.$stats['reference']." -> ".$stats['comparing']." => ".$stats['trend']."\n";
             }
         }
@@ -90,15 +90,15 @@ final class TrendApplication
      */
     private function createOutputJson(array $reference, array $comparing, int $exitCode): int
     {
-        $comparisonResults = [];
+        $trendResults = [];
         foreach ($reference as $baselinePath => $result) {
 
-            list($comparisonResult, $exitCode) = $this->createComparisonResult($baselinePath, $comparing, $result, $exitCode);
+            list($trendResult, $exitCode) = $this->createTrendResult($baselinePath, $comparing, $result, $exitCode);
 
-            $comparisonResults[] = $comparisonResult;
+            $trendResults[] = $trendResult;
         }
 
-        echo json_encode($comparisonResults);
+        echo json_encode($trendResults);
 
 
         return $exitCode;
@@ -108,25 +108,25 @@ final class TrendApplication
      * @param array<string, AnalyzerResult> $comparing
      * @param self::EXIT_* $exitCode
      *
-     * @return array{ComparisonResult, self::EXIT_*}
+     * @return array{TrendResult, self::EXIT_*}
      */
-    private function createComparisonResult(string $baselinePath, array $comparing, AnalyzerResult $reference, int $exitCode): array
+    private function createTrendResult(string $baselinePath, array $comparing, AnalyzerResult $reference, int $exitCode): array
     {
-        $comparisonResult = new ComparisonResult('Analyzing Trend for ' . $baselinePath);
+        $trendResult = new TrendResult('Analyzing Trend for ' . $baselinePath);
 
         if (!isset($comparing[$baselinePath])) {
-            return array($comparisonResult, $exitCode);
+            return array($trendResult, $exitCode);
         }
 
-        $exitCode = $this->compare($comparisonResult, ResultPrinter::KEY_OVERALL_ERRORS, $reference->overallErrors, $comparing[$baselinePath]->overallErrors, $exitCode);
-        $exitCode = $this->compare($comparisonResult, ResultPrinter::KEY_CLASSES_COMPLEXITY, $reference->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
-        $exitCode = $this->compare($comparisonResult, ResultPrinter::KEY_DEPRECATIONS, $reference->deprecations, $comparing[$baselinePath]->deprecations, $exitCode);
-        $exitCode = $this->compare($comparisonResult, ResultPrinter::KEY_INVALID_PHPDOCS, $reference->invalidPhpdocs, $comparing[$baselinePath]->invalidPhpdocs, $exitCode);
-        $exitCode = $this->compare($comparisonResult, ResultPrinter::KEY_UNKNOWN_TYPES, $reference->unknownTypes, $comparing[$baselinePath]->unknownTypes, $exitCode);
-        $exitCode = $this->compare($comparisonResult, ResultPrinter::KEY_ANONYMOUS_VARIABLES, $reference->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
-        $exitCode = $this->compare($comparisonResult, ResultPrinter::KEY_UNUSED_SYMBOLS, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_OVERALL_ERRORS, $reference->overallErrors, $comparing[$baselinePath]->overallErrors, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_CLASSES_COMPLEXITY, $reference->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_DEPRECATIONS, $reference->deprecations, $comparing[$baselinePath]->deprecations, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_INVALID_PHPDOCS, $reference->invalidPhpdocs, $comparing[$baselinePath]->invalidPhpdocs, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_UNKNOWN_TYPES, $reference->unknownTypes, $comparing[$baselinePath]->unknownTypes, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_ANONYMOUS_VARIABLES, $reference->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_UNUSED_SYMBOLS, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
 
-        return array($comparisonResult, $exitCode);
+        return array($trendResult, $exitCode);
     }
 
     /**
@@ -137,16 +137,16 @@ final class TrendApplication
      *
      * @return self::EXIT_*
      */
-    private function compare(ComparisonResult $comparison, string $key, $referenceValue, $comparingValue, int $exitCode): int
+    private function compare(TrendResult $trendResult, string $key, $referenceValue, $comparingValue, int $exitCode): int
     {
         if ($comparingValue > $referenceValue) {
-            $comparison->setKey($key, $referenceValue, $comparingValue, 'worse');
+            $trendResult->setKey($key, $referenceValue, $comparingValue, 'worse');
             $exitCode = max($exitCode, self::EXIT_WORSE);
         } elseif ($comparingValue < $referenceValue) {
-            $comparison->setKey($key, $referenceValue, $comparingValue, 'improved');
+            $trendResult->setKey($key, $referenceValue, $comparingValue, 'improved');
             $exitCode = max($exitCode, self::EXIT_IMPROVED);
         } else {
-            $comparison->setKey($key, $referenceValue, $comparingValue, 'good');
+            $trendResult->setKey($key, $referenceValue, $comparingValue, 'good');
             $exitCode = max($exitCode, self::EXIT_STEADY);
         }
 
