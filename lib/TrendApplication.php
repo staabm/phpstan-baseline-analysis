@@ -21,6 +21,9 @@ final class TrendApplication
 
     public const OUTPUT_FORMAT_DEFAULT = 'text';
 
+    /**
+     * @api
+     */
     public const OUTPUT_FORMAT_JSON = 'json';
 
     /**
