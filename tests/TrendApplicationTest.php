@@ -18,13 +18,13 @@ class TrendApplicationTest extends BaseTestCase
 
         $expected = <<<PHP
 Analyzing Trend for /fixtures/all-in.neon
-Overall-Errors: 18 -> 18 => good
-Classes-Cognitive-Complexity: 70 -> 70 => good
-Deprecations: 1 -> 1 => good
-Invalid-Phpdocs: 3 -> 3 => good
-Unknown-Types: 5 -> 5 => good
-Anonymous-Variables: 2 -> 2 => good
-Unused-Symbols: 1 -> 1 => good
+  Overall-Errors: 18 -> 18 => good
+  Classes-Cognitive-Complexity: 70 -> 70 => good
+  Deprecations: 1 -> 1 => good
+  Invalid-Phpdocs: 3 -> 3 => good
+  Unknown-Types: 5 -> 5 => good
+  Anonymous-Variables: 2 -> 2 => good
+  Unused-Symbols: 1 -> 1 => good
 
 PHP;
 
@@ -44,13 +44,13 @@ PHP;
 
         $expected = <<<PHP
 Analyzing Trend for /fixtures/all-in.neon
-Overall-Errors: 18 -> 24 => worse
-Classes-Cognitive-Complexity: 70 -> 90 => worse
-Deprecations: 1 -> 10 => worse
-Invalid-Phpdocs: 3 -> 30 => worse
-Unknown-Types: 5 -> 15 => worse
-Anonymous-Variables: 2 -> 5 => worse
-Unused-Symbols: 1 -> 10 => worse
+  Overall-Errors: 18 -> 24 => worse
+  Classes-Cognitive-Complexity: 70 -> 90 => worse
+  Deprecations: 1 -> 10 => worse
+  Invalid-Phpdocs: 3 -> 30 => worse
+  Unknown-Types: 5 -> 15 => worse
+  Anonymous-Variables: 2 -> 5 => worse
+  Unused-Symbols: 1 -> 10 => worse
 
 PHP;
 
@@ -70,13 +70,13 @@ PHP;
 
         $expected = <<<PHP
 Analyzing Trend for /fixtures/all-in.neon
-Overall-Errors: 18 -> 10 => improved
-Classes-Cognitive-Complexity: 70 -> 50 => improved
-Deprecations: 1 -> 0 => improved
-Invalid-Phpdocs: 3 -> 1 => improved
-Unknown-Types: 5 -> 3 => improved
-Anonymous-Variables: 2 -> 1 => improved
-Unused-Symbols: 1 -> 0 => improved
+  Overall-Errors: 18 -> 10 => improved
+  Classes-Cognitive-Complexity: 70 -> 50 => improved
+  Deprecations: 1 -> 0 => improved
+  Invalid-Phpdocs: 3 -> 1 => improved
+  Unknown-Types: 5 -> 3 => improved
+  Anonymous-Variables: 2 -> 1 => improved
+  Unused-Symbols: 1 -> 0 => improved
 
 PHP;
 

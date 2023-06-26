@@ -79,7 +79,7 @@ final class TrendApplication
 
             echo $trendResult->headline . "\n";
             foreach($trendResult->results as $key => $stats) {
-                echo $key.': '.$stats['reference']." -> ".$stats['comparing']." => ".$stats['trend']."\n";
+                echo '  '.$key.': '.$stats['reference']." -> ".$stats['comparing']." => ".$stats['trend']."\n";
             }
         }
 
