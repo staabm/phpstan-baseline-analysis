@@ -1,1 +1,1 @@
-[{"\/fixtures\/all-in.neon":{"Overall-Errors":18,"Classes-Cognitive-Complexity":70,"Deprecations": 1,"Invalid-Phpdocs": 3,"Unknown-Types": 5,"Anonymous-Variables": 2,"Unused-Symbols": 1}}]
+[{"\/fixtures\/all-in.neon":{"Overall-Errors":18,"Classes-Cognitive-Complexity":70,"Deprecations": 1,"Invalid-Phpdocs": 3,"Unknown-Types": 5,"Anonymous-Variables": 2,"Unused-Symbols": 1,"Native-Return-Type-Coverage": 2,"Native-Property-Type-Coverage": 3,"Native-Param-Type-Coverage": 4}}]
