@@ -122,7 +122,7 @@ PHP;
         $rendered = str_replace(__DIR__, '', $rendered);
 
         $expected = <<<PHP
-[{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","results":{"Overall-Errors":{"reference":18,"comparing":24,"trend":"worse"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":90,"trend":"worse"},"Deprecations":{"reference":1,"comparing":10,"trend":"worse"},"Invalid-Phpdocs":{"reference":3,"comparing":30,"trend":"worse"},"Unknown-Types":{"reference":5,"comparing":15,"trend":"worse"},"Anonymous-Variables":{"reference":2,"comparing":5,"trend":"worse"},"Unused-Symbols":{"reference":1,"comparing":10,"trend":"worse"}}}]
+[{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","results":{"Overall-Errors":{"reference":18,"comparing":24,"trend":"worse"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":90,"trend":"worse"},"Deprecations":{"reference":1,"comparing":10,"trend":"worse"},"Invalid-Phpdocs":{"reference":3,"comparing":30,"trend":"worse"},"Unknown-Types":{"reference":5,"comparing":15,"trend":"worse"},"Anonymous-Variables":{"reference":2,"comparing":5,"trend":"worse"},"Unused-Symbols":{"reference":1,"comparing":10,"trend":"worse"},"Native-Return-Type-Coverage":{"reference":2,"comparing":20,"trend":"improved"},"Native-Property-Type-Coverage":{"reference":3,"comparing":30,"trend":"improved"},"Native-Param-Type-Coverage":{"reference":4,"comparing":40,"trend":"improved"}}}]
 PHP;
 
         $this->assertSame($expected, $rendered);
@@ -140,10 +140,10 @@ PHP;
         $rendered = str_replace(__DIR__, '', $rendered);
 
         $expected = <<<PHP
-[{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","results":{"Overall-Errors":{"reference":18,"comparing":10,"trend":"improved"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":50,"trend":"improved"},"Deprecations":{"reference":1,"comparing":0,"trend":"improved"},"Invalid-Phpdocs":{"reference":3,"comparing":1,"trend":"improved"},"Unknown-Types":{"reference":5,"comparing":3,"trend":"improved"},"Anonymous-Variables":{"reference":2,"comparing":1,"trend":"improved"},"Unused-Symbols":{"reference":1,"comparing":0,"trend":"improved"}}}]
+[{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","results":{"Overall-Errors":{"reference":18,"comparing":10,"trend":"improved"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":50,"trend":"improved"},"Deprecations":{"reference":1,"comparing":0,"trend":"improved"},"Invalid-Phpdocs":{"reference":3,"comparing":1,"trend":"improved"},"Unknown-Types":{"reference":5,"comparing":3,"trend":"improved"},"Anonymous-Variables":{"reference":2,"comparing":1,"trend":"improved"},"Unused-Symbols":{"reference":1,"comparing":0,"trend":"improved"},"Native-Return-Type-Coverage":{"reference":2,"comparing":1,"trend":"worse"},"Native-Property-Type-Coverage":{"reference":3,"comparing":2,"trend":"worse"},"Native-Param-Type-Coverage":{"reference":4,"comparing":3,"trend":"worse"}}}]
 PHP;
 
         $this->assertSame($expected, $rendered);
-        $this->assertSame(TrendApplication::EXIT_IMPROVED, $exitCode);
+        $this->assertSame(TrendApplication::EXIT_WORSE, $exitCode);
     }
 }
