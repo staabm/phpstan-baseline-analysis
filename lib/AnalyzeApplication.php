@@ -21,6 +21,8 @@ final class AnalyzeApplication
      * @return self::EXIT_*
      *
      * @throws \Safe\Exceptions\FilesystemException
+     *
+     * @api
      */
     public function start(string $glob, string $format): int
     {
@@ -51,6 +53,9 @@ final class AnalyzeApplication
         return self::EXIT_ERROR;
     }
 
+    /**
+     * @api
+     */
     public function help(): void
     {
         printf('USAGE: phpstan-baseline-analyze <GLOB-PATTERN>');
