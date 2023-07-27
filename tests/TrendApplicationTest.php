@@ -25,6 +25,9 @@ Analyzing Trend for /fixtures/all-in.neon
   Unknown-Types: 5 -> 5 => good
   Anonymous-Variables: 2 -> 2 => good
   Unused-Symbols: 1 -> 1 => good
+  Native-Return-Type-Coverage: 2 -> 2 => good
+  Native-Property-Type-Coverage: 3 -> 3 => good
+  Native-Param-Type-Coverage: 4 -> 4 => good
 
 PHP;
 
