@@ -54,6 +54,9 @@ Analyzing Trend for /fixtures/all-in.neon
   Unknown-Types: 5 -> 15 => worse
   Anonymous-Variables: 2 -> 5 => worse
   Unused-Symbols: 1 -> 10 => worse
+  Native-Return-Type-Coverage: 2 -> 20 => improved
+  Native-Property-Type-Coverage: 3 -> 30 => improved
+  Native-Param-Type-Coverage: 4 -> 40 => improved
 
 PHP;
 
@@ -80,11 +83,14 @@ Analyzing Trend for /fixtures/all-in.neon
   Unknown-Types: 5 -> 3 => improved
   Anonymous-Variables: 2 -> 1 => improved
   Unused-Symbols: 1 -> 0 => improved
+  Native-Return-Type-Coverage: 2 -> 1 => worse
+  Native-Property-Type-Coverage: 3 -> 2 => worse
+  Native-Param-Type-Coverage: 4 -> 3 => worse
 
 PHP;
 
         $this->assertSame($expected, $rendered);
-        $this->assertSame(TrendApplication::EXIT_IMPROVED, $exitCode);
+        $this->assertSame(TrendApplication::EXIT_WORSE, $exitCode);
     }
 
     function testSameTrendFormatJson():void
@@ -98,7 +104,7 @@ PHP;
         $rendered = str_replace(__DIR__, '', $rendered);
 
         $expected = <<<PHP
-[{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","results":{"Overall-Errors":{"reference":18,"comparing":18,"trend":"good"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":70,"trend":"good"},"Deprecations":{"reference":1,"comparing":1,"trend":"good"},"Invalid-Phpdocs":{"reference":3,"comparing":3,"trend":"good"},"Unknown-Types":{"reference":5,"comparing":5,"trend":"good"},"Anonymous-Variables":{"reference":2,"comparing":2,"trend":"good"},"Unused-Symbols":{"reference":1,"comparing":1,"trend":"good"}}}]
+[{"headline":"Analyzing Trend for \/fixtures\/all-in.neon","results":{"Overall-Errors":{"reference":18,"comparing":18,"trend":"good"},"Classes-Cognitive-Complexity":{"reference":70,"comparing":70,"trend":"good"},"Deprecations":{"reference":1,"comparing":1,"trend":"good"},"Invalid-Phpdocs":{"reference":3,"comparing":3,"trend":"good"},"Unknown-Types":{"reference":5,"comparing":5,"trend":"good"},"Anonymous-Variables":{"reference":2,"comparing":2,"trend":"good"},"Unused-Symbols":{"reference":1,"comparing":1,"trend":"good"},"Native-Return-Type-Coverage":{"reference":2,"comparing":2,"trend":"good"},"Native-Property-Type-Coverage":{"reference":3,"comparing":3,"trend":"good"},"Native-Param-Type-Coverage":{"reference":4,"comparing":4,"trend":"good"}}}]
 PHP;
 
         $this->assertSame($expected, $rendered);

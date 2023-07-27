@@ -128,16 +128,19 @@ final class TrendApplication
             return array($trendResult, $exitCode);
         }
 
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_OVERALL_ERRORS, $reference->overallErrors, $comparing[$baselinePath]->overallErrors, $exitCode);
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_CLASSES_COMPLEXITY, $reference->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_DEPRECATIONS, $reference->deprecations, $comparing[$baselinePath]->deprecations, $exitCode);
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_INVALID_PHPDOCS, $reference->invalidPhpdocs, $comparing[$baselinePath]->invalidPhpdocs, $exitCode);
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_UNKNOWN_TYPES, $reference->unknownTypes, $comparing[$baselinePath]->unknownTypes, $exitCode);
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_ANONYMOUS_VARIABLES, $reference->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_UNUSED_SYMBOLS, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_RETURN_TYPE_COVERAGE, $reference->returnTypeCoverage, $comparing[$baselinePath]->returnTypeCoverage, $exitCode);
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE, $reference->propertyTypeCoverage, $comparing[$baselinePath]->propertyTypeCoverage, $exitCode);
-        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_PARAM_TYPE_COVERAGE, $reference->paramTypeCoverage, $comparing[$baselinePath]->paramTypeCoverage, $exitCode);
+        // decreased trends are better (reference <-> compare)
+        $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_OVERALL_ERRORS, $reference->overallErrors, $comparing[$baselinePath]->overallErrors, $exitCode);
+        $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_CLASSES_COMPLEXITY, $reference->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
+        $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_DEPRECATIONS, $reference->deprecations, $comparing[$baselinePath]->deprecations, $exitCode);
+        $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_INVALID_PHPDOCS, $reference->invalidPhpdocs, $comparing[$baselinePath]->invalidPhpdocs, $exitCode);
+        $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_UNKNOWN_TYPES, $reference->unknownTypes, $comparing[$baselinePath]->unknownTypes, $exitCode);
+        $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_ANONYMOUS_VARIABLES, $reference->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
+        $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_UNUSED_SYMBOLS, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
+
+        // increased trends are better (compare <-> reference)
+        $exitCode = $this->compareIncreasing($trendResult, ResultPrinter::KEY_RETURN_TYPE_COVERAGE, $reference->returnTypeCoverage, $comparing[$baselinePath]->returnTypeCoverage, $exitCode);
+        $exitCode = $this->compareIncreasing($trendResult, ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE, $reference->propertyTypeCoverage, $comparing[$baselinePath]->propertyTypeCoverage, $exitCode);
+        $exitCode = $this->compareIncreasing($trendResult, ResultPrinter::KEY_PARAM_TYPE_COVERAGE, $reference->paramTypeCoverage, $comparing[$baselinePath]->paramTypeCoverage, $exitCode);
 
         return array($trendResult, $exitCode);
     }
@@ -150,7 +153,7 @@ final class TrendApplication
      *
      * @return self::EXIT_*
      */
-    private function compare(TrendResult $trendResult, string $key, $referenceValue, $comparingValue, int $exitCode): int
+    private function compareDecreasing(TrendResult $trendResult, string $key, $referenceValue, $comparingValue, int $exitCode): int
     {
         if ($comparingValue > $referenceValue) {
             $trendResult->setKey($key, $referenceValue, $comparingValue, 'worse');
@@ -158,6 +161,30 @@ final class TrendApplication
         } elseif ($comparingValue < $referenceValue) {
             $trendResult->setKey($key, $referenceValue, $comparingValue, 'improved');
             $exitCode = max($exitCode, self::EXIT_IMPROVED);
+        } else {
+            $trendResult->setKey($key, $referenceValue, $comparingValue, 'good');
+            $exitCode = max($exitCode, self::EXIT_STEADY);
+        }
+
+        return $exitCode;
+    }
+
+    /**
+     * @param ResultPrinter::KEY_* $key
+     * @param int $referenceValue
+     * @param int $comparingValue
+     * @param self::EXIT_* $exitCode
+     *
+     * @return self::EXIT_*
+     */
+    private function compareIncreasing(TrendResult $trendResult, string $key, $referenceValue, $comparingValue, int $exitCode): int
+    {
+        if ($comparingValue > $referenceValue) {
+            $trendResult->setKey($key, $referenceValue, $comparingValue, 'improved');
+            $exitCode = max($exitCode, self::EXIT_IMPROVED);
+        } elseif ($comparingValue < $referenceValue) {
+            $trendResult->setKey($key, $referenceValue, $comparingValue, 'worse');
+            $exitCode = max($exitCode, self::EXIT_WORSE);
         } else {
             $trendResult->setKey($key, $referenceValue, $comparingValue, 'good');
             $exitCode = max($exitCode, self::EXIT_STEADY);
