@@ -128,7 +128,7 @@ final class TrendApplication
             return array($trendResult, $exitCode);
         }
 
-        // decreased trends are better (reference <-> compare)
+        // decreased trends are better
         $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_OVERALL_ERRORS, $reference->overallErrors, $comparing[$baselinePath]->overallErrors, $exitCode);
         $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_CLASSES_COMPLEXITY, $reference->classesComplexity, $comparing[$baselinePath]->classesComplexity, $exitCode);
         $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_DEPRECATIONS, $reference->deprecations, $comparing[$baselinePath]->deprecations, $exitCode);
@@ -137,7 +137,7 @@ final class TrendApplication
         $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_ANONYMOUS_VARIABLES, $reference->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
         $exitCode = $this->compareDecreasing($trendResult, ResultPrinter::KEY_UNUSED_SYMBOLS, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
 
-        // increased trends are better (compare <-> reference)
+        // increased trends are better
         $exitCode = $this->compareIncreasing($trendResult, ResultPrinter::KEY_RETURN_TYPE_COVERAGE, $reference->returnTypeCoverage, $comparing[$baselinePath]->returnTypeCoverage, $exitCode);
         $exitCode = $this->compareIncreasing($trendResult, ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE, $reference->propertyTypeCoverage, $comparing[$baselinePath]->propertyTypeCoverage, $exitCode);
         $exitCode = $this->compareIncreasing($trendResult, ResultPrinter::KEY_PARAM_TYPE_COVERAGE, $reference->paramTypeCoverage, $comparing[$baselinePath]->paramTypeCoverage, $exitCode);
