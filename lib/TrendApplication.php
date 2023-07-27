@@ -135,6 +135,9 @@ final class TrendApplication
         $exitCode = $this->compare($trendResult, ResultPrinter::KEY_UNKNOWN_TYPES, $reference->unknownTypes, $comparing[$baselinePath]->unknownTypes, $exitCode);
         $exitCode = $this->compare($trendResult, ResultPrinter::KEY_ANONYMOUS_VARIABLES, $reference->anonymousVariables, $comparing[$baselinePath]->anonymousVariables, $exitCode);
         $exitCode = $this->compare($trendResult, ResultPrinter::KEY_UNUSED_SYMBOLS, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_RETURN_TYPE_COVERAGE, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_PROPERTY_TYPE_COVERAGE, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
+        $exitCode = $this->compare($trendResult, ResultPrinter::KEY_PARAM_TYPE_COVERAGE, $reference->unusedSymbols, $comparing[$baselinePath]->unusedSymbols, $exitCode);
 
         return array($trendResult, $exitCode);
     }
