@@ -11,6 +11,8 @@ final class GraphApplication
      * @throws \Safe\Exceptions\JsonException
      *
      * @throws \Safe\Exceptions\FilesystemException
+     *
+     * @api
      */
     public function start(string $jsonGlob): int
     {
@@ -24,6 +26,9 @@ final class GraphApplication
         return 0;
     }
 
+    /**
+     * @api
+     */
     public function help(): void
     {
         printf("USAGE: phpstan-baseline-graph '<glob-pattern>'");

@@ -43,6 +43,8 @@ final class TrendApplication
      * @throws \Safe\Exceptions\JsonException
      *
      * @throws \Safe\Exceptions\FilesystemException
+     *
+     * @api
      */
     public function start(string $referenceFilePath, string $comparingFilePath, string $outputFormat): int
     {
@@ -59,6 +61,9 @@ final class TrendApplication
         return $this->createOutputText($reference, $comparing, $exitCode);
     }
 
+    /**
+     * @api
+     */
     public function help(): void
     {
         printf('USAGE: phpstan-baseline-trend <reference-result.json> <comparing-result.json> [--format=json|text]');
