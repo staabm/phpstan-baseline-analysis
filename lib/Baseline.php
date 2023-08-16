@@ -48,7 +48,7 @@ final class Baseline {
      */
     public function getIgnoreErrors(): Iterator {
         if (!array_key_exists('parameters', $this->content) || !is_array($this->content['parameters'])) {
-            throw new RuntimeException(sprintf('missing paramters from baseline %s', $this->filePath));
+            throw new RuntimeException(sprintf('missing parameters from baseline %s', $this->filePath));
         }
         $parameters = $this->content['parameters'];
 
