@@ -22,9 +22,8 @@ jobs:
           uses: shivammathur/setup-php@v2
           with:
             php-version: 7.4
-            coverage: none # disable xdebug, pcov
-
-      -   run: composer require --dev php-parallel-lint/php-parallel-lint
+            coverage: none
+            tools: parallel-lint
 
       -   name: Lint PHP
-          run: vendor/bin/parallel-lint bin/ lib/ tests/
+          run: composer exec --no-interaction -- parallel-lint bin/ lib/ tests/
