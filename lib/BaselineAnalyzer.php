@@ -69,6 +69,7 @@ final class BaselineAnalyzer
             str_contains($baselineError->message, ' deprecated class ')
             || str_contains($baselineError->message, ' deprecated method ')
             || str_contains($baselineError->message, ' deprecated function ')
+            || str_contains($baselineError->message, ' deprecated property ')
             ? $baselineError->count
             : 0;
     }

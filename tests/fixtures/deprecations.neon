@@ -30,3 +30,11 @@ parameters:
 			"""
 			count: 2
 			path: app/phone/views/tarif/_filterrequest.php
+
+		-
+			message: """
+				#^Access to deprecated property \\$Kunde of class clxMobileNetController\\:
+				asd$#
+			"""
+			count: 1
+			path: ../../lib/plugins/clxMobileNet/controllers/clxAccountController.php
