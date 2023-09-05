@@ -68,9 +68,9 @@ class BaselineAnalyzerTest extends TestCase
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/deprecations.neon'));
         $result = $analyzer->analyze();
 
-        $this->assertSame(14, $result->overallErrors);
+        $this->assertSame(15, $result->overallErrors);
         $this->assertSame(0, $result->classesComplexity);
-        $this->assertSame(14, $result->deprecations);
+        $this->assertSame(15, $result->deprecations);
         $this->assertSame(0, $result->invalidPhpdocs);
         $this->assertSame(0, $result->unknownTypes);
         $this->assertSame(0, $result->anonymousVariables);
