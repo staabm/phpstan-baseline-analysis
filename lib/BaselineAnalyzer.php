@@ -158,6 +158,7 @@ final class BaselineAnalyzer
     private function printfToScanfFormat(string $format): string {
         // we don't need the float value, therefore simply ignore it, to make the format parseable by sscanf
         // see https://github.com/php/php-src/issues/12126
+        // additionally this makes the output format of tomasvotruba/type-coverage 0.2.* compatible with tomasvotruba/type-coverage 0.1.*
         return str_replace('%.1f', '', $format);
     }
 }
