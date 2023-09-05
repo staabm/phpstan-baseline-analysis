@@ -65,7 +65,10 @@ final class BaselineAnalyzer
 
     private function countDeprecations(BaselineError $baselineError): int
     {
-        return str_contains($baselineError->message, ' deprecated class ') || str_contains($baselineError->message, ' deprecated method ')
+        return
+            str_contains($baselineError->message, ' deprecated class ')
+            || str_contains($baselineError->message, ' deprecated method ')
+            || str_contains($baselineError->message, ' deprecated function ')
             ? $baselineError->count
             : 0;
     }
