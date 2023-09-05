@@ -16,17 +16,17 @@ final class BaselineAnalyzer
      * @api
      * @var string
      */
-    public const PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible property types, only %d %% actually have it. Add more property types to get over %d %%';
+    public const PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible property types, only %d - %.1f %% actually have it. Add more property types to get over %d %%';
     /**
      * @api
      * @var string
      */
-    public const PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible param types, only %d %% actually have it. Add more param types to get over %d %%';
+    public const PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible param types, only %d - %.1f %% actually have it. Add more param types to get over %d %%';
     /**
      * @api
      * @var string
      */
-    public const RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible return types, only %d %% actually have it. Add more return types to get over %d %%';
+    public const RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible return types, only %d - %.1f %% actually have it. Add more return types to get over %d %%';
 
     /**
      * @var Baseline
@@ -118,23 +118,47 @@ final class BaselineAnalyzer
 
     private function checkSeaLevels(AnalyzerResult $result, BaselineError $baselineError): void
     {
-        if (sscanf($baselineError->unwrapMessage(), self::PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE, $absoluteCount, $coveragePercent, $goalPercent) >= 2) {
+        if (
+            sscanf(
+                $baselineError->unwrapMessage(),
+                $this->printfToScanfFormat(self::PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE),
+                $absoluteCountMin, $coveragePercent, $goalPercent) >= 2
+        ) {
             if (!is_int($coveragePercent) || $coveragePercent < 0 || $coveragePercent > 100) {
                 throw new \LogicException('Invalid property coveragePercent: '. $coveragePercent);
             }
             $result->propertyTypeCoverage = $coveragePercent;
         }
-        if (sscanf($baselineError->unwrapMessage(), self::PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE, $absoluteCount, $coveragePercent, $goalPercent) >= 2) {
+
+        if (
+            sscanf(
+                $baselineError->unwrapMessage(),
+                $this->printfToScanfFormat(self::PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE),
+                $absoluteCountMin, $coveragePercent, $goalPercent) >= 2
+        ) {
             if (!is_int($coveragePercent) || $coveragePercent < 0 || $coveragePercent > 100) {
                 throw new \LogicException('Invalid parameter coveragePercent: '. $coveragePercent);
             }
             $result->paramTypeCoverage = $coveragePercent;
         }
-        if (sscanf($baselineError->unwrapMessage(), self::RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE, $absoluteCount, $coveragePercent, $goalPercent) >= 2) {
+
+        if (
+            sscanf(
+                $baselineError->unwrapMessage(),
+                $this->printfToScanfFormat(self::RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE),
+                $absoluteCountMin, $coveragePercent, $goalPercent) >= 2
+        ) {
             if (!is_int($coveragePercent) || $coveragePercent < 0 || $coveragePercent > 100) {
                 throw new \LogicException('Invalid return coveragePercent: '. $coveragePercent);
             }
             $result->returnTypeCoverage = $coveragePercent;
         }
+    }
+
+    private function printfToScanfFormat(string $format): string {
+        // we don't need the float value, therefore simply ignore it, to make the format parseable by sscanf
+        // see https://github.com/php/php-src/issues/12126
+        // additionally this makes the output format of tomasvotruba/type-coverage 0.2.* compatible with tomasvotruba/type-coverage 0.1.*
+        return str_replace('%.1f', '', $format);
     }
 }

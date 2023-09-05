@@ -133,10 +133,29 @@ class BaselineAnalyzerTest extends TestCase
 
     function testSeaLevels():void
     {
+        # output format of tomasvotruba/type-coverage 0.1.*
         $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/sea-level.neon'));
         $result = $analyzer->analyze();
 
         $this->assertSame(3, $result->overallErrors);
+        $this->assertSame(0, $result->classesComplexity);
+        $this->assertSame(0, $result->deprecations);
+        $this->assertSame(0, $result->invalidPhpdocs);
+        $this->assertSame(0, $result->unknownTypes);
+        $this->assertSame(0, $result->anonymousVariables);
+        $this->assertSame(1, $result->propertyTypeCoverage);
+        $this->assertSame(27, $result->paramTypeCoverage);
+        $this->assertSame(4, $result->returnTypeCoverage);
+        $this->assertSame(0, $result->unusedSymbols);
+    }
+
+    function testSeaLevelsV02():void
+    {
+        # output format of tomasvotruba/type-coverage 0.2.*
+        $analyzer = new BaselineAnalyzer(Baseline::forFile(__DIR__ . '/fixtures/sea-level-0_2.neon'));
+        $result = $analyzer->analyze();
+
+        $this->assertSame(6, $result->overallErrors);
         $this->assertSame(0, $result->classesComplexity);
         $this->assertSame(0, $result->deprecations);
         $this->assertSame(0, $result->invalidPhpdocs);
