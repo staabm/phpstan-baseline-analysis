@@ -22,3 +22,11 @@ parameters:
 			message: "#^Instantiation of deprecated class Zend_Db_Expr\\.$#"
 			count: 2
 			path: controllers/AccountWatchlistController.php
+
+		-
+			message: """
+				#^Call to deprecated function escape_htmlspecial\\(\\)\\:
+				use HtmlHelper\\:\\:escape_htmlspecial\\(\\) instead$#
+			"""
+			count: 2
+			path: app/phone/views/tarif/_filterrequest.php
