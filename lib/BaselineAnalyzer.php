@@ -120,7 +120,7 @@ final class BaselineAnalyzer
     {
         if (
             sscanf(
-                $baselineError->unwrapMessage(),
+                $this->normalizeMessage($baselineError),
                 $this->printfToScanfFormat(self::PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE),
                 $absoluteCountMin, $coveragePercent, $goalPercent) >= 2
         ) {
@@ -132,7 +132,7 @@ final class BaselineAnalyzer
 
         if (
             sscanf(
-                $baselineError->unwrapMessage(),
+                $this->normalizeMessage($baselineError),
                 $this->printfToScanfFormat(self::PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE),
                 $absoluteCountMin, $coveragePercent, $goalPercent) >= 2
         ) {
@@ -144,7 +144,7 @@ final class BaselineAnalyzer
 
         if (
             sscanf(
-                $baselineError->unwrapMessage(),
+                $this->normalizeMessage($baselineError),
                 $this->printfToScanfFormat(self::RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE),
                 $absoluteCountMin, $coveragePercent, $goalPercent) >= 2
         ) {
@@ -159,6 +159,11 @@ final class BaselineAnalyzer
         // we don't need the float value, therefore simply ignore it, to make the format parseable by sscanf
         // see https://github.com/php/php-src/issues/12126
         // additionally this makes the output format of tomasvotruba/type-coverage 0.2.* compatible with tomasvotruba/type-coverage 0.1.*
-        return str_replace('%.1f', '', $format);
+        return str_replace('%d - %.1f', '%d', $format);
+    }
+
+    private function normalizeMessage(BaselineError $baselineError): string {
+        // makes the message format of tomasvotruba/type-coverage 0.2.* compatible with tomasvotruba/type-coverage 0.1.*
+        return \Safe\preg_replace('/only \d+ \- (\d+).\d %/', 'only $1 %', $baselineError->unwrapMessage());
     }
 }

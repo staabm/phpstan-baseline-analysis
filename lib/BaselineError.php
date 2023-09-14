@@ -22,7 +22,7 @@ final class BaselineError
      */
     public function unwrapMessage(): string {
         $msg = $this->message;
-        $msg = str_replace(['\\.', '%%'], ['.', '%'], $msg);
+        $msg = str_replace(['\\-', '\\.', '%%'], ['-', '.', '%'], $msg);
         $msg = trim($msg, '#^$');
         return $msg;
     }
