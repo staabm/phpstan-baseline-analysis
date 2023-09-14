@@ -164,6 +164,6 @@ final class BaselineAnalyzer
 
     private function normalizeMessage(BaselineError $baselineError): string {
         // makes the message format of tomasvotruba/type-coverage 0.2.* compatible with tomasvotruba/type-coverage 0.1.*
-        return preg_replace('/only \d+ \- (\d+).\d %/', 'only $1 %', $baselineError->unwrapMessage());
+        return \Safe\preg_replace('/only \d+ \- (\d+).\d %/', 'only $1 %', $baselineError->unwrapMessage());
     }
 }
