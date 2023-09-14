@@ -8,11 +8,11 @@ parameters:
 			path: N/A
 
 		-
-			message: "#^Out of 1000 possible return types, only 4 %% actually have it\\. Add more return types to get over 99 %%$#"
+			message: "#^Out of 500 possible return types, only 4 %% actually have it\\. Add more return types to get over 99 %%$#"
 			count: 1
 			path: N/A
 
 		-
-			message: "#^Out of 1000 possible param types, only 27 %% actually have it\\. Add more param types to get over 99 %%$#"
+			message: "#^Out of 100 possible param types, only 27 %% actually have it\\. Add more param types to get over 99 %%$#"
 			count: 1
 			path: N/A
