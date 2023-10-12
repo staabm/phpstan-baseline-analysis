@@ -2,6 +2,7 @@
 
 use staabm\PHPStanBaselineAnalysis\ResultPrinter;
 use function Safe\ini_set;
+use function Safe\preg_grep;
 
 // Finding composer
 
@@ -39,5 +40,14 @@ if (in_array('--json', $argv)) {
     $format = ResultPrinter::FORMAT_JSON;
 }
 
-$exitCode = $app->start($argv[1], $format);
+$filterKey = null;
+
+$filterArray = preg_grep('/--filter=/', $argv);
+if ($filterArray !== []) {
+    $filter = str_replace('--filter=', '', array_pop($filterArray));
+
+    $filterKey = ResultPrinter::getFilterKeyForString($filter);
+}
+
+$exitCode = $app->start($argv[1], $format, $filterKey);
 exit($exitCode);
