@@ -17,6 +17,7 @@ final class AnalyzeApplication
 
     /**
      * @param ResultPrinter::FORMAT_* $format
+     * @param ?ResultPrinter::KEY_*   $filterKey
      *
      * @return self::EXIT_*
      *
@@ -24,7 +25,7 @@ final class AnalyzeApplication
      *
      * @api
      */
-    public function start(string $glob, string $format): int
+    public function start(string $glob, string $format, ?string $filterKey): int
     {
         $printer = new ResultPrinter();
         $baselines = BaselineFinder::forGlob($glob);
@@ -39,9 +40,9 @@ final class AnalyzeApplication
             $result = $analyzer->analyze();
 
             if ($format == ResultPrinter::FORMAT_JSON) {
-                $stream = $printer->streamJson($baseline, $result);
+                $stream = $printer->streamJson($baseline, $result, $filterKey);
             } else {
-                $stream = $printer->streamText($baseline, $result);
+                $stream = $printer->streamText($baseline, $result, $filterKey);
             }
 
             $this->printResult($format, $isFirst, $isLast, $stream);
