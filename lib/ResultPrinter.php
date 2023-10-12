@@ -58,71 +58,54 @@ final class ResultPrinter {
     /**
      * @return Iterator<string>
      */
-    public function streamText(Baseline $baseline, AnalyzerResult $result, ?string $filterKey): Iterator
+    public function streamText(Baseline $baseline, AnalyzerResult $result): Iterator
     {
         $referenceDate = '';
         if ($result->referenceDate !== null) {
             $referenceDate = $result->referenceDate->format(ResultPrinter::DATE_FORMAT);
         }
 
-        $resultGroupedByFilters = $this->getResultGroupedByFilters($result);
-
         yield sprintf("Analyzing %s\n", $baseline->getFilePath());
         yield sprintf("  %s: %s\n", self::KEY_REFERENCE_DATE, $referenceDate);
-
-        if ($filterKey !== null) {
-            yield sprintf("  %s: %s\n", $filterKey, $resultGroupedByFilters[$filterKey]);
-
-            return;
-        }
-
-        foreach ($resultGroupedByFilters as $filter => $value) {
-            yield sprintf("  %s: %s\n", $filter, $value);
-        }
+        yield sprintf("Analyzing %s\n", $baseline->getFilePath());
+        yield sprintf("  %s: %s\n", self::KEY_REFERENCE_DATE, $referenceDate);
+        yield sprintf("  %s: %s\n", self::KEY_OVERALL_ERRORS, $result->overallErrors);
+        yield sprintf("  %s: %s\n", self::KEY_CLASSES_COMPLEXITY, $result->classesComplexity);
+        yield sprintf("  %s: %s\n", self::KEY_DEPRECATIONS, $result->deprecations);
+        yield sprintf("  %s: %s\n", self::KEY_INVALID_PHPDOCS, $result->invalidPhpdocs);
+        yield sprintf("  %s: %s\n", self::KEY_UNKNOWN_TYPES, $result->unknownTypes);
+        yield sprintf("  %s: %s\n", self::KEY_ANONYMOUS_VARIABLES, $result->anonymousVariables);
+        yield sprintf("  %s: %s\n", self::KEY_PROPERTY_TYPE_COVERAGE, $result->propertyTypeCoverage);
+        yield sprintf("  %s: %s\n", self::KEY_PARAM_TYPE_COVERAGE, $result->paramTypeCoverage);
+        yield sprintf("  %s: %s\n", self::KEY_RETURN_TYPE_COVERAGE, $result->returnTypeCoverage);
+        yield sprintf("  %s: %s\n", self::KEY_UNUSED_SYMBOLS, $result->unusedSymbols);
     }
 
 
     /**
      * @return Iterator<string>
      */
-    public function streamJson(Baseline $baseline, AnalyzerResult $result, ?string $filterKey): Iterator
+    public function streamJson(Baseline $baseline, AnalyzerResult $result): Iterator
     {
         $referenceDate = null;
         if ($result->referenceDate !== null) {
             $referenceDate = $result->referenceDate->format(ResultPrinter::DATE_FORMAT);
         }
 
-        $resultGroupedByFilters = $this->getResultGroupedByFilters($result);
-        $jsonArray = [self::KEY_REFERENCE_DATE => $referenceDate];
-
-        if ($filterKey !== null) {
-            $jsonArray[$filterKey] = $resultGroupedByFilters[$filterKey];
-        } else {
-            foreach ($resultGroupedByFilters as $filter => $value) {
-                $jsonArray[$filter] = $value;
-            }
-        }
-
-        yield json_encode([$baseline->getFilePath() => $jsonArray]);
-    }
-
-    /**
-     * @param AnalyzerResult $result
-     * @return array<self::KEY_*, int>
-     */
-    private function getResultGroupedByFilters(AnalyzerResult $result): array
-    {
-        return [
-            self::KEY_OVERALL_ERRORS => $result->overallErrors,
-            self::KEY_CLASSES_COMPLEXITY => $result->classesComplexity,
-            self::KEY_DEPRECATIONS => $result->deprecations,
-            self::KEY_INVALID_PHPDOCS => $result->invalidPhpdocs,
-            self::KEY_UNKNOWN_TYPES => $result->unknownTypes,
-            self::KEY_ANONYMOUS_VARIABLES => $result->anonymousVariables,
-            self::KEY_PROPERTY_TYPE_COVERAGE => $result->propertyTypeCoverage,
-            self::KEY_PARAM_TYPE_COVERAGE => $result->paramTypeCoverage,
-            self::KEY_RETURN_TYPE_COVERAGE => $result->returnTypeCoverage,
-            self::KEY_UNUSED_SYMBOLS => $result->unusedSymbols,
-        ];
+        yield json_encode([
+            $baseline->getFilePath() => [
+                self::KEY_REFERENCE_DATE => $referenceDate,
+                self::KEY_OVERALL_ERRORS => $result->overallErrors,
+                self::KEY_CLASSES_COMPLEXITY => $result->classesComplexity,
+                self::KEY_DEPRECATIONS => $result->deprecations,
+                self::KEY_INVALID_PHPDOCS => $result->invalidPhpdocs,
+                self::KEY_UNKNOWN_TYPES => $result->unknownTypes,
+                self::KEY_ANONYMOUS_VARIABLES => $result->anonymousVariables,
+                self::KEY_PROPERTY_TYPE_COVERAGE => $result->propertyTypeCoverage,
+                self::KEY_PARAM_TYPE_COVERAGE => $result->paramTypeCoverage,
+                self::KEY_RETURN_TYPE_COVERAGE => $result->returnTypeCoverage,
+                self::KEY_UNUSED_SYMBOLS => $result->unusedSymbols,
+            ]
+        ]);
     }
 }
