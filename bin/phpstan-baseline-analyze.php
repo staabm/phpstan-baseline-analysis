@@ -40,14 +40,5 @@ if (in_array('--json', $argv)) {
     $format = ResultPrinter::FORMAT_JSON;
 }
 
-$filterKey = null;
-
-$filterArray = preg_grep('/--filter=/', $argv);
-if ($filterArray !== []) {
-    $filter = str_replace('--filter=', '', array_pop($filterArray));
-
-    $filterKey = ResultPrinter::getFilterKeyForString($filter);
-}
-
-$exitCode = $app->start($argv[1], $format, $filterKey);
+$exitCode = $app->start($argv[1], $format);
 exit($exitCode);
