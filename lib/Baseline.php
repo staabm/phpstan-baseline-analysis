@@ -58,10 +58,7 @@ final class Baseline {
         $ignoreErrors = $parameters['ignoreErrors'];
 
         foreach($ignoreErrors as $error) {
-            $baselineError = new BaselineError();
-            $baselineError->message = $error['message'];
-            $baselineError->count = $error['count'];
-            yield $baselineError;
+            yield new BaselineError($error['count'], $error['message'], $error['path']);
         }
     }
 

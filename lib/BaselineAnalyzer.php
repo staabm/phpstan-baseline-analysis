@@ -63,15 +63,66 @@ final class BaselineAnalyzer
         return $result;
     }
 
+    /**
+     * @return list<BaselineError>
+     */
+    public function filter(string $filterKey): array
+    {
+        $result = [];
+
+        /**
+         * @var BaselineError $baselineError
+         */
+        foreach ($this->baseline->getIgnoreErrors() as $baselineError) {
+            if ($filterKey === ResultPrinter::KEY_OVERALL_ERRORS) {
+                $result[] = $baselineError->getFormattedForOutput();
+
+                continue;
+            }
+
+            if ($filterKey === ResultPrinter::KEY_CLASSES_COMPLEXITY && $baselineError->isComplexityError()) {
+                $result[] = $baselineError->getFormattedForOutput();
+
+                continue;
+            }
+
+            if ($filterKey === ResultPrinter::KEY_DEPRECATIONS && $baselineError->isDeprecationError()) {
+                $result[] = $baselineError->getFormattedForOutput();
+
+                continue;
+            }
+
+            if ($filterKey === ResultPrinter::KEY_INVALID_PHPDOCS && $baselineError->isInvalidPhpDocError()) {
+                $result[] = $baselineError->getFormattedForOutput();
+
+                continue;
+            }
+
+            if ($filterKey === ResultPrinter::KEY_UNKNOWN_TYPES && $baselineError->isUnknownTypeError()) {
+                $result[] = $baselineError->getFormattedForOutput();
+
+                continue;
+            }
+
+            if ($filterKey === ResultPrinter::KEY_ANONYMOUS_VARIABLES && $baselineError->isAnonymousVariableError()) {
+                $result[] = $baselineError->getFormattedForOutput();
+
+                continue;
+            }
+
+            if ($filterKey === ResultPrinter::KEY_UNUSED_SYMBOLS && $baselineError->isUnusedSymbolError()) {
+                $result[] = $baselineError->getFormattedForOutput();
+
+                continue;
+            }
+        }
+
+        return $result;
+    }
+
     private function countDeprecations(BaselineError $baselineError): int
     {
-        return
-            str_contains($baselineError->message, ' deprecated class ')
-            || str_contains($baselineError->message, ' deprecated method ')
-            || str_contains($baselineError->message, ' deprecated function ')
-            || str_contains($baselineError->message, ' deprecated property ')
-            ? $baselineError->count
-            : 0;
+        return $baselineError->isDeprecationError() ? $baselineError->count : 0;
     }
 
     private function countClassesComplexity(BaselineError $baselineError): int
