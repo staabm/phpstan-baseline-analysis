@@ -31,7 +31,9 @@ final class FilterApplication
             $baseline = $baselines[$i];
 
             $analyzer = new BaselineAnalyzer($baseline);
-            $errors = $analyzer->filter($filterKey);
+            $formattedErrors = $analyzer->filter($filterKey);
+
+            $this->printResult($formattedErrors);
         }
 
         if ($numBaselines > 0) {
@@ -47,5 +49,13 @@ final class FilterApplication
     public function help(): void
     {
         printf('USAGE: phpstan-baseline-filter <GLOB-PATTERN>');
+    }
+
+    /**
+     * @param list<string> $formattedErrors
+     */
+    private function printResult(array $formattedErrors): void
+    {
+        printf(implode("\n\n", $formattedErrors));
     }
 }
