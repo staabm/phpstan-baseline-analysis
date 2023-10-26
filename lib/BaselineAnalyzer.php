@@ -64,7 +64,7 @@ final class BaselineAnalyzer
     }
 
     /**
-     * @return list<string>
+     * @return list<BaselineError>
      */
     public function filter(string $filterKey): array
     {
@@ -81,50 +81,50 @@ final class BaselineAnalyzer
     }
 
     /**
-     * @param list<string> $result
+     * @param list<BaselineError> $result
      *
-     * @return list<string>
+     * @return list<BaselineError>
      */
     private function addErrorToResultIfFitting(string $filterKey, array $result, BaselineError $baselineError): array
     {
         if ($filterKey === ResultPrinter::KEY_OVERALL_ERRORS) {
-            $result[] = $baselineError->getFormattedForOutput();
+            $result[] = $baselineError;
 
             return $result;
         }
 
         if ($filterKey === ResultPrinter::KEY_CLASSES_COMPLEXITY && $baselineError->isComplexityError()) {
-            $result[] = $baselineError->getFormattedForOutput();
+            $result[] = $baselineError;
 
             return $result;
         }
 
         if ($filterKey === ResultPrinter::KEY_DEPRECATIONS && $baselineError->isDeprecationError()) {
-            $result[] = $baselineError->getFormattedForOutput();
+            $result[] = $baselineError;
 
             return $result;
         }
 
         if ($filterKey === ResultPrinter::KEY_INVALID_PHPDOCS && $baselineError->isInvalidPhpDocError()) {
-            $result[] = $baselineError->getFormattedForOutput();
+            $result[] = $baselineError;
 
             return $result;
         }
 
         if ($filterKey === ResultPrinter::KEY_UNKNOWN_TYPES && $baselineError->isUnknownTypeError()) {
-            $result[] = $baselineError->getFormattedForOutput();
+            $result[] = $baselineError;
 
             return $result;
         }
 
         if ($filterKey === ResultPrinter::KEY_ANONYMOUS_VARIABLES && $baselineError->isAnonymousVariableError()) {
-            $result[] = $baselineError->getFormattedForOutput();
+            $result[] = $baselineError;
 
             return $result;
         }
 
         if ($filterKey === ResultPrinter::KEY_UNUSED_SYMBOLS && $baselineError->isUnusedSymbolError()) {
-            $result[] = $baselineError->getFormattedForOutput();
+            $result[] = $baselineError;
         }
 
         return $result;

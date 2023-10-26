@@ -29,7 +29,7 @@ if (in_array('--version', $argv)) {
     exit(0);
 }
 
-if ($argc <= 1) {
+if ($argc < 3) {
     $app->help();
     exit(254);
 }

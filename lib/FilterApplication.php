@@ -29,9 +29,9 @@ final class FilterApplication
             $baseline = $baselines[$i];
 
             $analyzer = new BaselineAnalyzer($baseline);
-            $formattedErrors = $analyzer->filter($filterKey);
+            $errors = $analyzer->filter($filterKey);
 
-            $this->printResult($formattedErrors);
+            $this->printResult($errors);
         }
 
         if ($numBaselines > 0) {
@@ -50,10 +50,16 @@ final class FilterApplication
     }
 
     /**
-     * @param list<string> $formattedErrors
+     * @param list<BaselineError> $errors
      */
-    private function printResult(array $formattedErrors): void
+    private function printResult(array $errors): void
     {
-        printf(implode("\n\n", $formattedErrors));
+        printf('parameters:');
+        printf("\n\t" . 'ignoreErrors:');
+
+        foreach ($errors as $error) {
+            printf("\n\t\t" . '-');
+            printf("\n\t\t\t" . $error->getFormattedForOutput());
+        }
     }
 }
