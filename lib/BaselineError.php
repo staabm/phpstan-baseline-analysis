@@ -11,12 +11,15 @@ final class BaselineError
 {
     public int $count;
 
-    private string $message;
+    public string $message;
 
-    public function __construct(int $count, string $message)
+    public string $path;
+
+    public function __construct(int $count, string $message, string $path)
     {
         $this->count = $count;
         $this->message = $message;
+        $this->path = $path;
     }
 
     /**

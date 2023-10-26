@@ -27,20 +27,6 @@ final class ResultPrinter {
     const KEY_RETURN_TYPE_COVERAGE = 'Native-Return-Type-Coverage';
     const KEY_UNUSED_SYMBOLS = 'Unused-Symbols';
 
-    private const KEYS = [
-        self::KEY_REFERENCE_DATE => self::KEY_REFERENCE_DATE,
-        self::KEY_OVERALL_ERRORS => self::KEY_OVERALL_ERRORS,
-        self::KEY_CLASSES_COMPLEXITY => self::KEY_CLASSES_COMPLEXITY,
-        self::KEY_DEPRECATIONS => self::KEY_DEPRECATIONS,
-        self::KEY_INVALID_PHPDOCS => self::KEY_INVALID_PHPDOCS,
-        self::KEY_UNKNOWN_TYPES => self::KEY_UNKNOWN_TYPES,
-        self::KEY_ANONYMOUS_VARIABLES => self::KEY_ANONYMOUS_VARIABLES,
-        self::KEY_PROPERTY_TYPE_COVERAGE => self::KEY_PROPERTY_TYPE_COVERAGE,
-        self::KEY_PARAM_TYPE_COVERAGE => self::KEY_PARAM_TYPE_COVERAGE,
-        self::KEY_RETURN_TYPE_COVERAGE => self::KEY_RETURN_TYPE_COVERAGE,
-        self::KEY_UNUSED_SYMBOLS => self::KEY_UNUSED_SYMBOLS,
-    ];
-
     /**
      * @return self::KEY_*
      *
@@ -48,11 +34,21 @@ final class ResultPrinter {
      */
     public static function getFilterKeyForString(string $filterString): string
     {
-        if (! isset(self::KEYS[$filterString])) {
+        $keys = [
+            self::KEY_OVERALL_ERRORS => self::KEY_OVERALL_ERRORS,
+            self::KEY_CLASSES_COMPLEXITY => self::KEY_CLASSES_COMPLEXITY,
+            self::KEY_DEPRECATIONS => self::KEY_DEPRECATIONS,
+            self::KEY_INVALID_PHPDOCS => self::KEY_INVALID_PHPDOCS,
+            self::KEY_UNKNOWN_TYPES => self::KEY_UNKNOWN_TYPES,
+            self::KEY_ANONYMOUS_VARIABLES => self::KEY_ANONYMOUS_VARIABLES,
+            self::KEY_UNUSED_SYMBOLS => self::KEY_UNUSED_SYMBOLS,
+        ];
+
+        if (! isset($keys[$filterString])) {
             throw new Exception($filterString . ' is not a valid filter!');
         }
 
-        return self::KEYS[$filterString];
+        return $keys[$filterString];
     }
 
     /**
