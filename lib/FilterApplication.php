@@ -14,8 +14,6 @@ final class FilterApplication
     const EXIT_ERROR = 1;
 
     /**
-     * @param ResultPrinter::KEY_* $format
-     *
      * @return self::EXIT_*
      *
      * @throws \Safe\Exceptions\FilesystemException
