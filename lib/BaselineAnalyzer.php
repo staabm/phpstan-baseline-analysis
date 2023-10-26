@@ -74,45 +74,57 @@ final class BaselineAnalyzer
          * @var BaselineError $baselineError
          */
         foreach ($this->baseline->getIgnoreErrors() as $baselineError) {
-            if ($filterKey === ResultPrinter::KEY_OVERALL_ERRORS) {
-                $result[] = $baselineError->getFormattedForOutput();
+            $result = $this->addErrorToResultIfFitting($filterKey, $result, $baselineError);
+        }
 
-                continue;
-            }
+        return $result;
+    }
 
-            if ($filterKey === ResultPrinter::KEY_CLASSES_COMPLEXITY && $baselineError->isComplexityError()) {
-                $result[] = $baselineError->getFormattedForOutput();
+    /**
+     * @param list<string> $result
+     *
+     * @return list<string>
+     */
+    private function addErrorToResultIfFitting(string $filterKey, array $result, BaselineError $baselineError): array
+    {
+        if ($filterKey === ResultPrinter::KEY_OVERALL_ERRORS) {
+            $result[] = $baselineError->getFormattedForOutput();
 
-                continue;
-            }
+            return $result;
+        }
 
-            if ($filterKey === ResultPrinter::KEY_DEPRECATIONS && $baselineError->isDeprecationError()) {
-                $result[] = $baselineError->getFormattedForOutput();
+        if ($filterKey === ResultPrinter::KEY_CLASSES_COMPLEXITY && $baselineError->isComplexityError()) {
+            $result[] = $baselineError->getFormattedForOutput();
 
-                continue;
-            }
+            return $result;
+        }
 
-            if ($filterKey === ResultPrinter::KEY_INVALID_PHPDOCS && $baselineError->isInvalidPhpDocError()) {
-                $result[] = $baselineError->getFormattedForOutput();
+        if ($filterKey === ResultPrinter::KEY_DEPRECATIONS && $baselineError->isDeprecationError()) {
+            $result[] = $baselineError->getFormattedForOutput();
 
-                continue;
-            }
+            return $result;
+        }
 
-            if ($filterKey === ResultPrinter::KEY_UNKNOWN_TYPES && $baselineError->isUnknownTypeError()) {
-                $result[] = $baselineError->getFormattedForOutput();
+        if ($filterKey === ResultPrinter::KEY_INVALID_PHPDOCS && $baselineError->isInvalidPhpDocError()) {
+            $result[] = $baselineError->getFormattedForOutput();
 
-                continue;
-            }
+            return $result;
+        }
 
-            if ($filterKey === ResultPrinter::KEY_ANONYMOUS_VARIABLES && $baselineError->isAnonymousVariableError()) {
-                $result[] = $baselineError->getFormattedForOutput();
+        if ($filterKey === ResultPrinter::KEY_UNKNOWN_TYPES && $baselineError->isUnknownTypeError()) {
+            $result[] = $baselineError->getFormattedForOutput();
 
-                continue;
-            }
+            return $result;
+        }
 
-            if ($filterKey === ResultPrinter::KEY_UNUSED_SYMBOLS && $baselineError->isUnusedSymbolError()) {
-                $result[] = $baselineError->getFormattedForOutput();
-            }
+        if ($filterKey === ResultPrinter::KEY_ANONYMOUS_VARIABLES && $baselineError->isAnonymousVariableError()) {
+            $result[] = $baselineError->getFormattedForOutput();
+
+            return $result;
+        }
+
+        if ($filterKey === ResultPrinter::KEY_UNUSED_SYMBOLS && $baselineError->isUnusedSymbolError()) {
+            $result[] = $baselineError->getFormattedForOutput();
         }
 
         return $result;
