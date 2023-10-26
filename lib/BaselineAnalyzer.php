@@ -64,7 +64,7 @@ final class BaselineAnalyzer
     }
 
     /**
-     * @return list<BaselineError>
+     * @return list<string>
      */
     public function filter(string $filterKey): array
     {
@@ -112,8 +112,6 @@ final class BaselineAnalyzer
 
             if ($filterKey === ResultPrinter::KEY_UNUSED_SYMBOLS && $baselineError->isUnusedSymbolError()) {
                 $result[] = $baselineError->getFormattedForOutput();
-
-                continue;
             }
         }
 
