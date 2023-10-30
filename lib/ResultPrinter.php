@@ -32,7 +32,15 @@ final class ResultPrinter {
      */
     public static function isFilterKey(string $filterString): bool
     {
-        $keys = [
+
+        return in_array($filterString, self::getFilterKeys(), true);
+    }
+
+    /**
+     * @return array<self::KEY_*>
+     */
+    public static function getFilterKeys(): array {
+        return [
             self::KEY_CLASSES_COMPLEXITY,
             self::KEY_DEPRECATIONS,
             self::KEY_INVALID_PHPDOCS,
@@ -40,8 +48,6 @@ final class ResultPrinter {
             self::KEY_ANONYMOUS_VARIABLES,
             self::KEY_UNUSED_SYMBOLS,
         ];
-
-        return in_array($filterString, $keys, true);
     }
 
     /**
