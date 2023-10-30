@@ -59,7 +59,13 @@ final class FilterApplication
 
         foreach ($errors as $error) {
             printf("\n\t\t" . '-');
-            printf("\n\t\t\t" . $error->getFormattedForOutput());
+            printf("\n\t\t\t" . $this->formatError($error));
+            printf("\n");
         }
+    }
+
+    public function formatError(BaselineError $error): string
+    {
+        return implode("\n\t\t\t", ['message: "' . $error->message . '"', 'count: ' . $error->count, 'path: ' . $error->path]);
     }
 }
