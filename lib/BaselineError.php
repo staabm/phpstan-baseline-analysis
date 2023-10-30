@@ -32,7 +32,7 @@ final class BaselineError
 
     public function getFormattedForOutput(): string
     {
-        return implode("\n\t\t\t", ['message :"' . $this->message . '"', 'count: ' . $this->count, 'path: ' . $this->path]);
+        return implode("\n\t\t\t", ['message: "' . $this->message . '"', 'count: ' . $this->count, 'path: ' . $this->path]);
     }
 
     public function isDeprecationError(): bool
