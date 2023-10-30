@@ -2,6 +2,7 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
+use Exception;
 use \Iterator;
 use Safe\DateTimeImmutable;
 use function Safe\sprintf;
@@ -27,6 +28,24 @@ final class ResultPrinter {
     const KEY_UNUSED_SYMBOLS = 'Unused-Symbols';
 
     /**
+     * @phpstan-assert-if-true self::KEY_* $filterString
+     */
+    public static function isFilterKey(string $filterString): bool
+    {
+        $keys = [
+            self::KEY_OVERALL_ERRORS,
+            self::KEY_CLASSES_COMPLEXITY,
+            self::KEY_DEPRECATIONS,
+            self::KEY_INVALID_PHPDOCS,
+            self::KEY_UNKNOWN_TYPES,
+            self::KEY_ANONYMOUS_VARIABLES,
+            self::KEY_UNUSED_SYMBOLS,
+        ];
+
+        return in_array($filterString, $keys, true);
+    }
+
+    /**
      * @return Iterator<string>
      */
     public function streamText(Baseline $baseline, AnalyzerResult $result): Iterator
@@ -35,6 +54,7 @@ final class ResultPrinter {
         if ($result->referenceDate !== null) {
             $referenceDate = $result->referenceDate->format(ResultPrinter::DATE_FORMAT);
         }
+
         yield sprintf("Analyzing %s\n", $baseline->getFilePath());
         yield sprintf("  %s: %s\n", self::KEY_REFERENCE_DATE, $referenceDate);
         yield sprintf("  %s: %s\n", self::KEY_OVERALL_ERRORS, $result->overallErrors);

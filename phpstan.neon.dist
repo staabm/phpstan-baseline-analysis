@@ -16,6 +16,11 @@ parameters:
 
     type_coverage:
         return_type: 100
-        param_type: 87
+        param_type: 92
         property_type: 0
         print_suggestions: false
+
+    ignoreErrors:
+        -
+            message: '#Cognitive complexity for "staabm\\PHPStanBaselineAnalysis\\FilterConfig::fromArgs\(\)" is 25, keep it under 13#'
+            path: 'lib/FilterConfig.php'

@@ -11,12 +11,15 @@ final class BaselineError
 {
     public int $count;
 
-    private string $message;
+    public string $message;
 
-    public function __construct(int $count, string $message)
+    public string $path;
+
+    public function __construct(int $count, string $message, string $path)
     {
         $this->count = $count;
         $this->message = $message;
+        $this->path = $path;
     }
 
     /**
@@ -36,6 +39,11 @@ final class BaselineError
             || str_contains($this->message, ' deprecated method ')
             || str_contains($this->message, ' deprecated function ')
             || str_contains($this->message, ' deprecated property ');
+    }
+
+    public function isComplexityError(): bool
+    {
+        return sscanf($this->unwrapMessage(), BaselineAnalyzer::CLASS_COMPLEXITY_ERROR_MESSAGE, $value, $limit) > 0;
     }
 
     public function isInvalidPhpDocError(): bool

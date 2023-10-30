@@ -1,7 +1,7 @@
 {
     "name": "staabm/phpstan-baseline-analysis",
     "license": "MIT",
-    "keywords": ["dev", "phpstan", "phpstan-extension", "static analysis", "database access layer", "code quality"],
+    "keywords": ["dev", "phpstan", "phpstan-extension", "static analysis", "baseline analysis"],
     "autoload": {
         "classmap": ["lib/"]
     },
@@ -40,6 +40,7 @@
     },
     "bin": [
         "bin/phpstan-baseline-analyze",
+        "bin/phpstan-baseline-filter",
         "bin/phpstan-baseline-trend",
         "bin/phpstan-baseline-graph"
     ]

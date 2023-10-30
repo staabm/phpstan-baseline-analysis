@@ -54,6 +54,19 @@ Analyzing app/portal/phpstan-baseline.neon
   Unused-Symbols: 3
 ```
 
+## example error filtering
+
+Filter a existing baseline and output only errors NOT matching the given filter key:
+_This can be helpful to remove a class of errors out of an existing baseline, so PHPStan will start reporting them again._
+```
+$ phpstan-baseline-filter *phpstan-baseline.neon --exclude=Unknown-Types
+```
+
+Filter a existing baseline and output only errors matching the given filter key:
+```
+$ phpstan-baseline-filter *phpstan-baseline.neon --include=Invalid-Phpdocs
+```
+
 ## example graph analysis
 
 ```
