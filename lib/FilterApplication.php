@@ -51,7 +51,10 @@ final class FilterApplication
      */
     public function help(): void
     {
-        printf('USAGE: phpstan-baseline-filter <GLOB-PATTERN> [--exclude=<FILTER-KEY>,...] [--include=<FILTER-KEY>,...]');
+        echo 'USAGE: phpstan-baseline-filter <GLOB-PATTERN> [--exclude=<FILTER-KEY>,...] [--include=<FILTER-KEY>,...]'.PHP_EOL.PHP_EOL;
+        printf('valid FILTER-KEYs: %s', implode(', ', ResultPrinter::getFilterKeys()));
+
+        echo PHP_EOL;
     }
 
     /**

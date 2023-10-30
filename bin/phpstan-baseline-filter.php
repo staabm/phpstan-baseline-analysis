@@ -34,7 +34,13 @@ if ($argc < 3) {
     exit(254);
 }
 
-$filterConfig = \staabm\PHPStanBaselineAnalysis\FilterConfig::fromArgs($argv[2]);
+try {
+    $filterConfig = \staabm\PHPStanBaselineAnalysis\FilterConfig::fromArgs($argv[2]);
 
-$exitCode = $app->start($argv[1], $filterConfig);
-exit($exitCode);
+    $exitCode = $app->start($argv[1], $filterConfig);
+    exit($exitCode);
+} catch (\Exception $e) {
+    echo 'ERROR: '. $e->getMessage().PHP_EOL.PHP_EOL;
+    $app->help();
+    exit(254);
+}

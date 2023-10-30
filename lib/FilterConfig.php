@@ -24,14 +24,14 @@ final class FilterConfig {
             if (str_starts_with($arg, '--exclude=')) {
                 foreach(explode(',', substr($arg, 10)) as $key) {
                     if (!ResultPrinter::isFilterKey($key)) {
-                        throw new \Exception("Invalid key: $key");
+                        throw new \Exception("Invalid filter key: $key");
                     }
                     $config->excluded[] = $key;
                 }
             } else if (str_starts_with($arg, '--include=')) {
                 foreach(explode(',', substr($arg, 10)) as $key) {
                     if (!ResultPrinter::isFilterKey($key)) {
-                        throw new \Exception("Invalid key: $key");
+                        throw new \Exception("Invalid filter key: $key");
                     }
                     $config->included[] = $key;
                 }
