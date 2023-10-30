@@ -11,7 +11,7 @@ final class BaselineError
 {
     public int $count;
 
-    public string $message;
+    private string $message;
 
     public function __construct(int $count, string $message)
     {
