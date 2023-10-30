@@ -3,6 +3,7 @@
 namespace staabm\PHPStanBaselineAnalysis\Tests;
 
 use staabm\PHPStanBaselineAnalysis\FilterApplication;
+use staabm\PHPStanBaselineAnalysis\FilterConfig;
 use staabm\PHPStanBaselineAnalysis\ResultPrinter;
 
 final class FilterApplicationTest extends BaseTestCase
@@ -12,7 +13,8 @@ final class FilterApplicationTest extends BaseTestCase
         $app = new FilterApplication();
 
         ob_start();
-        $exitCode = $app->start(__DIR__ . '/fixtures/all-in.neon', ResultPrinter::KEY_DEPRECATIONS);
+        $fiterConfig = FilterConfig::fromArgs('--include='.ResultPrinter::KEY_DEPRECATIONS);
+        $exitCode = $app->start(__DIR__ . '/fixtures/all-in.neon', $fiterConfig);
         $rendered = ob_get_clean();
 
         $rendered = str_replace(__DIR__, '', $rendered);
@@ -36,7 +38,8 @@ PHP;
         $app = new FilterApplication();
 
         ob_start();
-        $exitCode = $app->start(__DIR__ . '/fixtures/all-in.neon', ResultPrinter::KEY_UNUSED_SYMBOLS);
+        $fiterConfig = FilterConfig::fromArgs('--include='.ResultPrinter::KEY_UNUSED_SYMBOLS);
+        $exitCode = $app->start(__DIR__ . '/fixtures/all-in.neon', $fiterConfig);
         $rendered = ob_get_clean();
 
         $rendered = str_replace(__DIR__, '', $rendered);
@@ -70,10 +73,30 @@ PHP;
         $app = new FilterApplication();
 
         ob_start();
-        $exitCode = $app->start('this/file/does/not/exist*baseline.neon', ResultPrinter::KEY_UNUSED_SYMBOLS);
+        $fiterConfig = FilterConfig::fromArgs('--include='.ResultPrinter::KEY_UNUSED_SYMBOLS);
+        $exitCode = $app->start('this/file/does/not/exist*baseline.neon', $fiterConfig);
         $rendered = ob_get_clean();
 
         $this->assertSame('', $rendered);
         $this->assertSame(1, $exitCode);
+    }
+
+    function testExclude():void
+    {
+        $app = new FilterApplication();
+
+        ob_start();
+        $fiterConfig = FilterConfig::fromArgs('--exclude='.ResultPrinter::KEY_UNUSED_SYMBOLS);
+        $exitCode = $app->start(__DIR__ . '/fixtures/never-used.neon', $fiterConfig);
+        $rendered = ob_get_clean();
+
+        $expected = <<<'PHP'
+parameters:
+	ignoreErrors: []
+
+PHP;
+
+        $this->assertSame($expected, $rendered);
+        $this->assertSame(0, $exitCode);
     }
 }

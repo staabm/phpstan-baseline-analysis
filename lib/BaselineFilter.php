@@ -17,12 +17,12 @@ final class BaselineFilter
     /**
      * @return list<BaselineError>
      */
-    public function filter(string $filterKey): array
+    public function filter(FilterConfig $filterConfig): array
     {
         $result = [];
 
         foreach ($this->baseline->getIgnoreErrors() as $baselineError) {
-            $result = $this->addErrorToResultIfFitting($filterKey, $result, $baselineError);
+            $result = $this->addErrorToResultIfFitting($filterConfig, $result, $baselineError);
         }
 
         return $result;
@@ -33,49 +33,58 @@ final class BaselineFilter
      *
      * @return list<BaselineError>
      */
-    private function addErrorToResultIfFitting(string $filterKey, array $result, BaselineError $baselineError): array
+    private function addErrorToResultIfFitting(FilterConfig $filterConfig, array $result, BaselineError $baselineError): array
     {
-        if ($filterKey === ResultPrinter::KEY_OVERALL_ERRORS) {
-            $result[] = $baselineError;
+        $matched = $this->matchedFilter($filterConfig, $baselineError);
 
-            return $result;
-        }
-
-        if ($filterKey === ResultPrinter::KEY_CLASSES_COMPLEXITY && $baselineError->isComplexityError()) {
-            $result[] = $baselineError;
-
-            return $result;
-        }
-
-        if ($filterKey === ResultPrinter::KEY_DEPRECATIONS && $baselineError->isDeprecationError()) {
-            $result[] = $baselineError;
-
-            return $result;
-        }
-
-        if ($filterKey === ResultPrinter::KEY_INVALID_PHPDOCS && $baselineError->isInvalidPhpDocError()) {
-            $result[] = $baselineError;
-
-            return $result;
-        }
-
-        if ($filterKey === ResultPrinter::KEY_UNKNOWN_TYPES && $baselineError->isUnknownTypeError()) {
-            $result[] = $baselineError;
-
-            return $result;
-        }
-
-        if ($filterKey === ResultPrinter::KEY_ANONYMOUS_VARIABLES && $baselineError->isAnonymousVariableError()) {
-            $result[] = $baselineError;
-
-            return $result;
-        }
-
-        if ($filterKey === ResultPrinter::KEY_UNUSED_SYMBOLS && $baselineError->isUnusedSymbolError()) {
-            $result[] = $baselineError;
+        if ($filterConfig->isExcluding()) {
+            if (!$matched) {
+                $result[] = $baselineError;
+            }
+        } else {
+            if ($matched) {
+                $result[] = $baselineError;
+            }
         }
 
         return $result;
+    }
+
+    private function matchedFilter(FilterConfig $filterConfig, BaselineError $baselineError): bool
+    {
+        $matched = false;
+        if ($filterConfig->containsKey(ResultPrinter::KEY_CLASSES_COMPLEXITY)
+            && $baselineError->isComplexityError()) {
+            $matched = true;
+        }
+
+        if ($filterConfig->containsKey(ResultPrinter::KEY_DEPRECATIONS)
+            && $baselineError->isDeprecationError()) {
+            $matched = true;
+        }
+
+        if (
+            $filterConfig->containsKey(ResultPrinter::KEY_INVALID_PHPDOCS)
+            && $baselineError->isInvalidPhpDocError()) {
+            $matched = true;
+        }
+
+        if ($filterConfig->containsKey(ResultPrinter::KEY_UNKNOWN_TYPES)
+            && $baselineError->isUnknownTypeError()) {
+            $matched = true;
+        }
+
+        if ($filterConfig->containsKey(ResultPrinter::KEY_ANONYMOUS_VARIABLES)
+            && $baselineError->isAnonymousVariableError()) {
+            $matched = true;
+        }
+
+        if ($filterConfig->containsKey(ResultPrinter::KEY_UNUSED_SYMBOLS)
+            && $baselineError->isUnusedSymbolError()) {
+            $matched = true;
+        }
+
+        return $matched;
     }
 
 }

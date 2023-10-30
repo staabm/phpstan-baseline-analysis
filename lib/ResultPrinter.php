@@ -28,11 +28,9 @@ final class ResultPrinter {
     const KEY_UNUSED_SYMBOLS = 'Unused-Symbols';
 
     /**
-     * @return self::KEY_*
-     *
-     * @throws Exception
+     * @phpstan-assert-if-true self::KEY_* $filterString
      */
-    public static function getFilterKeyForString(string $filterString): string
+    public static function isFilterKey(string $filterString): bool
     {
         $keys = [
             self::KEY_OVERALL_ERRORS,
@@ -44,11 +42,7 @@ final class ResultPrinter {
             self::KEY_UNUSED_SYMBOLS,
         ];
 
-        if (!in_array($filterString, $keys, true)) {
-            throw new Exception($filterString . ' is not a valid filter!');
-        }
-
-        return $filterString;
+        return in_array($filterString, $keys, true);
     }
 
     /**

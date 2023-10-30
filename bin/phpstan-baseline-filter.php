@@ -34,7 +34,7 @@ if ($argc < 3) {
     exit(254);
 }
 
-$filterKey = ResultPrinter::getFilterKeyForString($argv[2]);
+$filterConfig = \staabm\PHPStanBaselineAnalysis\FilterConfig::fromArgs($argv[2]);
 
-$exitCode = $app->start($argv[1], $filterKey);
+$exitCode = $app->start($argv[1], $filterConfig);
 exit($exitCode);

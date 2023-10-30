@@ -25,7 +25,7 @@ final class FilterApplication
      *
      * @api
      */
-    public function start(string $glob, string $filterKey): int
+    public function start(string $glob, FilterConfig $filterConfig): int
     {
         $baselines = BaselineFinder::forGlob($glob);
         $numBaselines = count($baselines);
@@ -34,7 +34,7 @@ final class FilterApplication
             $baseline = $baselines[$i];
 
             $filter = new BaselineFilter($baseline);
-            $errors = $filter->filter($filterKey);
+            $errors = $filter->filter($filterConfig);
 
             $this->printResult($errors);
         }
@@ -51,7 +51,7 @@ final class FilterApplication
      */
     public function help(): void
     {
-        printf('USAGE: phpstan-baseline-filter <GLOB-PATTERN> <FILTER-KEY>');
+        printf('USAGE: phpstan-baseline-filter <GLOB-PATTERN> [--exclude=<FILTER-KEY>,...] [--include=<FILTER-KEY>,...]');
     }
 
     /**
