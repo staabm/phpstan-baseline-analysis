@@ -67,6 +67,8 @@ Filter a existing baseline and output only errors matching the given filter key:
 $ phpstan-baseline-filter *phpstan-baseline.neon --include=Invalid-Phpdocs
 ```
 
+[Currently supported filter keys](https://github.com/staabm/phpstan-baseline-analysis/blob/1e8ea32a10e1a50c3fd21396201495a1ae1a5d1d/lib/ResultPrinter.php#L42-L51) can be cound in the source.
+
 ## example graph analysis
 
 ```
