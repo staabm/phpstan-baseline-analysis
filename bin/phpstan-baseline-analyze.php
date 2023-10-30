@@ -1,5 +1,6 @@
 <?php
 
+use staabm\PHPStanBaselineAnalysis\ResultPrinter;
 use function Safe\ini_set;
 
 // Finding composer
@@ -33,9 +34,9 @@ if ($argc <= 1) {
 }
 
 
-$format = \staabm\PHPStanBaselineAnalysis\ResultPrinter::FORMAT_TEXT;
+$format = ResultPrinter::FORMAT_TEXT;
 if (in_array('--json', $argv)) {
-    $format = \staabm\PHPStanBaselineAnalysis\ResultPrinter::FORMAT_JSON;
+    $format = ResultPrinter::FORMAT_JSON;
 }
 
 $exitCode = $app->start($argv[1], $format);

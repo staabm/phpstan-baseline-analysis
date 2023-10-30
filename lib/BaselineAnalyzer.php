@@ -65,13 +65,7 @@ final class BaselineAnalyzer
 
     private function countDeprecations(BaselineError $baselineError): int
     {
-        return
-            str_contains($baselineError->message, ' deprecated class ')
-            || str_contains($baselineError->message, ' deprecated method ')
-            || str_contains($baselineError->message, ' deprecated function ')
-            || str_contains($baselineError->message, ' deprecated property ')
-            ? $baselineError->count
-            : 0;
+        return $baselineError->isDeprecationError() ? $baselineError->count : 0;
     }
 
     private function countClassesComplexity(BaselineError $baselineError): int
@@ -84,34 +78,28 @@ final class BaselineAnalyzer
 
     private function countInvalidPhpdocs(BaselineError $baselineError): int
     {
-        return str_contains($baselineError->message, 'PHPDoc tag ')
+        return $baselineError->isInvalidPhpDocError()
             ? $baselineError->count
             : 0;
     }
 
     private function countUnknownTypes(BaselineError $baselineError): int
     {
-        $notFoundCount = preg_match('/Instantiated class .+ not found/', $baselineError->message, $matches) === 1
+        return $baselineError->isUnknownTypeError()
             ? $baselineError->count
             : 0;
-
-        $unknownCount = str_contains($baselineError->message, 'on an unknown class') || str_contains($baselineError->message, 'has invalid type unknown') || str_contains($baselineError->message, 'unknown_type as its type')
-            ? $baselineError->count
-            : 0;
-
-        return $notFoundCount + $unknownCount;
     }
 
     private function countAnonymousVariables(BaselineError $baselineError): int
     {
-        return str_contains($baselineError->message, 'Anonymous variable')
+        return $baselineError->isAnonymousVariableError()
             ? $baselineError->count
             : 0;
     }
 
     private function countUnusedSymbols(BaselineError $baselineError): int
     {
-        return str_ends_with($baselineError->message, 'is never used$#')
+        return $baselineError->isUnusedSymbolError()
             ? $baselineError->count
             : 0;
     }
