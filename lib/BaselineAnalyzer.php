@@ -70,9 +70,6 @@ final class BaselineAnalyzer
     {
         $result = [];
 
-        /**
-         * @var BaselineError $baselineError
-         */
         foreach ($this->baseline->getIgnoreErrors() as $baselineError) {
             $result = $this->addErrorToResultIfFitting($filterKey, $result, $baselineError);
         }
