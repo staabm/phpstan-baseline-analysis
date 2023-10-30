@@ -33,7 +33,6 @@ final class ResultPrinter {
     public static function isFilterKey(string $filterString): bool
     {
         $keys = [
-            self::KEY_OVERALL_ERRORS,
             self::KEY_CLASSES_COMPLEXITY,
             self::KEY_DEPRECATIONS,
             self::KEY_INVALID_PHPDOCS,
