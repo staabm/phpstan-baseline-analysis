@@ -4,7 +4,7 @@ namespace staabm\PHPStanBaselineAnalysis;
 
 use Nette\DI\Helpers;
 use Nette\Neon\Neon;
-use Nette\Utils\Strings;
+use function Safe\substr;
 use PHPStan\ShouldNotHappenException;
 
 final class FilterApplication
