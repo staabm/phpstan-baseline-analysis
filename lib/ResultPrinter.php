@@ -63,8 +63,6 @@ final class ResultPrinter {
 
         yield sprintf("Analyzing %s\n", $baseline->getFilePath());
         yield sprintf("  %s: %s\n", self::KEY_REFERENCE_DATE, $referenceDate);
-        yield sprintf("Analyzing %s\n", $baseline->getFilePath());
-        yield sprintf("  %s: %s\n", self::KEY_REFERENCE_DATE, $referenceDate);
         yield sprintf("  %s: %s\n", self::KEY_OVERALL_ERRORS, $result->overallErrors);
         yield sprintf("  %s: %s\n", self::KEY_CLASSES_COMPLEXITY, $result->classesComplexity);
         yield sprintf("  %s: %s\n", self::KEY_DEPRECATIONS, $result->deprecations);
