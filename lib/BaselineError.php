@@ -13,13 +13,10 @@ final class BaselineError
 
     public string $message;
 
-    public string $path;
-
-    public function __construct(int $count, string $message, string $path)
+    public function __construct(int $count, string $message)
     {
         $this->count = $count;
         $this->message = $message;
-        $this->path = $path;
     }
 
     /**
