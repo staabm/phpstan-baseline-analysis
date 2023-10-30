@@ -35,6 +35,7 @@ final class ResultPrinter {
     public static function getFilterKeyForString(string $filterString): string
     {
         if (defined('self::' . $filterString)) {
+            // @phpstan-ignore-next-line
             return constant('self::' . $filterString);
         }
 
