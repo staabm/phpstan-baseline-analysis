@@ -21,7 +21,7 @@ final class FilterApplicationTest extends BaseTestCase
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Instantiation of deprecated class Zend_Db_Expr\\.$#"
+			message: '#^Instantiation of deprecated class Zend_Db_Expr\.$#'
 			count: 2
 			path: controllers/AccountWatchlistController.php
 
@@ -45,17 +45,17 @@ PHP;
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Public method \"clxImage\\:\\:upload\\(\\)\" is never used$#"
+			message: '#^Public method "clxImage\:\:upload\(\)" is never used$#'
 			count: 1
 			path: app/admin/models/clxImage.php
 
 		-
-			message: "#^Public property \"event\\\\persistence\\\\EventTimeslotRecord\\:\\:\\$time_from\" is never used$#"
+			message: '#^Public property "event\\persistence\\EventTimeslotRecord\:\:\$time_from" is never used$#'
 			count: 1
 			path: app/admin/lib/event/persistence/EventTimeslotRecord.php
 
 		-
-			message: "#^Public constant \"SearchExport\\:\\:TMP_PATH\" is never used$#"
+			message: '#^Public constant "SearchExport\:\:TMP_PATH" is never used$#'
 			count: 1
 			path: scripts/portal/SearchExport.php
 
