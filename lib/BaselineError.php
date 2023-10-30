@@ -4,13 +4,16 @@ namespace staabm\PHPStanBaselineAnalysis;
 
 use function Safe\preg_match;
 
+/**
+ * @immutable
+ */
 final class BaselineError
 {
     public int $count;
 
     public string $message;
 
-    private string $path;
+    public string $path;
 
     public function __construct(int $count, string $message, string $path)
     {
@@ -28,11 +31,6 @@ final class BaselineError
         $msg = str_replace(['\\-', '\\.', '%%'], ['-', '.', '%'], $msg);
         $msg = trim($msg, '#^$');
         return $msg;
-    }
-
-    public function getFormattedForOutput(): string
-    {
-        return implode("\n\t\t\t", ['message: "' . $this->message . '"', 'count: ' . $this->count, 'path: ' . $this->path]);
     }
 
     public function isDeprecationError(): bool
