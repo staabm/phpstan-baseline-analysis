@@ -34,12 +34,21 @@ final class ResultPrinter {
      */
     public static function getFilterKeyForString(string $filterString): string
     {
-        if (defined('self::' . $filterString)) {
-            // @phpstan-ignore-next-line
-            return constant('self::' . $filterString);
+        $keys = [
+            self::KEY_OVERALL_ERRORS,
+            self::KEY_CLASSES_COMPLEXITY,
+            self::KEY_DEPRECATIONS,
+            self::KEY_INVALID_PHPDOCS,
+            self::KEY_UNKNOWN_TYPES,
+            self::KEY_ANONYMOUS_VARIABLES,
+            self::KEY_UNUSED_SYMBOLS,
+        ];
+
+        if (!in_array($filterString, $keys, true)) {
+            throw new Exception($filterString . ' is not a valid filter!');
         }
 
-        throw new Exception($filterString . ' is not a valid filter!');
+        return $filterString;
     }
 
     /**
