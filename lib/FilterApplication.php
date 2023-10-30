@@ -2,6 +2,11 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
+use Nette\DI\Helpers;
+use Nette\Neon\Neon;
+use Nette\Utils\Strings;
+use PHPStan\ShouldNotHappenException;
+
 final class FilterApplication
 {
     /**
@@ -54,18 +59,27 @@ final class FilterApplication
      */
     private function printResult(array $errors): void
     {
-        printf('parameters:');
-        printf("\n\t" . 'ignoreErrors:');
-
+        $ignoreErrors = [];
         foreach ($errors as $error) {
-            printf("\n\t\t" . '-');
-            printf("\n\t\t\t" . $this->formatError($error));
-            printf("\n");
-        }
-    }
+            $ignoreErrors[] = [
+                'message' => $error->message,
+                'count' => $error->count,
+                'path' => $error->path,
+            ];
 
-    public function formatError(BaselineError $error): string
-    {
-        return implode("\n\t\t\t", ['message: "' . $error->message . '"', 'count: ' . $error->count, 'path: ' . $error->path]);
+        }
+
+        // encode analog PHPStan
+        $neon = Neon::encode([
+            'parameters' => [
+                'ignoreErrors' => $ignoreErrors,
+            ],
+        ], Neon::BLOCK);
+
+        if (substr($neon, -2) !== "\n\n") {
+            throw new ShouldNotHappenException();
+        }
+
+        echo substr($neon, 0, -1);
     }
 }
