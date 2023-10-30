@@ -2,7 +2,6 @@
 
 use staabm\PHPStanBaselineAnalysis\ResultPrinter;
 use function Safe\ini_set;
-use function Safe\preg_grep;
 
 // Finding composer
 
