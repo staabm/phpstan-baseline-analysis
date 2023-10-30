@@ -33,8 +33,8 @@ final class FilterApplication
         for($i = 0; $i < $numBaselines; $i++) {
             $baseline = $baselines[$i];
 
-            $analyzer = new BaselineAnalyzer($baseline);
-            $errors = $analyzer->filter($filterKey);
+            $filter = new BaselineFilter($baseline);
+            $errors = $filter->filter($filterKey);
 
             $this->printResult($errors);
         }
