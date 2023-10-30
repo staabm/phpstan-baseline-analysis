@@ -51,7 +51,7 @@ final class FilterApplication
      */
     public function help(): void
     {
-        printf('USAGE: phpstan-baseline-filter <GLOB-PATTERN>');
+        printf('USAGE: phpstan-baseline-filter <GLOB-PATTERN> <FILTER-KEY>');
     }
 
     /**
