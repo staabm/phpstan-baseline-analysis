@@ -41,6 +41,11 @@ final class BaselineError
             || str_contains($this->message, ' deprecated property ');
     }
 
+    public function isComplexityError(): bool
+    {
+        return sscanf($this->unwrapMessage(), BaselineAnalyzer::CLASS_COMPLEXITY_ERROR_MESSAGE, $value, $limit) > 0;
+    }
+
     public function isInvalidPhpDocError(): bool
     {
         return str_contains($this->message, 'PHPDoc tag ');
