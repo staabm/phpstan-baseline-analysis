@@ -41,6 +41,8 @@ composer require staabm/phpstan-baseline-analysis --dev
 
 ## example report
 
+Starting from the current directory, the command will recursively search for files matching the glob pattern and report a summary for each baseline found.
+
 ```
 $ phpstan-baseline-analyze *phpstan-baseline.neon
 Analyzing app/portal/phpstan-baseline.neon
@@ -59,7 +61,10 @@ Analyzing app/portal/phpstan-baseline.neon
 ## example error filtering
 
 Filter a existing baseline and output only errors NOT matching the given filter key:
-_This can be helpful to remove a class of errors out of an existing baseline, so PHPStan will start reporting them again._
+
+> [!TIP]
+> This can be helpful to remove a class of errors out of an existing baseline, so PHPStan will start reporting them again.
+
 ```
 $ phpstan-baseline-filter *phpstan-baseline.neon --exclude=Unknown-Types
 ```
