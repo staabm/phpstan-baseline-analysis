@@ -26,7 +26,7 @@ final class BaselineAnalyzer
      * @api
      * @var string
      */
-    public const RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible return types, only %d - %.1f %% actually have it. Add more return types to get over %d %%';
+    public const RETURN_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible return types, only %d - %.1f %% actually have it. Add more return types to get over %s %%';
 
     /**
      * @var Baseline
