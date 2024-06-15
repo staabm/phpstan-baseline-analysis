@@ -84,12 +84,12 @@ $ git clone ...
 $ phpstan-baseline-analyze *phpstan-baseline.neon --json > now.json
 
 $ git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
-$ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > 1-week-ago.json
+$ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > phpstan-baseline-analyze-1-week-ago.json
 
 $ git checkout `git rev-list -n 1 --before="2 week ago" HEAD`
-$ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > 2-weeks-ago.json
+$ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > phpstan-baseline-analyze-2-weeks-ago.json
 
-$ php phpstan-baseline-graph '*.json' > result.html
+$ php phpstan-baseline-graph 'phpstan-baseline-analyze-*.json' > result.html
 ```
 
 ![PHPStan baseline analysis graph](https://github.com/staabm/phpstan-baseline-analysis/assets/120441/ea5abe25-21e8-43f2-9118-0967a75517c6)
