@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^1.9",
+        "phpstan/phpstan": "^1.12",
         "phpunit/phpunit": "^9.6",
         "symfony/var-dumper": "^5.3",
         "thecodingmachine/phpstan-safe-rule": "^1.2",
