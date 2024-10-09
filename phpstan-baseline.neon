@@ -34,14 +34,6 @@ parameters:
 
 		-
 			message: """
-				#^Fetching deprecated class constant BLOCK of class Nette\\\\Neon\\\\Neon\\:
-				use parameter \\$blockMode$#
-			"""
-			count: 1
-			path: lib/FilterApplication.php
-
-		-
-			message: """
 				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
 				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
 			"""
