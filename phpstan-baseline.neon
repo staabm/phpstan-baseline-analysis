@@ -1,0 +1,49 @@
+parameters:
+	ignoreErrors:
+		-
+			message: """
+				#^Call to deprecated function Safe\\\\sprintf\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
+			count: 1
+			path: bin/phpstan-baseline-trend.php
+
+		-
+			message: """
+				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
+			count: 1
+			path: bin/phpstan-baseline-trend.php
+
+		-
+			message: """
+				#^Call to deprecated function Safe\\\\sprintf\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
+			count: 3
+			path: lib/Baseline.php
+
+		-
+			message: """
+				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
+			count: 2
+			path: lib/FilterApplication.php
+
+		-
+			message: """
+				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
+			count: 2
+			path: lib/FilterConfig.php
+
+		-
+			message: """
+				#^Call to deprecated function Safe\\\\sprintf\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
+			count: 12
+			path: lib/ResultPrinter.php

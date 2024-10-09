@@ -1,5 +1,9 @@
+includes:
+    - phpstan-baseline.neon
+
 parameters:
     level: max
+    reportUnmatchedIgnoredErrors: false
     
     paths:
         - bin/

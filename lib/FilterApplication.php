@@ -77,7 +77,7 @@ final class FilterApplication
             'parameters' => [
                 'ignoreErrors' => $ignoreErrors,
             ],
-        ], Neon::BLOCK);
+        ], true);
 
         if (substr($neon, -2) !== "\n\n") {
             throw new ShouldNotHappenException();
