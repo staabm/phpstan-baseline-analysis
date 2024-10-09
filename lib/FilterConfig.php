@@ -11,38 +11,49 @@ final class FilterConfig {
     /**
      * @var array<ResultPrinter::KEY_*>
      */
-    public array $excluded = [];
+    private array $excluded;
     /**
      * @var array<ResultPrinter::KEY_*>
      */
-    public array $included = [];
+    private array $included;
+
+    /**
+     * @param array<ResultPrinter::KEY_*> $excluded
+     * @param array<ResultPrinter::KEY_*> $included
+     */
+    private function __construct(array $excluded, array $included) {
+        $this->excluded = $excluded;
+        $this->included = $included;
+    }
 
     static public function fromArgs(string $args): self {
-        $config = new FilterConfig();
         $args = explode(' ', $args);
+
+        $excluded = [];
+        $included = [];
         foreach ($args as $arg) {
             if (str_starts_with($arg, '--exclude=')) {
                 foreach(explode(',', substr($arg, 10)) as $key) {
                     if (!ResultPrinter::isFilterKey($key)) {
                         throw new \Exception("Invalid filter key: $key");
                     }
-                    $config->excluded[] = $key;
+                    $excluded[] = $key;
                 }
             } else if (str_starts_with($arg, '--include=')) {
                 foreach(explode(',', substr($arg, 10)) as $key) {
                     if (!ResultPrinter::isFilterKey($key)) {
                         throw new \Exception("Invalid filter key: $key");
                     }
-                    $config->included[] = $key;
+                    $included[] = $key;
                 }
             }
         }
 
-        if (count($config->excluded) > 0 && count($config->included) > 0) {
+        if (count($excluded) > 0 && count($included) > 0) {
             throw new \Exception("Cannot use --exclude and --include at the same time");
         }
 
-        return $config;
+        return new self($excluded, $included);
     }
 
     public function isExcluding(): bool {
