@@ -26,6 +26,9 @@
         "tomasvotruba/type-coverage": "1.0.0",
         "tomasvotruba/unused-public": "0.3.11"
     },
+    "conflict": {
+        "tomasvotruba/type-coverage": "<1.0"
+    },
     "config": {
         "optimize-autoloader": true,
         "sort-packages": true,
