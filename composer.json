@@ -40,6 +40,7 @@
     },
     "scripts": {
         "phpstan": "phpstan analyze",
+        "phpstan-baseline": "phpstan analyse -c phpstan.neon.dist --generate-baseline || true",
         "test": "phpunit"
     },
     "bin": [
