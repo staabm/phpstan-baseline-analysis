@@ -25,6 +25,21 @@ parameters:
 			path: lib/Baseline.php
 
 		-
+			message: "#^Call to function is_array\\(\\) with array\\{ignoreErrors\\?\\: list\\<array\\{message\\: string, count\\: int, path\\: string\\}\\>\\} will always evaluate to true\\.$#"
+			count: 1
+			path: lib/Baseline.php
+
+		-
+			message: "#^Call to function is_array\\(\\) with list\\<array\\{message\\: string, count\\: int, path\\: string\\}\\> will always evaluate to true\\.$#"
+			count: 1
+			path: lib/Baseline.php
+
+		-
+			message: "#^Property staabm\\\\PHPStanBaselineAnalysis\\\\Baseline\\:\\:\\$content \\(array\\{parameters\\?\\: array\\{ignoreErrors\\?\\: list\\<array\\{message\\: string, count\\: int, path\\: string\\}\\>\\}\\}\\) does not accept array\\.$#"
+			count: 1
+			path: lib/Baseline.php
+
+		-
 			message: """
 				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
 				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
@@ -39,6 +54,11 @@ parameters:
 			"""
 			count: 2
 			path: lib/FilterConfig.php
+
+		-
+			message: "#^Parameter \\#1 \\$jsonFiles of method staabm\\\\PHPStanBaselineAnalysis\\\\GraphApplication\\:\\:iterateOverFiles\\(\\) expects list\\<string\\>, array given\\.$#"
+			count: 1
+			path: lib/GraphApplication.php
 
 		-
 			message: """
