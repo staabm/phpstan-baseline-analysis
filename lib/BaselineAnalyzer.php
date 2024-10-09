@@ -16,7 +16,7 @@ final class BaselineAnalyzer
      * @api
      * @var string
      */
-    public const PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible property types, only %d - %.1f %% actually have it. Add more property types to get over %d %%';
+    public const PROPERTY_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible property types, only %d - %.1f %% actually have it. Add more property types to get over %s %%';
     /**
      * @api
      * @var string
