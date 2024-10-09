@@ -11,11 +11,11 @@ final class FilterConfig {
     /**
      * @var array<ResultPrinter::KEY_*>
      */
-    public array $excluded;
+    private array $excluded;
     /**
      * @var array<ResultPrinter::KEY_*>
      */
-    public array $included;
+    private array $included;
 
     /**
      * @param array<ResultPrinter::KEY_*> $excluded
