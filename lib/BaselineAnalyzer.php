@@ -21,7 +21,7 @@ final class BaselineAnalyzer
      * @api
      * @var string
      */
-    public const PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible param types, only %d - %.1f %% actually have it. Add more param types to get over %d %%';
+    public const PARAM_TYPE_DEClARATION_SEA_LEVEL_MESSAGE = 'Out of %d possible param types, only %d - %.1f %% actually have it. Add more param types to get over %s %%';
     /**
      * @api
      * @var string
