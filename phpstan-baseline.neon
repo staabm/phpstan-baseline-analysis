@@ -1,266 +1,57 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Function Safe\\\\ini_set not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-analyze.php
-
-		-
-			message: "#^Used function Safe\\\\ini_set not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-analyze.php
-
-		-
-			message: "#^Function Safe\\\\ini_set not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-filter.php
-
-		-
-			message: "#^Used function Safe\\\\ini_set not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-filter.php
-
-		-
-			message: "#^Function Safe\\\\ini_set not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-graph.php
-
-		-
-			message: "#^Used function Safe\\\\ini_set not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-graph.php
-
-		-
-			message: "#^Function Safe\\\\ini_set not found\\.$#"
+			message: """
+				#^Call to deprecated function Safe\\\\sprintf\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
 			count: 1
 			path: bin/phpstan-baseline-trend.php
 
 		-
-			message: "#^Function Safe\\\\sprintf not found\\.$#"
+			message: """
+				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
 			count: 1
 			path: bin/phpstan-baseline-trend.php
 
 		-
-			message: "#^Function Safe\\\\substr not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-trend.php
-
-		-
-			message: "#^Used function Safe\\\\ini_set not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-trend.php
-
-		-
-			message: "#^Used function Safe\\\\sprintf not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-trend.php
-
-		-
-			message: "#^Used function Safe\\\\substr not found\\.$#"
-			count: 1
-			path: bin/phpstan-baseline-trend.php
-
-		-
-			message: "#^PHPDoc tag @throws with type Safe\\\\Exceptions\\\\FilesystemException is not subtype of Throwable$#"
-			count: 1
-			path: lib/AnalyzeApplication.php
-
-		-
-			message: "#^Function Safe\\\\file_get_contents not found\\.$#"
-			count: 1
-			path: lib/AnalyzerResultReader.php
-
-		-
-			message: "#^Function Safe\\\\fwrite not found\\.$#"
-			count: 1
-			path: lib/AnalyzerResultReader.php
-
-		-
-			message: "#^Function Safe\\\\json_decode not found\\.$#"
-			count: 1
-			path: lib/AnalyzerResultReader.php
-
-		-
-			message: "#^PHPDoc tag @throws with type Safe\\\\Exceptions\\\\FilesystemException\\|Safe\\\\Exceptions\\\\JsonException is not subtype of Throwable$#"
-			count: 2
-			path: lib/AnalyzerResultReader.php
-
-		-
-			message: "#^Used function Safe\\\\file_get_contents not found\\.$#"
-			count: 1
-			path: lib/AnalyzerResultReader.php
-
-		-
-			message: "#^Used function Safe\\\\json_decode not found\\.$#"
-			count: 1
-			path: lib/AnalyzerResultReader.php
-
-		-
-			message: "#^Function Safe\\\\file_get_contents not found\\.$#"
-			count: 1
-			path: lib/Baseline.php
-
-		-
-			message: "#^Function Safe\\\\sprintf not found\\.$#"
+			message: """
+				#^Call to deprecated function Safe\\\\sprintf\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
 			count: 3
 			path: lib/Baseline.php
 
 		-
-			message: "#^PHPDoc tag @throws with type Safe\\\\Exceptions\\\\FilesystemException is not subtype of Throwable$#"
-			count: 1
-			path: lib/Baseline.php
-
-		-
-			message: "#^Used function Safe\\\\file_get_contents not found\\.$#"
-			count: 1
-			path: lib/Baseline.php
-
-		-
-			message: "#^Used function Safe\\\\sprintf not found\\.$#"
-			count: 1
-			path: lib/Baseline.php
-
-		-
-			message: "#^Function Safe\\\\preg_replace not found\\.$#"
-			count: 1
-			path: lib/BaselineAnalyzer.php
-
-		-
-			message: "#^Instantiated class Safe\\\\DateTimeImmutable not found\\.$#"
-			count: 1
-			path: lib/BaselineAnalyzer.php
-
-		-
-			message: "#^Property staabm\\\\PHPStanBaselineAnalysis\\\\AnalyzerResult\\:\\:\\$referenceDate \\(DateTimeImmutable\\) does not accept Safe\\\\DateTimeImmutable\\.$#"
-			count: 1
-			path: lib/BaselineAnalyzer.php
-
-		-
-			message: "#^Used function Safe\\\\preg_match not found\\.$#"
-			count: 1
-			path: lib/BaselineAnalyzer.php
-
-		-
-			message: "#^Function Safe\\\\preg_match not found\\.$#"
-			count: 1
-			path: lib/BaselineError.php
-
-		-
-			message: "#^Undefined variable\\: \\$matches$#"
-			count: 1
-			path: lib/BaselineError.php
-
-		-
-			message: "#^Used function Safe\\\\preg_match not found\\.$#"
-			count: 1
-			path: lib/BaselineError.php
-
-		-
-			message: "#^Used function Safe\\\\preg_match not found\\.$#"
-			count: 1
-			path: lib/BaselineFilter.php
-
-		-
-			message: "#^Function Safe\\\\glob not found\\.$#"
-			count: 2
-			path: lib/BaselineFinder.php
-
-		-
-			message: "#^PHPDoc tag @throws with type Safe\\\\Exceptions\\\\FilesystemException is not subtype of Throwable$#"
-			count: 2
-			path: lib/BaselineFinder.php
-
-		-
-			message: "#^Used function Safe\\\\glob not found\\.$#"
-			count: 1
-			path: lib/BaselineFinder.php
-
-		-
-			message: "#^Function Safe\\\\substr not found\\.$#"
+			message: """
+				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
 			count: 2
 			path: lib/FilterApplication.php
 
 		-
-			message: "#^PHPDoc tag @throws with type Safe\\\\Exceptions\\\\FilesystemException is not subtype of Throwable$#"
+			message: """
+				#^Fetching deprecated class constant BLOCK of class Nette\\\\Neon\\\\Neon\\:
+				use parameter \\$blockMode$#
+			"""
 			count: 1
 			path: lib/FilterApplication.php
 
 		-
-			message: "#^Used function Safe\\\\substr not found\\.$#"
-			count: 1
-			path: lib/FilterApplication.php
-
-		-
-			message: "#^Function Safe\\\\substr not found\\.$#"
+			message: """
+				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
 			count: 2
 			path: lib/FilterConfig.php
 
 		-
-			message: "#^Used function Safe\\\\substr not found\\.$#"
-			count: 1
-			path: lib/FilterConfig.php
-
-		-
-			message: "#^Function Safe\\\\glob not found\\.$#"
-			count: 1
-			path: lib/GraphApplication.php
-
-		-
-			message: "#^PHPDoc tag @throws with type Safe\\\\Exceptions\\\\FilesystemException\\|Safe\\\\Exceptions\\\\JsonException is not subtype of Throwable$#"
-			count: 1
-			path: lib/GraphApplication.php
-
-		-
-			message: "#^Used function Safe\\\\glob not found\\.$#"
-			count: 1
-			path: lib/GraphApplication.php
-
-		-
-			message: "#^Function Safe\\\\json_encode not found\\.$#"
-			count: 1
-			path: lib/GraphTemplate.php
-
-		-
-			message: "#^Used function Safe\\\\json_encode not found\\.$#"
-			count: 1
-			path: lib/GraphTemplate.php
-
-		-
-			message: "#^Access to constant RFC2822 on an unknown class Safe\\\\DateTimeImmutable\\.$#"
-			count: 1
-			path: lib/ResultPrinter.php
-
-		-
-			message: "#^Function Safe\\\\json_encode not found\\.$#"
-			count: 1
-			path: lib/ResultPrinter.php
-
-		-
-			message: "#^Function Safe\\\\sprintf not found\\.$#"
+			message: """
+				#^Call to deprecated function Safe\\\\sprintf\\(\\)\\:
+				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
+			"""
 			count: 12
 			path: lib/ResultPrinter.php
-
-		-
-			message: "#^Used function Safe\\\\json_encode not found\\.$#"
-			count: 1
-			path: lib/ResultPrinter.php
-
-		-
-			message: "#^Used function Safe\\\\sprintf not found\\.$#"
-			count: 1
-			path: lib/ResultPrinter.php
-
-		-
-			message: "#^Function Safe\\\\json_encode not found\\.$#"
-			count: 1
-			path: lib/TrendApplication.php
-
-		-
-			message: "#^PHPDoc tag @throws with type Safe\\\\Exceptions\\\\FilesystemException\\|Safe\\\\Exceptions\\\\JsonException is not subtype of Throwable$#"
-			count: 1
-			path: lib/TrendApplication.php
-
-		-
-			message: "#^Used function Safe\\\\json_encode not found\\.$#"
-			count: 1
-			path: lib/TrendApplication.php
