@@ -103,6 +103,7 @@ final class GraphTemplate
         }
 
         foreach ($dataByDates as $baselinePath => $dataByDate) {
+            ksort($dataByDate);
             foreach ($dataByDate as $date => $data) {
                 $dates[$baselinePath][] = 'new Date(' . $date . ' * 1000).toLocaleDateString("de-DE")';
                 $splines[$baselinePath][0]['data'][] = $data[0];
