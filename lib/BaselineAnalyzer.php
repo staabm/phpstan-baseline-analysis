@@ -3,7 +3,7 @@
 namespace staabm\PHPStanBaselineAnalysis;
 
 use Safe\DateTimeImmutable;
-use function Safe\preg_match;
+use function Safe\filemtime;
 
 final class BaselineAnalyzer
 {
@@ -41,7 +41,7 @@ final class BaselineAnalyzer
     public function analyze(): AnalyzerResult
     {
         $result = new AnalyzerResult();
-        $result->referenceDate = new DateTimeImmutable();
+        $result->referenceDate = DateTimeImmutable::createFromFormat("U", (string) filemtime($this->baseline->getFilePath()));
 
         /**
          * @var BaselineError $baselineError
