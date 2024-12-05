@@ -83,6 +83,9 @@ $ git clone ...
 
 $ phpstan-baseline-analyze *phpstan-baseline.neon --json > now.json
 
+# To use baseline file modification time as the analysis date instead of "now"
+$ phpstan-baseline-analyze *phpstan-baseline.neon --json --mtime > now.json
+
 $ git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
 $ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > 1-week-ago.json
 
