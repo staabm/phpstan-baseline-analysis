@@ -35,9 +35,14 @@ if ($argc <= 1) {
 
 
 $format = ResultPrinter::FORMAT_TEXT;
+$useFileMtime = false;
 if (in_array('--json', $argv)) {
     $format = ResultPrinter::FORMAT_JSON;
 }
 
-$exitCode = $app->start($argv[1], $format);
+if (in_array('--mtime', $argv)) {
+    $useFileMtime = true;
+}
+
+$exitCode = $app->start($argv[1], $format, $useFileMtime);
 exit($exitCode);

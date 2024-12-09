@@ -83,6 +83,10 @@ $ git clone ...
 
 $ phpstan-baseline-analyze *phpstan-baseline.neon --json > now.json
 
+# To use baseline file modification time as the analysis date instead of "now"
+# Best used together with `git restore-mtime *phpstan-baseline.neon`
+$ phpstan-baseline-analyze *phpstan-baseline.neon --json --mtime > now.json
+
 $ git checkout `git rev-list -n 1 --before="1 week ago" HEAD`
 $ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > 1-week-ago.json
 
@@ -91,6 +95,8 @@ $ phpstan-baseline-analyze '*phpstan-baseline.neon' --json > 2-weeks-ago.json
 
 $ php phpstan-baseline-graph '*.json' > result.html
 ```
+
+See [git-tools](https://github.com/MestreLion/git-tools) for details on `git restore-mtime`
 
 ![PHPStan baseline analysis graph](https://github.com/staabm/phpstan-baseline-analysis/assets/120441/ea5abe25-21e8-43f2-9118-0967a75517c6)
 

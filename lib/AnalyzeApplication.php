@@ -24,7 +24,7 @@ final class AnalyzeApplication
      *
      * @api
      */
-    public function start(string $glob, string $format): int
+    public function start(string $glob, string $format, bool $useFileMtime = false): int
     {
         $printer = new ResultPrinter();
         $baselines = BaselineFinder::forGlob($glob);
@@ -36,6 +36,7 @@ final class AnalyzeApplication
             $isLast = $i == $numBaselines - 1;
 
             $analyzer = new BaselineAnalyzer($baseline);
+            $analyzer->useFileMtime($useFileMtime);
             $result = $analyzer->analyze();
 
             if ($format == ResultPrinter::FORMAT_JSON) {
