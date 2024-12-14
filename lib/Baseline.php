@@ -17,9 +17,6 @@ final class Baseline {
      */
     private $filePath;
 
-    /**
-     * @throws FilesystemException
-     */
     static public function forFile(string $filePath):self {
         $baselineExtension = pathinfo($filePath, PATHINFO_EXTENSION);
 

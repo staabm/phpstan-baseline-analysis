@@ -2,7 +2,7 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use Exception;
+use \DateTimeImmutable;
 use \Iterator;
 
 final class ResultPrinter {

@@ -2,6 +2,8 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
+use DateTimeImmutable;
+
 final class BaselineAnalyzer
 {
     /**

@@ -11,6 +11,9 @@ final class GraphApplication
     public function start(string $jsonGlob): int
     {
         $jsonFiles = glob($jsonGlob);
+        if (!$jsonFiles) {
+            throw new \RuntimeException('No files found for ' . $jsonGlob);
+        }
 
         $it = $this->iterateOverFiles($jsonFiles);
 

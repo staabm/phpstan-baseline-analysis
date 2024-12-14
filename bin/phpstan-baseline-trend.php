@@ -1,9 +1,5 @@
 <?php
 
-use function Safe\ini_set;
-use function Safe\substr;
-use function Safe\sprintf;
-
 // Finding composer
 
 $paths = [
