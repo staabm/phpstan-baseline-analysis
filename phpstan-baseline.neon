@@ -1,28 +1,14 @@
 parameters:
 	ignoreErrors:
 		-
-			message: """
-				#^Call to deprecated function Safe\\\\sprintf\\(\\)\\:
-				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
-			"""
-			count: 1
-			path: bin/phpstan-baseline-trend.php
+			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			count: 2
+			path: lib/AnalyzeApplication.php
 
 		-
-			message: """
-				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
-				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
-			"""
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
 			count: 1
-			path: bin/phpstan-baseline-trend.php
-
-		-
-			message: """
-				#^Call to deprecated function Safe\\\\sprintf\\(\\)\\:
-				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
-			"""
-			count: 3
-			path: lib/Baseline.php
+			path: lib/AnalyzerResultReader.php
 
 		-
 			message: "#^Call to function is_array\\(\\) with array\\{ignoreErrors\\?\\: list\\<array\\{message\\: string, count\\: int, path\\: string\\}\\>\\} will always evaluate to true\\.$#"
@@ -35,35 +21,61 @@ parameters:
 			path: lib/Baseline.php
 
 		-
+			message: "#^Parameter \\#1 \\$input of static method Nette\\\\Neon\\\\Neon\\:\\:decode\\(\\) expects string, string\\|false given\\.$#"
+			count: 1
+			path: lib/Baseline.php
+
+		-
 			message: "#^Property staabm\\\\PHPStanBaselineAnalysis\\\\Baseline\\:\\:\\$content \\(array\\{parameters\\?\\: array\\{ignoreErrors\\?\\: list\\<array\\{message\\: string, count\\: int, path\\: string\\}\\>\\}\\}\\) does not accept array\\.$#"
 			count: 1
 			path: lib/Baseline.php
 
 		-
-			message: """
-				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
-				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
-			"""
+			message: "#^Method staabm\\\\PHPStanBaselineAnalysis\\\\BaselineAnalyzer\\:\\:normalizeMessage\\(\\) should return string but returns string\\|null\\.$#"
+			count: 1
+			path: lib/BaselineAnalyzer.php
+
+		-
+			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			count: 4
+			path: lib/BaselineAnalyzer.php
+
+		-
+			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: lib/BaselineFinder.php
+
+		-
+			message: "#^Method staabm\\\\PHPStanBaselineAnalysis\\\\BaselineFinder\\:\\:rglob\\(\\) should return array\\<string\\> but returns array\\<mixed\\>\\|false\\.$#"
+			count: 1
+			path: lib/BaselineFinder.php
+
+		-
+			message: "#^Parameter \\#1 \\.\\.\\.\\$arrays of function array_merge expects array, array\\<mixed\\>\\|false given\\.$#"
+			count: 1
+			path: lib/BaselineFinder.php
+
+		-
+			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
 			count: 2
 			path: lib/FilterApplication.php
 
 		-
-			message: """
-				#^Call to deprecated function Safe\\\\substr\\(\\)\\:
-				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
-			"""
-			count: 2
-			path: lib/FilterConfig.php
-
-		-
-			message: "#^Parameter \\#1 \\$jsonFiles of method staabm\\\\PHPStanBaselineAnalysis\\\\GraphApplication\\:\\:iterateOverFiles\\(\\) expects list\\<string\\>, array given\\.$#"
+			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
 			count: 1
-			path: lib/GraphApplication.php
+			path: lib/GraphTemplate.php
 
 		-
-			message: """
-				#^Call to deprecated function Safe\\\\sprintf\\(\\)\\:
-				The Safe version of this function is no longer needed in PHP 8\\.0\\+$#
-			"""
-			count: 12
+			message: "#^Generator expects value type string, string\\|false given\\.$#"
+			count: 1
 			path: lib/ResultPrinter.php
+
+		-
+			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			count: 14
+			path: lib/ResultPrinter.php
+
+		-
+			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			count: 5
+			path: lib/TrendApplication.php
