@@ -2,14 +2,9 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use function Safe\file_get_contents;
-use function Safe\json_decode;
-
 final class AnalyzerResultReader {
     /**
      * @return array<string, AnalyzerResult>
-     * @throws \Safe\Exceptions\FilesystemException
-     * @throws \Safe\Exceptions\JsonException
      */
     public function readFile(string $filePath): array
     {
@@ -41,12 +36,10 @@ final class AnalyzerResultReader {
     /**
      * @param string $filePath
      * @return array<mixed>
-     * @throws \Safe\Exceptions\FilesystemException
-     * @throws \Safe\Exceptions\JsonException
      */
     private function readResultArray(string $filePath): array
     {
-        \Safe\fwrite(STDERR, 'Reading file ' . $filePath . PHP_EOL);
+        fwrite(STDERR, 'Reading file ' . $filePath . PHP_EOL);
 
         $content = file_get_contents($filePath);
         if ($content === '') {

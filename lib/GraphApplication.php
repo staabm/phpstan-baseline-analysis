@@ -3,20 +3,17 @@
 namespace staabm\PHPStanBaselineAnalysis;
 
 use \Iterator;
-use function Safe\glob;
-
 final class GraphApplication
 {
     /**
-     * @throws \Safe\Exceptions\JsonException
-     *
-     * @throws \Safe\Exceptions\FilesystemException
-     *
      * @api
      */
     public function start(string $jsonGlob): int
     {
         $jsonFiles = glob($jsonGlob);
+        if (!$jsonFiles) {
+            throw new \RuntimeException('No files found for ' . $jsonGlob);
+        }
 
         $it = $this->iterateOverFiles($jsonFiles);
 

@@ -2,7 +2,6 @@
 
 use staabm\PHPStanBaselineAnalysis\FilterApplication;
 use staabm\PHPStanBaselineAnalysis\ResultPrinter;
-use function Safe\ini_set;
 
 // Finding composer
 

@@ -2,15 +2,10 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use Safe\Exceptions\FilesystemException;
-use function Safe\glob;
-
 final class BaselineFinder
 {
     /**
      * @return Baseline[]
-     *
-     * @throws FilesystemException
      */
     static public function forGlob(string $glob): array
     {
@@ -35,13 +30,15 @@ final class BaselineFinder
      * from https://stackoverflow.com/a/17161106
      *
      * @return string[]
-     *
-     * @throws FilesystemException
      */
     static private function rglob(string $pattern,int $flags = 0):array
     {
         $files = glob($pattern, $flags);
-        foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
+        if (!$files) {
+            return [];
+        }
+
+        foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) ?: [] as $dir) {
             if (basename($dir) == 'vendor') {
                 continue;
             }
