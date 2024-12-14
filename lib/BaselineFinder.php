@@ -38,7 +38,7 @@ final class BaselineFinder
             return [];
         }
 
-        foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
+        foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) ?: [] as $dir) {
             if (basename($dir) == 'vendor') {
                 continue;
             }

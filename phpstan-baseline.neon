@@ -41,11 +41,6 @@ parameters:
 			path: lib/BaselineAnalyzer.php
 
 		-
-			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: lib/BaselineFinder.php
-
-		-
 			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
 			count: 2
 			path: lib/FilterApplication.php
