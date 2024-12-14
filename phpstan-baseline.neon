@@ -1,66 +1,139 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			message: '#^Out of 28 possible constant types, only 0 \- 0\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
 			count: 2
 			path: lib/AnalyzeApplication.php
 
 		-
-			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: lib/AnalyzerResultReader.php
 
 		-
-			message: "#^Call to function is_array\\(\\) with array\\{ignoreErrors\\?\\: list\\<array\\{message\\: string, count\\: int, path\\: string\\}\\>\\} will always evaluate to true\\.$#"
+			message: '#^Parameter \#2 \$datetime of static method DateTimeImmutable\:\:createFromFormat\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$anonymousVariables \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$classesComplexity \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$deprecations \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$invalidPhpdocs \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$overallErrors \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$paramTypeCoverage \(int\<0, 100\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$propertyTypeCoverage \(int\<0, 100\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$returnTypeCoverage \(int\<0, 100\>\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$unknownTypes \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\AnalyzerResult\:\:\$unusedSymbols \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: lib/AnalyzerResultReader.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\{ignoreErrors\?\: list\<array\{message\: string, count\: int, path\: string\}\>\} will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: lib/Baseline.php
 
 		-
-			message: "#^Call to function is_array\\(\\) with list\\<array\\{message\\: string, count\\: int, path\\: string\\}\\> will always evaluate to true\\.$#"
+			message: '#^Call to function is_array\(\) with list\<array\{message\: string, count\: int, path\: string\}\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: lib/Baseline.php
 
 		-
-			message: "#^Parameter \\#1 \\$input of static method Nette\\\\Neon\\\\Neon\\:\\:decode\\(\\) expects string, string\\|false given\\.$#"
+			message: '#^Parameter \#1 \$input of static method Nette\\Neon\\Neon\:\:decode\(\) expects string, string\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: lib/Baseline.php
 
 		-
-			message: "#^Property staabm\\\\PHPStanBaselineAnalysis\\\\Baseline\\:\\:\\$content \\(array\\{parameters\\?\\: array\\{ignoreErrors\\?\\: list\\<array\\{message\\: string, count\\: int, path\\: string\\}\\>\\}\\}\\) does not accept array\\.$#"
+			message: '#^Property staabm\\PHPStanBaselineAnalysis\\Baseline\:\:\$content \(array\{parameters\?\: array\{ignoreErrors\?\: list\<array\{message\: string, count\: int, path\: string\}\>\}\}\) does not accept array\<mixed, mixed\>\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: lib/Baseline.php
 
 		-
-			message: "#^Method staabm\\\\PHPStanBaselineAnalysis\\\\BaselineAnalyzer\\:\\:normalizeMessage\\(\\) should return string but returns string\\|null\\.$#"
+			message: '#^Method staabm\\PHPStanBaselineAnalysis\\BaselineAnalyzer\:\:normalizeMessage\(\) should return string but returns string\|null\.$#'
+			identifier: return.type
 			count: 1
 			path: lib/BaselineAnalyzer.php
 
 		-
-			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			message: '#^Out of 28 possible constant types, only 0 \- 0\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
 			count: 4
 			path: lib/BaselineAnalyzer.php
 
 		-
-			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			message: '#^Out of 28 possible constant types, only 0 \- 0\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
 			count: 2
 			path: lib/FilterApplication.php
 
 		-
-			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			message: '#^Out of 28 possible constant types, only 0 \- 0\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
 			count: 1
 			path: lib/GraphTemplate.php
 
 		-
-			message: "#^Generator expects value type string, string\\|false given\\.$#"
+			message: '#^Generator expects value type string, string\|false given\.$#'
+			identifier: generator.valueType
 			count: 1
 			path: lib/ResultPrinter.php
 
 		-
-			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			message: '#^Out of 28 possible constant types, only 0 \- 0\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
 			count: 14
 			path: lib/ResultPrinter.php
 
 		-
-			message: "#^Out of 28 possible constant types, only 0 \\- 0\\.0 %% actually have it\\. Add more constant types to get over 99 %%$#"
+			message: '#^Out of 28 possible constant types, only 0 \- 0\.0 %% actually have it\. Add more constant types to get over 99 %%$#'
 			count: 5
 			path: lib/TrendApplication.php
