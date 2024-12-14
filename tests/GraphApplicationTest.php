@@ -5,8 +5,6 @@ namespace staabm\PHPStanBaselineAnalysis\Tests;
 use staabm\PHPStanBaselineAnalysis\AnalyzeApplication;
 use staabm\PHPStanBaselineAnalysis\GraphApplication;
 use staabm\PHPStanBaselineAnalysis\ResultPrinter;
-use function Safe\json_encode;
-use function Safe\file_get_contents;
 
 class GraphApplicationTest extends BaseTestCase
 {

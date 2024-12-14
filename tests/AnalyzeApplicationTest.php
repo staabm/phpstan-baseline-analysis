@@ -4,7 +4,6 @@ namespace staabm\PHPStanBaselineAnalysis\Tests;
 
 use staabm\PHPStanBaselineAnalysis\AnalyzeApplication;
 use staabm\PHPStanBaselineAnalysis\ResultPrinter;
-use function Safe\json_encode;
 
 class AnalyzeApplicationTest extends BaseTestCase
 {
