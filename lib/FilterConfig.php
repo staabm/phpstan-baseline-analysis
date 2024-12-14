@@ -2,8 +2,6 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use function Safe\substr;
-
 /**
  * @immutable
  */

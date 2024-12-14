@@ -3,15 +3,9 @@
 namespace staabm\PHPStanBaselineAnalysis;
 
 use \Iterator;
-use function Safe\glob;
-
 final class GraphApplication
 {
     /**
-     * @throws \Safe\Exceptions\JsonException
-     *
-     * @throws \Safe\Exceptions\FilesystemException
-     *
      * @api
      */
     public function start(string $jsonGlob): int

@@ -4,7 +4,6 @@ namespace staabm\PHPStanBaselineAnalysis;
 
 use Nette\DI\Helpers;
 use Nette\Neon\Neon;
-use function Safe\substr;
 use PHPStan\ShouldNotHappenException;
 
 final class FilterApplication
@@ -20,8 +19,6 @@ final class FilterApplication
 
     /**
      * @return self::EXIT_*
-     *
-     * @throws \Safe\Exceptions\FilesystemException
      *
      * @api
      */

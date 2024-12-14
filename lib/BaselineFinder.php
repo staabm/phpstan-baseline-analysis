@@ -2,9 +2,6 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use Safe\Exceptions\FilesystemException;
-use function Safe\glob;
-
 final class BaselineFinder
 {
     /**

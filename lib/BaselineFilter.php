@@ -2,9 +2,6 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use Safe\DateTimeImmutable;
-use function Safe\preg_match;
-
 final class BaselineFilter
 {
     private Baseline $baseline;
