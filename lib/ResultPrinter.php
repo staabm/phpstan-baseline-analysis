@@ -2,11 +2,8 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use Exception;
+use \DateTimeImmutable;
 use \Iterator;
-use Safe\DateTimeImmutable;
-use function Safe\sprintf;
-use function Safe\json_encode;
 
 final class ResultPrinter {
     const DATE_FORMAT = DateTimeImmutable::RFC2822;

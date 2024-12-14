@@ -2,8 +2,6 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use function Safe\json_encode;
-
 final class TrendApplication
 {
     /**
@@ -40,9 +38,6 @@ final class TrendApplication
     /**
      * @param self::OUTPUT_FORMAT_* $outputFormat
      * @return self::EXIT_*
-     * @throws \Safe\Exceptions\JsonException
-     *
-     * @throws \Safe\Exceptions\FilesystemException
      *
      * @api
      */

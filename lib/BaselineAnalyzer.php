@@ -2,8 +2,7 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
-use Safe\DateTimeImmutable;
-use function Safe\preg_match;
+use DateTimeImmutable;
 
 final class BaselineAnalyzer
 {
@@ -152,6 +151,6 @@ final class BaselineAnalyzer
 
     private function normalizeMessage(BaselineError $baselineError): string {
         // makes the message format of tomasvotruba/type-coverage 0.2.* compatible with tomasvotruba/type-coverage 0.1.*
-        return \Safe\preg_replace('/only \d+ \- (\d+).\d %/', 'only $1 %', $baselineError->unwrapMessage());
+        return preg_replace('/only \d+ \- (\d+).\d %/', 'only $1 %', $baselineError->unwrapMessage());
     }
 }

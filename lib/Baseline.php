@@ -5,9 +5,6 @@ namespace staabm\PHPStanBaselineAnalysis;
 use Iterator;
 use Nette\Neon\Neon;
 use RuntimeException;
-use Safe\Exceptions\FilesystemException;
-use function Safe\file_get_contents;
-use function Safe\sprintf;
 
 final class Baseline {
     /**
@@ -20,9 +17,6 @@ final class Baseline {
      */
     private $filePath;
 
-    /**
-     * @throws FilesystemException
-     */
     static public function forFile(string $filePath):self {
         $baselineExtension = pathinfo($filePath, PATHINFO_EXTENSION);
 

@@ -1,7 +1,6 @@
 <?php
 
 use staabm\PHPStanBaselineAnalysis\ResultPrinter;
-use function Safe\ini_set;
 
 // Finding composer
 

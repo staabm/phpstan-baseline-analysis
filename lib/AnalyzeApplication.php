@@ -20,8 +20,6 @@ final class AnalyzeApplication
      *
      * @return self::EXIT_*
      *
-     * @throws \Safe\Exceptions\FilesystemException
-     *
      * @api
      */
     public function start(string $glob, string $format): int
