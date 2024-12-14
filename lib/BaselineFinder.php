@@ -34,6 +34,10 @@ final class BaselineFinder
     static private function rglob(string $pattern,int $flags = 0):array
     {
         $files = glob($pattern, $flags);
+        if (!$files) {
+            return [];
+        }
+
         foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
             if (basename($dir) == 'vendor') {
                 continue;
