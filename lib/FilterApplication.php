@@ -63,11 +63,9 @@ final class FilterApplication
         foreach ($errors as $error) {
             $ignoreError = [];
 
+            $ignoreError['count'] = $error->count;
             if ($error->message !== null) {
                 $ignoreError['message'] = $error->message;
-            }
-            if ($error->count !== null) {
-                $ignoreError['count'] = $error->count;
             }
             if ($error->path !== null) {
                 $ignoreError['path'] = $error->path;
