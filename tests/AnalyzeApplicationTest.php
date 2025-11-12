@@ -21,7 +21,7 @@ class AnalyzeApplicationTest extends BaseTestCase
         $expected = <<<PHP
 Analyzing /fixtures/all-in.neon
   Date: {$expectedDate}
-  Overall-Errors: 41
+  Overall-Errors: 43
   Classes-Cognitive-Complexity: 70
   Deprecations: 2
   Invalid-Phpdocs: 5
@@ -30,7 +30,7 @@ Analyzing /fixtures/all-in.neon
   Native-Property-Type-Coverage: 1
   Native-Param-Type-Coverage: 27
   Native-Return-Type-Coverage: 4
-  Unused-Symbols: 3
+  Unused-Symbols: 4
 
 PHP;
 
@@ -50,7 +50,7 @@ PHP;
 
         $expectedDate = date(ResultPrinter::DATE_FORMAT);
         $expected = <<<PHP
-[{"\/fixtures\/all-in.neon":{"Date":"{$expectedDate}","Overall-Errors":41,"Classes-Cognitive-Complexity":70,"Deprecations":2,"Invalid-Phpdocs":5,"Unknown-Types":1,"Anonymous-Variables":4,"Native-Property-Type-Coverage":1,"Native-Param-Type-Coverage":27,"Native-Return-Type-Coverage":4,"Unused-Symbols":3}}]
+[{"\/fixtures\/all-in.neon":{"Date":"{$expectedDate}","Overall-Errors":43,"Classes-Cognitive-Complexity":70,"Deprecations":2,"Invalid-Phpdocs":5,"Unknown-Types":1,"Anonymous-Variables":4,"Native-Property-Type-Coverage":1,"Native-Param-Type-Coverage":27,"Native-Return-Type-Coverage":4,"Unused-Symbols":4}}]
 PHP;
 
         $this->assertSame($expected, $rendered);

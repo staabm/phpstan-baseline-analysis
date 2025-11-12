@@ -67,6 +67,11 @@ parameters:
 			count: 1
 			path: scripts/portal/SearchExport.php
 
+		-
+			count: 1
+			path: scripts/portal/SearchExport.php
+			rawMessage: Public constant "SearchExport::OTHER_PATH" is never used
+
 PHP;
 
         $this->assertSame($expected, $rendered);
@@ -101,6 +106,11 @@ parameters:
 			message: '#^Public constant "SearchExport\:\:TMP_PATH" is never used$#'
 			count: 1
 			path: scripts/portal/SearchExport.php
+
+		-
+			count: 1
+			path: scripts/portal/SearchExport.php
+			rawMessage: Public constant "SearchExport::OTHER_PATH" is never used
 
 PHP;
 

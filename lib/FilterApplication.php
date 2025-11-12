@@ -61,11 +61,25 @@ final class FilterApplication
     {
         $ignoreErrors = [];
         foreach ($errors as $error) {
-            $ignoreErrors[] = [
-                'message' => $error->message,
-                'count' => $error->count,
-                'path' => $error->path,
-            ];
+            $ignoreError = [];
+
+            if ($error->message !== null) {
+                $ignoreError['message'] = $error->message;
+            }
+
+            $ignoreError['count'] = $error->count;
+
+            if ($error->path !== null) {
+                $ignoreError['path'] = $error->path;
+            }
+            if ($error->identifier !== null) {
+                $ignoreError['identifier'] = $error->identifier;
+            }
+            if ($error->rawMessage !== null) {
+                $ignoreError['rawMessage'] = $error->rawMessage;
+            }
+
+            $ignoreErrors[] = $ignoreError;
 
         }
 
