@@ -9,15 +9,21 @@ final class BaselineError
 {
     public int $count;
 
-    public string $message;
+    public ?string $message;
 
-    public string $path;
+    public ?string $rawMessage;
 
-    public function __construct(int $count, string $message, string $path)
+    public ?string $path;
+
+    public ?string $identifier;
+
+    public function __construct(int $count, ?string $message, ?string $path, ?string $identifier, ?string $rawMessage)
     {
         $this->count = $count;
         $this->message = $message;
+        $this->rawMessage = $rawMessage;
         $this->path = $path;
+        $this->identifier = $identifier;
     }
 
     /**
@@ -25,6 +31,14 @@ final class BaselineError
      * Note: the message may still contain escaped regex meta characters.
      */
     public function unwrapMessage(): string {
+        if ($this->rawMessage !== null) {
+            return $this->rawMessage;
+        }
+
+        if ($this->message === null) {
+            return '';
+        }
+
         $msg = $this->message;
         $msg = str_replace(['\\-', '\\.', '%%'], ['-', '.', '%'], $msg);
         $msg = trim($msg, '#^$');
@@ -33,10 +47,12 @@ final class BaselineError
 
     public function isDeprecationError(): bool
     {
-        return str_contains($this->message, ' deprecated class ')
-            || str_contains($this->message, ' deprecated method ')
-            || str_contains($this->message, ' deprecated function ')
-            || str_contains($this->message, ' deprecated property ');
+        $message = $this->unwrapMessage();
+
+        return str_contains($message, ' deprecated class ')
+            || str_contains($message, ' deprecated method ')
+            || str_contains($message, ' deprecated function ')
+            || str_contains($message, ' deprecated property ');
     }
 
     public function isComplexityError(): bool
@@ -46,24 +62,26 @@ final class BaselineError
 
     public function isInvalidPhpDocError(): bool
     {
-        return str_contains($this->message, 'PHPDoc tag ');
+        return str_contains($this->unwrapMessage(), 'PHPDoc tag ');
     }
 
     public function isUnknownTypeError(): bool
     {
-        return preg_match('/Instantiated class .+ not found/', $this->message, $matches) === 1
-            || str_contains($this->message, 'on an unknown class')
-            || str_contains($this->message, 'has invalid type unknown')
-            || str_contains($this->message, 'unknown_type as its type');
+        $message = $this->unwrapMessage();
+
+        return preg_match('/Instantiated class .+ not found/', $message, $matches) === 1
+            || str_contains($message, 'on an unknown class')
+            || str_contains($message, 'has invalid type unknown')
+            || str_contains($message, 'unknown_type as its type');
     }
 
     public function isAnonymousVariableError(): bool
     {
-        return str_contains($this->message, 'Anonymous variable');
+        return str_contains($this->unwrapMessage(), 'Anonymous variable');
     }
 
     public function isUnusedSymbolError(): bool
     {
-        return str_ends_with($this->message, 'is never used$#');
+        return str_ends_with($this->unwrapMessage(), 'is never used');
     }
 }

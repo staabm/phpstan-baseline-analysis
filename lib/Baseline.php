@@ -8,7 +8,7 @@ use RuntimeException;
 
 final class Baseline {
     /**
-     * @var array{parameters?: array{ignoreErrors?: list<array{message: string, count: int, path: string}>}}
+     * @var array{parameters?: array{ignoreErrors?: list<array{message: ?string, count: ?int, path: ?string, identifier: ?string, rawMessage: ?string}>}}
      */
     private $content;
 
@@ -52,7 +52,7 @@ final class Baseline {
         $ignoreErrors = $parameters['ignoreErrors'];
 
         foreach($ignoreErrors as $error) {
-            yield new BaselineError($error['count'], $error['message'], $error['path']);
+            yield new BaselineError($error['count'], $error['message'] ?? null, $error['path'] ?? null, $error['identifier'] ?? null, $error['rawMessage'] ?? null);
         }
     }
 

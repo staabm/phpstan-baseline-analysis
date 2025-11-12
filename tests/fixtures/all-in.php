@@ -121,5 +121,14 @@ $ignoreErrors[] = [
     'count' => 1,
     'path' => 'scripts/portal/SearchExport.php',
 ];
+$ignoreErrors[] = [
+    'rawMessage' => 'Public constant "SearchExport::TMP_PATH" is never used',
+    'count' => 1,
+    'path' => 'scripts/portal/SearchExport.php',
+];
+$ignoreErrors[] = [
+    'identifier' => 'myident.test',
+    'count' => 1,
+];
 
 return ['parameters' => ['ignoreErrors' => $ignoreErrors]];

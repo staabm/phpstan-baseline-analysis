@@ -119,3 +119,12 @@ parameters:
 			message: "#^Public constant \"SearchExport\\:\\:TMP_PATH\" is never used$#"
 			count: 1
 			path: scripts/portal/SearchExport.php
+
+		-
+			rawMessage: "Public constant \"SearchExport::OTHER_PATH\" is never used"
+			count: 1
+			path: scripts/portal/SearchExport.php
+
+		-
+			identifier: myident.test
+			count: 1

@@ -205,7 +205,7 @@ class BaselineAnalyzerTest extends TestCase
 
     private function allInAssertions(AnalyzerResult $result): void
     {
-        $this->assertSame(41, $result->overallErrors);
+        $this->assertSame(43, $result->overallErrors);
         $this->assertSame(70, $result->classesComplexity);
         $this->assertSame(2, $result->deprecations);
         $this->assertSame(5, $result->invalidPhpdocs);
@@ -214,7 +214,7 @@ class BaselineAnalyzerTest extends TestCase
         $this->assertSame(1, $result->propertyTypeCoverage);
         $this->assertSame(27, $result->paramTypeCoverage);
         $this->assertSame(4, $result->returnTypeCoverage);
-        $this->assertSame(3, $result->unusedSymbols);
+        $this->assertSame(4, $result->unusedSymbols);
     }
 
 }
