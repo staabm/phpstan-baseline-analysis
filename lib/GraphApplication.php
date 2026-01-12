@@ -10,7 +10,11 @@ final class GraphApplication
      */
     public function start(string $jsonGlob): int
     {
-        $jsonFiles = glob($jsonGlob);
+        $jsonFiles = glob($jsonGlob, GLOB_NOSORT) ?: [];
+        usort( $jsonFiles, function( string $a, string $b ) {
+            return filemtime($a) - filemtime($b);
+        });
+
         if (!$jsonFiles) {
             throw new \RuntimeException('No files found for ' . $jsonGlob);
         }
