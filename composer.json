@@ -23,7 +23,7 @@
         "symfony/var-dumper": "^5.3",
         "tomasvotruba/cognitive-complexity": "^1",
         "tomasvotruba/type-coverage": "^2.0",
-        "tomasvotruba/unused-public": "^2.0"
+        "tomasvotruba/unused-public": "^2.2"
     },
     "conflict": {
         "tomasvotruba/type-coverage": "<1.0"
