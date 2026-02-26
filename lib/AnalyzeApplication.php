@@ -51,6 +51,41 @@ final class AnalyzeApplication
         return self::EXIT_ERROR;
     }
 
+    public function summarize(string $glob, string $format): int
+    {
+        $baselines = BaselineFinder::forGlob($glob);
+        $numBaselines = count($baselines);
+        if ($numBaselines === 0) {
+            return self::EXIT_ERROR;
+        }
+
+        $resultSummary = new AnalyzerResult();
+        $baselineSummary = new Baseline();
+
+        foreach ($baselines as $baseline) {
+            $analyzer = new BaselineAnalyzer($baseline);
+            $result = $analyzer->analyze();
+            $resultSummary->overallErrors += $result->overallErrors;
+            $resultSummary->deprecations += $result->deprecations;
+            $resultSummary->invalidPhpdocs += $result->invalidPhpdocs;
+            $resultSummary->unknownTypes += $result->unknownTypes;
+            $resultSummary->anonymousVariables += $result->anonymousVariables;
+            $resultSummary->unusedSymbols += $result->unusedSymbols;
+        }
+
+        $printer = new ResultPrinter();
+
+        if ($format == ResultPrinter::FORMAT_JSON) {
+            $stream = $printer->streamJson($baselineSummary, $resultSummary);
+        } else {
+            $stream = $printer->streamText($baselineSummary, $resultSummary);
+        }
+
+        $this->printSummary($format, $stream);
+
+        return self::EXIT_SUCCESS;
+    }
+
     /**
      * @api
      */
