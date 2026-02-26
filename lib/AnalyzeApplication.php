@@ -2,6 +2,7 @@
 
 namespace staabm\PHPStanBaselineAnalysis;
 
+use DateTimeImmutable;
 use \Iterator;
 
 final class AnalyzeApplication
@@ -65,6 +66,7 @@ final class AnalyzeApplication
         foreach ($baselines as $baseline) {
             $analyzer = new BaselineAnalyzer($baseline);
             $result = $analyzer->analyze();
+            $resultSummary->referenceDate = new DateTimeImmutable();
             $resultSummary->overallErrors += $result->overallErrors;
             $resultSummary->deprecations += $result->deprecations;
             $resultSummary->invalidPhpdocs += $result->invalidPhpdocs;
