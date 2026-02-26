@@ -131,10 +131,6 @@ final class AnalyzeApplication
 
         foreach ($stream as $string) {
             printf($string);
-
-            if ($format === ResultPrinter::FORMAT_JSON) {
-                printf(",\n");
-            }
         }
 
         if ($format === ResultPrinter::FORMAT_JSON) {
