@@ -16,6 +16,7 @@ final class BaselineFinder
                 continue;
             }
 
+            // Skip loader.neon, which is used for loading baselines in phpstan-baseline-filter, but is not a baseline itself.
             if (str_ends_with($baseline, 'loader.neon')) {
                 continue;
             }
