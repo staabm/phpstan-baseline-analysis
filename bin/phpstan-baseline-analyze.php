@@ -38,5 +38,10 @@ if (in_array('--json', $argv)) {
     $format = ResultPrinter::FORMAT_JSON;
 }
 
-$exitCode = $app->start($argv[1], $format);
+if (in_array('--summary', $argv)) {
+    $exitCode = $app->summarize($argv[1], $format);
+} else {
+    $exitCode = $app->start($argv[1], $format);
+}
+
 exit($exitCode);
