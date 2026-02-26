@@ -119,4 +119,26 @@ final class AnalyzeApplication
             }
         }
     }
+
+    /**
+     * @param Iterator<string> $stream
+     */
+    private function printSummary(string $format, Iterator $stream): void
+    {
+        if ($format === ResultPrinter::FORMAT_JSON) {
+            printf('[');
+        }
+
+        foreach ($stream as $string) {
+            printf($string);
+
+            if ($format === ResultPrinter::FORMAT_JSON) {
+                printf(",\n");
+            }
+        }
+
+        if ($format === ResultPrinter::FORMAT_JSON) {
+            printf(']');
+        }
+    }
 }
