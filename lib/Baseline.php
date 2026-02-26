@@ -59,6 +59,6 @@ final class Baseline {
     }
 
     public function getFilePath():string {
-        return $this->filePath;
+        return $this->filePath ?? basename(getcwd());
     }
 }
