@@ -58,7 +58,7 @@ final class BaselineFinder
     /**
      * @param string[] $files
      * @param string[] $excludeFilenames
-     * @return array
+     * @return string[]
      */
     private static function filerExcludedFiles(array $files, array $excludeFilenames): array
     {

@@ -39,7 +39,11 @@ if (in_array('--json', $argv)) {
 }
 
 $excludeOptions = preg_grep('/^--exclude=/', $argv);
-$excludedFiles = preg_replace('/^--exclude=/', '', $excludeOptions);
+if ($excludeOptions) {
+    $excludedFiles = preg_replace('/^--exclude=/', '', $excludeOptions);
+} else {
+    $excludedFiles = [];
+}
 
 if (in_array('--summary', $argv)) {
     $exitCode = $app->summarize($argv[1], $format, $excludedFiles);
