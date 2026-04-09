@@ -52,9 +52,12 @@ final class AnalyzeApplication
         return self::EXIT_ERROR;
     }
 
-    public function summarize(string $glob, string $format): int
+    /**
+     * @param string[]  $excludedFilenames
+     */
+    public function summarize(string $glob, string $format, array $excludedFilenames = []): int
     {
-        $baselines = BaselineFinder::forGlob($glob);
+        $baselines = BaselineFinder::forGlob($glob, $excludedFilenames);
         $numBaselines = count($baselines);
         if ($numBaselines === 0) {
             return self::EXIT_ERROR;

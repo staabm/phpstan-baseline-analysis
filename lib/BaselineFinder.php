@@ -5,13 +5,14 @@ namespace staabm\PHPStanBaselineAnalysis;
 final class BaselineFinder
 {
     /**
+     * @param string[] $excludeFilenames
      * @return Baseline[]
      */
-    static public function forGlob(string $glob): array
+    static public function forGlob(string $glob, array $excludeFilenames = []): array
     {
         $baselines = [];
 
-        foreach (self::rglob($glob) as $baseline) {
+        foreach (self::rglob($glob, 0, $excludeFilenames) as $baseline) {
             if (!is_file($baseline)) {
                 continue;
             }
@@ -34,9 +35,10 @@ final class BaselineFinder
     /**
      * from https://stackoverflow.com/a/17161106
      *
+     * @param string[] $excludeFilenames
      * @return string[]
      */
-    static private function rglob(string $pattern,int $flags = 0):array
+    static private function rglob(string $pattern, int $flags = 0, array $excludeFilenames = []): array
     {
         $files = glob($pattern, $flags);
         if (!$files) {
@@ -48,7 +50,7 @@ final class BaselineFinder
                 continue;
             }
 
-            $files = array_merge($files, self::rglob($dir . '/' . basename($pattern), $flags));
+            $files = array_merge($files, self::rglob($dir . '/' . basename($pattern), $flags, $excludeFilenames));
         }
         return $files;
     }
