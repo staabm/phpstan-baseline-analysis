@@ -17,11 +17,6 @@ final class BaselineFinder
                 continue;
             }
 
-            // Skip loader.neon, which is used for loading baselines in phpstan-baseline-filter, but is not a baseline itself.
-            if (str_ends_with($baseline, 'loader.neon')) {
-                continue;
-            }
-
             if (!str_ends_with($baseline, '.neon') && !str_ends_with($baseline, '.php')) {
                 continue;
             }
@@ -45,6 +40,11 @@ final class BaselineFinder
             return [];
         }
 
+        // Filter out excluded filenames
+        if ($excludeFilenames !== []) {
+            $files = self::filerExcludedFiles($files, $excludeFilenames);
+        }
+
         foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) ?: [] as $dir) {
             if (basename($dir) == 'vendor') {
                 continue;
@@ -53,5 +53,23 @@ final class BaselineFinder
             $files = array_merge($files, self::rglob($dir . '/' . basename($pattern), $flags, $excludeFilenames));
         }
         return $files;
+    }
+
+    /**
+     * @param string[] $files
+     * @param string[] $excludeFilenames
+     * @return array
+     */
+    private static function filerExcludedFiles(array $files, array $excludeFilenames): array
+    {
+        return array_filter($files, function (string $file) use ($excludeFilenames) {
+            foreach ($excludeFilenames as $excludeFilename) {
+                if (str_ends_with($file, $excludeFilename)) {
+                    return false;
+                }
+            }
+
+            return true;
+        });
     }
 }
