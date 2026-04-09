@@ -38,8 +38,11 @@ if (in_array('--json', $argv)) {
     $format = ResultPrinter::FORMAT_JSON;
 }
 
+$excludeOptions = preg_grep('/^--exclude=/', $argv);
+$excludedFiles = preg_replace('/^--exclude=/', '', $excludeOptions);
+
 if (in_array('--summary', $argv)) {
-    $exitCode = $app->summarize($argv[1], $format);
+    $exitCode = $app->summarize($argv[1], $format, $excludedFiles);
 } else {
     $exitCode = $app->start($argv[1], $format);
 }
