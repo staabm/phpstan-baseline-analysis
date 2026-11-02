@@ -19,7 +19,7 @@
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2",
         "phpstan/phpstan-deprecation-rules": "^2",
-        "phpunit/phpunit": "^9.6",
+        "phpunit/phpunit": "^13.4",
         "symfony/var-dumper": "^5.3",
         "tomasvotruba/cognitive-complexity": "^1",
         "tomasvotruba/type-coverage": "^2.0",
